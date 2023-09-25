@@ -73,9 +73,7 @@ class HistoryOnProgressScreen extends StatelessWidget {
                   width: double.maxFinite,
                   child: Container(
                     margin: EdgeInsets.fromLTRB(23.h, 14.v, 23.h, 5.v),
-                    decoration: AppDecoration.fillOnPrimary.copyWith(
-                      borderRadius: BorderRadiusStyle.customBorderBL24,
-                    ),
+                    decoration: AppDecoration.fillOnPrimary.copyWith(),
                     child: ListView.separated(
                       physics: BouncingScrollPhysics(),
                       shrinkWrap: true,

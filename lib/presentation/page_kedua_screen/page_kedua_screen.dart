@@ -19,7 +19,7 @@ class PageKeduaScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     gradient: LinearGradient(
                         begin: Alignment(0.5, 0),
-                        end: Alignment(0.5, 1),   
+                        end: Alignment(0.5, 1),
                         colors: [
                       appTheme.gray500,
                       appTheme.black900.withOpacity(0)
@@ -30,9 +30,8 @@ class PageKeduaScreen extends StatelessWidget {
                     child: Stack(alignment: Alignment.center, children: [
                       CustomImageView(
                           imagePath: ImageConstant.imgWavebackground,
-                          height: 797.v,
+                          height: 900.v,
                           width: 375.h,
-                          radius: BorderRadius.circular(36.h),
                           alignment: Alignment.center),
                       SizedBox(
                           width: double.maxFinite,

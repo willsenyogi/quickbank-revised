@@ -37,11 +37,8 @@ class PageKetigaScreen extends StatelessWidget {
               children: [
                 CustomImageView(
                   imagePath: ImageConstant.imgWavebackground,
-                  height: 797.v,
+                  height: 900.v,
                   width: 375.h,
-                  radius: BorderRadius.circular(
-                    36.h,
-                  ),
                   alignment: Alignment.center,
                 ),
                 Align(
@@ -136,18 +133,7 @@ class PageKetigaScreen extends StatelessWidget {
                                       decoration: AppDecoration.outlineBlack,
                                       child: RichText(
                                         text: TextSpan(
-                                          children: [
-                                            TextSpan(
-                                              text: "Trust ",
-                                              style: CustomTextStyles
-                                                  .headlineMediumOnPrimaryContainer,
-                                            ),
-                                            TextSpan(
-                                              text: "QuickBank",
-                                              style: CustomTextStyles
-                                                  .headlineMediumLightgreenA700,
-                                            ),
-                                          ],
+                                          children: [],
                                         ),
                                         textAlign: TextAlign.left,
                                       ),
