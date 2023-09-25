@@ -1,0 +1,171 @@
+import 'package:flutter/material.dart';
+import 'package:quickbank_revised/core/app_export.dart';
+import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
+import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
+import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
+
+class PilihanTransferScreen extends StatelessWidget {
+  const PilihanTransferScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    mediaQueryData = MediaQuery.of(context);
+    return SafeArea(
+        child: Scaffold(
+            body: SizedBox(
+                height: 768.v,
+                width: double.maxFinite,
+                child: Stack(alignment: Alignment.center, children: [
+                  CustomImageView(
+                      imagePath: ImageConstant.imgWavebackground,
+                      height: 768.v,
+                      width: 375.h,
+                      radius: BorderRadius.circular(36.h),
+                      alignment: Alignment.center),
+                  Align(
+                      alignment: Alignment.center,
+                      child: Column(mainAxisSize: MainAxisSize.min, children: [
+                        Column(children: [
+                          CustomAppBar(
+                              centerTitle: true,
+                              title: AppbarTitle(text: "QUICK\nBANK")),
+                          SizedBox(height: 17.v),
+                          Text("Transfer",
+                              style:
+                                  CustomTextStyles.titleLargeOnPrimaryContainer)
+                        ]),
+                        SizedBox(height: 62.v),
+                        Expanded(
+                            child: SingleChildScrollView(
+                                child: Container(
+                                    margin: EdgeInsets.only(
+                                        left: 24.h, right: 36.h, bottom: 416.v),
+                                    decoration: AppDecoration.fillOnPrimary
+                                        .copyWith(
+                                            borderRadius: BorderRadiusStyle
+                                                .customBorderBL24),
+                                    child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Expanded(
+                                                    child: Container(
+                                                        margin: EdgeInsets.only(
+                                                            right: 22.h),
+                                                        padding: EdgeInsets
+                                                            .symmetric(
+                                                                horizontal:
+                                                                    29.h,
+                                                                vertical: 12.v),
+                                                        decoration: AppDecoration
+                                                            .gradientBlackToBlack900
+                                                            .copyWith(
+                                                                borderRadius:
+                                                                    BorderRadiusStyle
+                                                                        .roundedBorder8),
+                                                        child: Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            children: [
+                                                              CustomImageView(
+                                                                  imagePath:
+                                                                      ImageConstant
+                                                                          .imgUsdcircle2,
+                                                                  height: 32
+                                                                      .adaptSize,
+                                                                  width: 32
+                                                                      .adaptSize),
+                                                              SizedBox(
+                                                                  height: 17.v),
+                                                              Text(
+                                                                  "QB Transfer",
+                                                                  style: theme
+                                                                      .textTheme
+                                                                      .labelLarge),
+                                                              SizedBox(
+                                                                  height: 13.v)
+                                                            ]))),
+                                                Expanded(
+                                                    child: GestureDetector(
+                                                        onTap: () {
+                                                          onTapTwo(context);
+                                                        },
+                                                        child: Container(
+                                                            margin:
+                                                                EdgeInsets.only(
+                                                                    left: 22.h),
+                                                            padding: EdgeInsets
+                                                                .symmetric(
+                                                                    horizontal:
+                                                                        37.h,
+                                                                    vertical:
+                                                                        12.v),
+                                                            decoration: AppDecoration
+                                                                .gradientBlackToBlack900
+                                                                .copyWith(
+                                                                    borderRadius:
+                                                                        BorderRadiusStyle
+                                                                            .roundedBorder8),
+                                                            child: Column(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                children: [
+                                                                  CustomImageView(
+                                                                      imagePath:
+                                                                          ImageConstant
+                                                                              .imgLogo40x40,
+                                                                      height: 32
+                                                                          .adaptSize,
+                                                                      width: 32
+                                                                          .adaptSize),
+                                                                  SizedBox(
+                                                                      height:
+                                                                          17.v),
+                                                                  Text(
+                                                                      "Bank Lain",
+                                                                      style: theme
+                                                                          .textTheme
+                                                                          .labelLarge),
+                                                                  SizedBox(
+                                                                      height:
+                                                                          13.v)
+                                                                ]))))
+                                              ]),
+                                          CustomImageView(
+                                              imagePath:
+                                                  ImageConstant.imgMobilenotch1,
+                                              height: 32.adaptSize,
+                                              width: 32.adaptSize,
+                                              margin: EdgeInsets.only(
+                                                  left: 51.h, top: 36.v)),
+                                          Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 17.h, top: 17.v),
+                                              child: Text("Virtual Account",
+                                                  style: theme
+                                                      .textTheme.labelLarge))
+                                        ]))))
+                      ]))
+                ])),
+            bottomNavigationBar: CustomOutlinedButton(
+                text: "Kembali",
+                margin:
+                    EdgeInsets.only(left: 24.h, right: 24.h, bottom: 25.v))));
+  }
+
+  /// Navigates to the transferBankLainScreen when the action is triggered.
+  ///
+  /// The [BuildContext] parameter is used to build the navigation stack.
+  /// When the action is triggered, this function uses the [Navigator] widget
+  /// to push the named route for the transferBankLainScreen.
+  onTapTwo(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.transferBankLainScreen);
+  }
+}
