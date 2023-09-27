@@ -12,8 +12,9 @@ class TransferVaScreen extends StatelessWidget {
           key: key,
         );
 
-  TextEditingController caretController = TextEditingController();
-  TextEditingController noteoneoneController = TextEditingController();
+  TextEditingController vaController = TextEditingController();
+  TextEditingController nominalController = TextEditingController();
+  TextEditingController catatanController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +60,7 @@ class TransferVaScreen extends StatelessWidget {
                               ),
                               SizedBox(height: 29.v),
                               CustomTextFormField(
-                                controller: caretController,
+                                controller: vaController,
                                 hintText: "Nomor Virtual Account",
                                 prefix: Container(
                                   margin: EdgeInsets.fromLTRB(
@@ -142,7 +143,7 @@ class TransferVaScreen extends StatelessWidget {
                               CustomTextFormField(
                                 controller: noteoneoneController,
                                 hintText: "Catatan",
-                                textInputAction: TextInputAction.done,
+                                textInputAction: TextInputAction.none,
                                 prefix: Container(
                                   margin: EdgeInsets.fromLTRB(
                                       12.h, 25.v, 1.h, 11.v),
