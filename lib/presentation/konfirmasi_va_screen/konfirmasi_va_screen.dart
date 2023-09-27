@@ -28,18 +28,15 @@ class KonfirmasiVaScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: SizedBox(
-          height: 768.v,
+          height: double.maxFinite,
           width: double.maxFinite,
           child: Stack(
             alignment: Alignment.center,
             children: [
               CustomImageView(
                 imagePath: ImageConstant.imgWavebackground,
-                height: 768.v,
-                width: 375.h,
-                radius: BorderRadius.circular(
-                  36.h,
-                ),
+                height: double.maxFinite,
+                width: double.maxFinite,
                 alignment: Alignment.center,
               ),
               Align(
@@ -57,10 +54,7 @@ class KonfirmasiVaScreen extends StatelessWidget {
                           child: Container(
                             padding: EdgeInsets.symmetric(
                               horizontal: 24.h,
-                              vertical: 18.v,
-                            ),
-                            decoration: AppDecoration.fillGray.copyWith(
-                              borderRadius: BorderRadiusStyle.roundedBorder36,
+                              vertical: 120.v,
                             ),
                             child: Column(
                               mainAxisSize: MainAxisSize.min,
@@ -72,37 +66,40 @@ class KonfirmasiVaScreen extends StatelessWidget {
                                   "Detail Transfer",
                                   style: theme.textTheme.titleLarge,
                                 ),
+
                                 SizedBox(height: 16.v),
-                                CustomTextFormField(
-                                  controller: transactionidController,
-                                  hintText: "70001089637259168",
+                                Text("Virtual account :",
+                                style: theme.textTheme.bodyLarge,
                                 ),
+
                                 SizedBox(height: 16.v),
                                 CustomTextFormField(
                                   controller: transactiontypeController,
                                   hintText: "Transaksi",
+                                  textInputAction: TextInputAction.none,
+                                  textInputType: TextInputType.none,
                                 ),
+
                                 SizedBox(height: 16.v),
                                 CustomTextFormField(
                                   controller: rpCounterController,
                                   hintText: "Rp. 100,000.00",
+                                  textInputAction: TextInputAction.none,
+                                  textInputType: TextInputType.none,
                                 ),
+
                                 SizedBox(height: 15.v),
                                 Text(
                                   "Catatan",
                                   style: CustomTextStyles.titleMediumGray100,
                                 ),
+
                                 SizedBox(height: 15.v),
                                 CustomTextFormField(
                                   controller: contentconatineController,
                                   hintText: "Go-Jek",
-                                  textInputAction: TextInputAction.done,
-                                ),
-                                SizedBox(height: 28.v),
-                                CustomOutlinedButton(
-                                  text: "Transfer",
-                                  buttonStyle:
-                                      CustomButtonStyles.outlineOnPrimaryTL241,
+                                  textInputAction: TextInputAction.none,
+                                  textInputType: TextInputType.none,
                                 ),
                               ],
                             ),
@@ -127,10 +124,26 @@ class KonfirmasiVaScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: 50.v),
+                Positioned(
+                bottom: 25.v,
+                left: 24.h,
+                right: 24.h,
+                child: CustomOutlinedButton(
+                  text: "Transfer",
+                  buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
+                  onTap: () {
+                    backHome(context);
+                  },
+                ),
+              )
             ],
           ),
         ),
       ),
     );
+  }
+  backHome(BuildContext context) {
+  Navigator.pushNamed(context, AppRoutes.homepageDonePage);
   }
 }

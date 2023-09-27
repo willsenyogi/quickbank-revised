@@ -7,18 +7,22 @@ import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
 import 'package:quickbank_revised/widgets/custom_text_form_field.dart';
 
 class TransferVaScreen extends StatelessWidget {
-  TransferVaScreen({Key? key})
-      : super(
-          key: key,
-        );
+  TransferVaScreen({Key? key}) : super(key: key);
 
   TextEditingController vaController = TextEditingController();
+
   TextEditingController nominalController = TextEditingController();
-  TextEditingController catatanController = TextEditingController();
+
+  TextEditingController notesController = TextEditingController();
+
+  final FocusNode vaFocusNode = FocusNode();
+  final FocusNode nominalFocusNode = FocusNode();
+  final FocusNode notesFocusNode = FocusNode();
+
 
   @override
   Widget build(BuildContext context) {
-    mediaQueryData = MediaQuery.of(context);
+   mediaQueryData = MediaQuery.of(context);
 
     return SafeArea(
       child: Scaffold(
@@ -31,172 +35,122 @@ class TransferVaScreen extends StatelessWidget {
             children: [
               CustomImageView(
                 imagePath: ImageConstant.imgWavebackground,
-                height: 900.v,
-                width: 375.h,
+                height: double.maxFinite,
+                width: double.maxFinite,
                 alignment: Alignment.center,
               ),
-              SingleChildScrollView(
-                child: Container(
-                  height: 596.v,
-                  width: double.maxFinite,
-                  margin: EdgeInsets.only(bottom: 165.v),
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 24.h),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Align(
-                                alignment: Alignment.center,
-                                child: Text(
+              Align(
+                alignment: Alignment.center,
+                child: SingleChildScrollView(
+                  child: Container(
+                    height: 620.v,
+                    width: double.maxFinite,
+                    margin: EdgeInsets.only(bottom: 141.v),
+                    child: Stack(
+                      alignment: Alignment.topCenter,
+                      children: [
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 24.h,
+                              vertical: 120.v,
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                SizedBox(height: 70.v),
+                                Text(
                                   "Virtual Account",
-                                  style: theme.textTheme.headlineLarge,
+                                  style: theme.textTheme.titleLarge,
                                 ),
-                              ),
-                              SizedBox(height: 29.v),
-                              CustomTextFormField(
-                                controller: vaController,
-                                hintText: "Nomor Virtual Account",
-                                prefix: Container(
-                                  margin: EdgeInsets.fromLTRB(
-                                      12.h, 25.v, 1.h, 11.v),
-                                  child: CustomImageView(
-                                    svgPath: ImageConstant.imgCaret,
+                                SizedBox(height: 16.v),
+                                  CustomTextFormField(
+                                    autofocus: true,
+                                    focusNode: vaFocusNode,
+                                    controller: vaController,
+                                    hintText: "Virtual Account Number",
+                                    textInputAction: TextInputAction.next,
+                                    textInputType: TextInputType.number,
                                   ),
-                                ),
-                                prefixConstraints: BoxConstraints(
-                                  maxHeight: 60.v,
-                                ),
-                                contentPadding: EdgeInsets.only(
-                                  top: 22.v,
-                                  right: 12.h,
-                                  bottom: 22.v,
-                                ),
-                              ),
-                              SizedBox(height: 30.v),
-                              Container(
-                                width: 327.h,
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 12.h,
-                                  vertical: 11.v,
-                                ),
-                                decoration: AppDecoration.outlineErrorContainer
-                                    .copyWith(
-                                  borderRadius:
-                                      BorderRadiusStyle.roundedBorder8,
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Tujuan Transfer",
-                                      style: theme.textTheme.bodySmall,
-                                    ),
-                                    CustomImageView(
-                                      svgPath: ImageConstant.imgCaret,
-                                      height: 23.v,
-                                      width: 1.h,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(height: 30.v),
-                              Container(
-                                width: 327.h,
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 12.h,
-                                  vertical: 10.v,
-                                ),
-                                decoration: AppDecoration.outlineErrorContainer
-                                    .copyWith(
-                                  borderRadius:
-                                      BorderRadiusStyle.roundedBorder8,
-                                ),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Jumlah Transfer",
-                                      style: theme.textTheme.bodySmall,
-                                    ),
-                                    CustomImageView(
-                                      svgPath: ImageConstant.imgCaret,
-                                      height: 23.v,
-                                      width: 1.h,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              SizedBox(height: 29.v),
-                              Text(
-                                "Catatan",
-                                style: CustomTextStyles.titleMediumGray100,
-                              ),
-                              SizedBox(height: 29.v),
-                              CustomTextFormField(
-                                controller: noteoneoneController,
-                                hintText: "Catatan",
-                                textInputAction: TextInputAction.none,
-                                prefix: Container(
-                                  margin: EdgeInsets.fromLTRB(
-                                      12.h, 25.v, 1.h, 11.v),
-                                  child: CustomImageView(
-                                    svgPath: ImageConstant.imgCaret,
+                                 
+                              
+                                SizedBox(height: 16.v),
+                                
+                                  CustomTextFormField(
+                                    focusNode: nominalFocusNode,
+                                    controller: nominalController,
+                                    hintText: "Nominal Transfer",
+                                    textInputAction: TextInputAction.next,
+                                    textInputType: TextInputType.number,
+                                    
                                   ),
+                                   
+
+                                SizedBox(height: 15.v),
+                                Text(
+                                  "Catatan",
+                                  style: CustomTextStyles.titleMediumGray100,
                                 ),
-                                prefixConstraints: BoxConstraints(
-                                  maxHeight: 60.v,
+                                SizedBox(height: 15.v),
+                                CustomTextFormField(
+                                  focusNode: notesFocusNode,
+                                  controller: notesController,
+                                  hintText: "Catatan",
+                                  textInputAction: TextInputAction.done,
+                                  textInputType: TextInputType.text,
                                 ),
-                                contentPadding: EdgeInsets.only(
-                                  top: 22.v,
-                                  right: 12.h,
-                                  bottom: 22.v,
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      CustomAppBar(
-                        leadingWidth: 47.h,
-                        height: 90.h,
-                        leading: AppbarIconbutton(
-                          svgPath: ImageConstant.imgFaiconsolidarrowleft,
-                          margin: EdgeInsets.only(
-                            left: 19.h,
-                            bottom: 7.v,
+                        CustomAppBar(
+                          leadingWidth: 47.h,
+                          leading: AppbarIconbutton(
+                            svgPath: ImageConstant.imgFaiconsolidarrowleft,
+                            margin: EdgeInsets.only(
+                              left: 19.h,
+                              bottom: 7.v,
+                            ),
+                          ),
+                          centerTitle: true,
+                          title: AppbarTitle(
+                            text: "QUICK\nBANK",
                           ),
                         ),
-                        centerTitle: true,
-                        title: AppbarTitle(
-                          text: "QUICK\nBANK",
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-              // CustomOutlinedButton goes here
-              Positioned(
+              SizedBox(height: 50.v),
+                Positioned(
                 bottom: 25.v,
                 left: 24.h,
                 right: 24.h,
                 child: CustomOutlinedButton(
-                  text: "Selanjutnya",
-                  buttonTextStyle: TextStyle(color: Colors.white),
+                  text: "Transfer",
+                  buttonTextStyle: TextStyle(
+                  color: Colors.white,
+                  ),
+                  onTap: () {
+                    confirmVa(context);
+                    debugPrint("Transfer!");
+                    
+                  },
                 ),
-              ),
+              
+             ),
             ],
           ),
         ),
-      ),
+      )
     );
   }
+confirmVa(BuildContext context) {
+  Navigator.pushNamed(context, AppRoutes.konfirmasiVaScreen);
+  }
+
 }
