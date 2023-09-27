@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       title: 'quickbank_revised',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.pagePertamaScreen,
+      initialRoute: AppRoutes.pilihanTransferScreen,
       routes: AppRoutes.routes,
     );
   }
