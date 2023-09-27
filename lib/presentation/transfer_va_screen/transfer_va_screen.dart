@@ -13,7 +13,6 @@ class TransferVaScreen extends StatelessWidget {
         );
 
   TextEditingController caretController = TextEditingController();
-
   TextEditingController noteoneoneController = TextEditingController();
 
   @override
@@ -24,18 +23,15 @@ class TransferVaScreen extends StatelessWidget {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: SizedBox(
-          height: 768.v,
+          height: double.maxFinite,
           width: double.maxFinite,
           child: Stack(
             alignment: Alignment.center,
             children: [
               CustomImageView(
                 imagePath: ImageConstant.imgWavebackground,
-                height: 768.v,
+                height: 900.v,
                 width: 375.h,
-                radius: BorderRadius.circular(
-                  36.h,
-                ),
                 alignment: Alignment.center,
               ),
               SingleChildScrollView(
@@ -50,9 +46,6 @@ class TransferVaScreen extends StatelessWidget {
                         alignment: Alignment.bottomCenter,
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 24.h),
-                          decoration: AppDecoration.fillOnPrimary.copyWith(
-                            borderRadius: BorderRadiusStyle.customBorderBL24,
-                          ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +63,7 @@ class TransferVaScreen extends StatelessWidget {
                                 hintText: "Nomor Virtual Account",
                                 prefix: Container(
                                   margin: EdgeInsets.fromLTRB(
-                                      12.h, 25.v, -1.h, 11.v),
+                                      12.h, 25.v, 1.h, 11.v),
                                   child: CustomImageView(
                                     svgPath: ImageConstant.imgCaret,
                                   ),
@@ -152,7 +145,7 @@ class TransferVaScreen extends StatelessWidget {
                                 textInputAction: TextInputAction.done,
                                 prefix: Container(
                                   margin: EdgeInsets.fromLTRB(
-                                      12.h, 25.v, -1.h, 11.v),
+                                      12.h, 25.v, 1.h, 11.v),
                                   child: CustomImageView(
                                     svgPath: ImageConstant.imgCaret,
                                   ),
@@ -172,6 +165,7 @@ class TransferVaScreen extends StatelessWidget {
                       ),
                       CustomAppBar(
                         leadingWidth: 47.h,
+                        height: 90.h,
                         leading: AppbarIconbutton(
                           svgPath: ImageConstant.imgFaiconsolidarrowleft,
                           margin: EdgeInsets.only(
@@ -188,15 +182,17 @@ class TransferVaScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              // CustomOutlinedButton goes here
+              Positioned(
+                bottom: 25.v,
+                left: 24.h,
+                right: 24.h,
+                child: CustomOutlinedButton(
+                  text: "Selanjutnya",
+                  buttonTextStyle: TextStyle(color: Colors.white),
+                ),
+              ),
             ],
-          ),
-        ),
-        bottomNavigationBar: CustomOutlinedButton(
-          text: "Selanjutnya",
-          margin: EdgeInsets.only(
-            left: 24.h,
-            right: 24.h,
-            bottom: 25.v,
           ),
         ),
       ),
