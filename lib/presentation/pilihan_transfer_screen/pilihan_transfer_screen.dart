@@ -48,9 +48,6 @@ class PilihanTransferScreen extends StatelessWidget {
                       child: SingleChildScrollView(
                         child: Container(
                           margin: EdgeInsets.only(left: 24.h, right: 36.h),
-                          decoration: AppDecoration.fillOnPrimary.copyWith(
-                            borderRadius: BorderRadiusStyle.customBorderBL24,
-                          ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,19 +118,45 @@ class PilihanTransferScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                              CustomImageView(
-                                imagePath: ImageConstant.imgMobilenotch1,
-                                height: 32.adaptSize,
-                                width: 32.adaptSize,
-                                margin: EdgeInsets.only(left: 47.h, top: 52.v),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        onTapVirtualAccount(context);
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.only(left: 22.h, right: 22.v, top: 22.v),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 29.h,
+                                          vertical: 12.v,
+                                        ),
+                                        decoration: AppDecoration.gradientBlackToBlack900.copyWith(
+                                          borderRadius: BorderRadiusStyle.roundedBorder8,
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            CustomImageView(
+                                              imagePath: ImageConstant.imgUsdcircle2,
+                                              height: 32.adaptSize,
+                                              width: 32.adaptSize,
+                                            ),
+                                            SizedBox(height: 17.v),
+                                            Text(
+                                              "Virtual Account",
+                                              style: theme.textTheme.labelLarge,
+                                            ),
+                                            SizedBox(height: 13.v),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Padding(
-                                padding: EdgeInsets.only(left: 17.h, top: 23.v),
-                                child: Text(
-                                  "Virtual Account",
-                                  style: theme.textTheme.labelLarge,
-                                ),
-                              ),
+
                             ],
                           ),
                         ),
@@ -161,5 +184,9 @@ class PilihanTransferScreen extends StatelessWidget {
   /// to push the named route for the transferBankLainScreen.
   onTapTwo(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.transferBankLainScreen);
+  }
+
+  onTapVirtualAccount(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.transferVaScreen);
   }
 }
