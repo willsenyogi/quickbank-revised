@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
+import 'package:quickbank_revised/main.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
 import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
 import 'package:quickbank_revised/widgets/custom_text_form_field.dart';
+import 'package:intl/intl.dart';
 
 class KonfirmasiVaScreen extends StatelessWidget {
   KonfirmasiVaScreen({Key? key})
@@ -19,6 +21,8 @@ class KonfirmasiVaScreen extends StatelessWidget {
   TextEditingController rpCounterController = TextEditingController();
 
   TextEditingController contentconatineController = TextEditingController();
+
+  final formatNominal = NumberFormat('#,##0.00', 'ID');
 
   @override
   Widget build(BuildContext context) {
@@ -73,15 +77,13 @@ class KonfirmasiVaScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 16.v),
                                 CustomTextFormField(
-                                  controller: transactiontypeController,
                                   hintText: "Transaksi",
                                   textInputAction: TextInputAction.none,
                                   textInputType: TextInputType.none,
                                 ),
                                 SizedBox(height: 16.v),
                                 CustomTextFormField(
-                                  controller: rpCounterController,
-                                  hintText: "Rp. 100,000.00",
+                                  hintText: nominalFormatter(int.parse(nominalValue)),
                                   textInputAction: TextInputAction.none,
                                   textInputType: TextInputType.none,
                                 ),
@@ -92,8 +94,7 @@ class KonfirmasiVaScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 15.v),
                                 CustomTextFormField(
-                                  controller: contentconatineController,
-                                  hintText: "Go-Jek",
+                                  hintText: "$notesValue",
                                   textInputAction: TextInputAction.none,
                                   textInputType: TextInputType.none,
                                 ),
@@ -139,6 +140,15 @@ class KonfirmasiVaScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  static String nominalFormatter(int val){
+    NumberFormat formatToIdr = NumberFormat.currency(
+      locale: 'id',
+      symbol: 'Rp ',
+      decimalDigits: 2,
+    );
+    return formatToIdr.format(val);
   }
 
   backHome(BuildContext context) {

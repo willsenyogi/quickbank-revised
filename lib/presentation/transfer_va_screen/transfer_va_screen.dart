@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
+import 'package:quickbank_revised/main.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
@@ -127,18 +128,26 @@ class TransferVaScreen extends StatelessWidget {
                 text: "Transfer",
                 buttonTextStyle: TextStyle(
                   color: Colors.white,
+                  ),
+                  onTap: () {
+                    confirmVa(context);
+                    debugPrint("Transfer!");
+                    vaValue = vaController.text;
+                    nominalValue = nominalController.text;
+                    notesValue = notesController.text;
+
+                    accountBalance = accountBalance - int.parse(nominalValue);
+                    debugPrint("$accountBalance");
+                    
+                  },
+                  borderColor: Colors.white,
                 ),
-                onTap: () {
-                  confirmVa(context);
-                  debugPrint("Transfer!");
-                },
-                borderColor: Colors.white,
-              ),
-            ),
-          ],
+             ),
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 
   confirmVa(BuildContext context) {
