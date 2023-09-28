@@ -25,109 +25,109 @@ class TransferVaScreen extends StatelessWidget {
     mediaQueryData = MediaQuery.of(context);
 
     return SafeArea(
-        child: Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SizedBox(
-        height: double.maxFinite,
-        width: double.maxFinite,
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            CustomImageView(
-              imagePath: ImageConstant.imgWavebackground,
-              height: double.maxFinite,
-              width: double.maxFinite,
-              alignment: Alignment.center,
-            ),
-            Align(
-              alignment: Alignment.center,
-              child: SingleChildScrollView(
-                child: Container(
-                  height: 620.v,
-                  width: double.maxFinite,
-                  margin: EdgeInsets.only(bottom: 141.v),
-                  child: Stack(
-                    alignment: Alignment.topCenter,
-                    children: [
-                      Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 24.h,
-                            vertical: 120.v,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              SizedBox(height: 70.v),
-                              Text(
-                                "Virtual Account",
-                                style: theme.textTheme.titleLarge,
-                              ),
-                              SizedBox(height: 16.v),
-                              CustomTextFormField(
-                                autofocus: true,
-                                focusNode: vaFocusNode,
-                                controller: vaController,
-                                hintText: "Virtual Account Number",
-                                textInputAction: TextInputAction.next,
-                                textInputType: TextInputType.number,
-                              ),
-                              SizedBox(height: 16.v),
-                              CustomTextFormField(
-                                focusNode: nominalFocusNode,
-                                controller: nominalController,
-                                hintText: "Nominal Transfer",
-                                textInputAction: TextInputAction.next,
-                                textInputType: TextInputType.number,
-                              ),
-                              SizedBox(height: 15.v),
-                              Text(
-                                "Catatan",
-                                style: CustomTextStyles.titleMediumGray100,
-                              ),
-                              SizedBox(height: 15.v),
-                              CustomTextFormField(
-                                focusNode: notesFocusNode,
-                                controller: notesController,
-                                hintText: "Catatan",
-                                textInputAction: TextInputAction.done,
-                                textInputType: TextInputType.text,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      CustomAppBar(
-                        leadingWidth: 47.h,
-                        leading: AppbarIconbutton(
-                          svgPath: ImageConstant.imgFaiconsolidarrowleft,
-                          margin: EdgeInsets.only(
-                            left: 19.h,
-                            bottom: 7.v,
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: SizedBox(
+          height: double.maxFinite,
+          width: double.maxFinite,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              CustomImageView(
+                imagePath: ImageConstant.imgWavebackground,
+                height: double.maxFinite,
+                width: double.maxFinite,
+                alignment: Alignment.center,
+              ),
+              Align(
+                alignment: Alignment.center,
+                child: SingleChildScrollView(
+                  child: Container(
+                    height: 620.v,
+                    width: double.maxFinite,
+                    margin: EdgeInsets.only(bottom: 141.v),
+                    child: Stack(
+                      alignment: Alignment.topCenter,
+                      children: [
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 24.h,
+                              vertical: 120.v,
+                            ),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                SizedBox(height: 70.v),
+                                Text(
+                                  "Virtual Account",
+                                  style: theme.textTheme.titleLarge,
+                                ),
+                                SizedBox(height: 16.v),
+                                CustomTextFormField(
+                                  autofocus: true,
+                                  focusNode: vaFocusNode,
+                                  controller: vaController,
+                                  hintText: "Virtual Account Number",
+                                  textInputAction: TextInputAction.next,
+                                  textInputType: TextInputType.number,
+                                ),
+                                SizedBox(height: 16.v),
+                                CustomTextFormField(
+                                  focusNode: nominalFocusNode,
+                                  controller: nominalController,
+                                  hintText: "Nominal Transfer",
+                                  textInputAction: TextInputAction.next,
+                                  textInputType: TextInputType.number,
+                                ),
+                                SizedBox(height: 15.v),
+                                Text(
+                                  "Catatan",
+                                  style: CustomTextStyles.titleMediumGray100,
+                                ),
+                                SizedBox(height: 15.v),
+                                CustomTextFormField(
+                                  focusNode: notesFocusNode,
+                                  controller: notesController,
+                                  hintText: "Catatan",
+                                  textInputAction: TextInputAction.done,
+                                  textInputType: TextInputType.text,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        centerTitle: true,
-                        title: AppbarTitle(
-                          text: "QUICK\nBANK",
+                        CustomAppBar(
+                          leadingWidth: 47.h,
+                          leading: AppbarIconbutton(
+                            svgPath: ImageConstant.imgFaiconsolidarrowleft,
+                            margin: EdgeInsets.only(
+                              left: 19.h,
+                              bottom: 7.v,
+                            ),
+                          ),
+                          centerTitle: true,
+                          title: AppbarTitle(
+                            text: "QUICK\nBANK",
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 50.v),
-            Positioned(
-              bottom: 25.v,
-              left: 24.h,
-              right: 24.h,
-              child: CustomOutlinedButton(
-                text: "Transfer",
-                buttonTextStyle: TextStyle(
-                  color: Colors.white,
+              SizedBox(height: 50.v),
+              Positioned(
+                bottom: 25.v,
+                left: 24.h,
+                right: 24.h,
+                child: CustomOutlinedButton(
+                  text: "Transfer",
+                  buttonTextStyle: TextStyle(
+                    color: Colors.white,
                   ),
                   onTap: () {
                     confirmVa(context);
@@ -138,11 +138,10 @@ class TransferVaScreen extends StatelessWidget {
 
                     accountBalance = accountBalance - int.parse(nominalValue);
                     debugPrint("$accountBalance");
-                    
                   },
                   borderColor: Colors.white,
                 ),
-             ),
+              ),
             ],
           ),
         ),

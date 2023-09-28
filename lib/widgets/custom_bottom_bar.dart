@@ -11,12 +11,12 @@ class CustomBottomBar extends StatefulWidget {
 }
 
 class CustomBottomBarState extends State<CustomBottomBar> {
-  int selectedIndex = 0;
+  int selectedIndex = 1;
 
   List<BottomMenuModel> bottomMenuList = [
     BottomMenuModel(
-      icon: ImageConstant.imgSaly5,
-      activeIcon: ImageConstant.imgSaly5,
+      icon: ImageConstant.imgMobilenotch1,
+      activeIcon: ImageConstant.imgMobilenotch1,
       title: "Cardless",
       type: BottomBarEnum.Cardless,
       isPng: true,
@@ -28,8 +28,8 @@ class CustomBottomBarState extends State<CustomBottomBar> {
       type: BottomBarEnum.Home,
     ),
     BottomMenuModel(
-      icon: ImageConstant.imgSaly5,
-      activeIcon: ImageConstant.imgSaly5,
+      icon: ImageConstant.imgUsdcircle2,
+      activeIcon: ImageConstant.imgUsdcircle2,
       title: "Transfer",
       type: BottomBarEnum.Transfer,
       isPng: true,
@@ -39,7 +39,7 @@ class CustomBottomBarState extends State<CustomBottomBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 58.v,
+      height: 70.v,
       margin: EdgeInsets.symmetric(horizontal: 32.h),
       child: BottomNavigationBar(
         backgroundColor: Colors.transparent,
@@ -64,14 +64,14 @@ class CustomBottomBarState extends State<CustomBottomBar> {
                       : null,
                   height: 32.adaptSize,
                   width: 32.adaptSize,
-                  color: appTheme.limeA200,
+                  color: appTheme.blueGray100,
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 13.v),
                   child: Text(
                     bottomMenuList[index].title ?? "",
-                    style: CustomTextStyles.labelMediumLime900.copyWith(
-                      color: appTheme.lime900,
+                    style: theme.textTheme.labelMedium!.copyWith(
+                      color: appTheme.blueGray100,
                     ),
                   ),
                 ),
@@ -90,13 +90,14 @@ class CustomBottomBarState extends State<CustomBottomBar> {
                       : null,
                   height: 32.v,
                   width: 30.h,
+                  color: appTheme.limeA200,
                 ),
                 Padding(
                   padding: EdgeInsets.only(top: 13.v),
                   child: Text(
                     bottomMenuList[index].title ?? "",
-                    style: theme.textTheme.labelMedium!.copyWith(
-                      color: appTheme.blueGray100,
+                    style: CustomTextStyles.labelMediumLime900.copyWith(
+                      color: appTheme.lime900,
                     ),
                   ),
                 ),

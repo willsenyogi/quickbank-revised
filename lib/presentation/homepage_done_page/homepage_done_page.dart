@@ -16,11 +16,13 @@ class HomepageDonePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
+
     return SafeArea(
         child: Scaffold(
             resizeToAvoidBottomInset: false,
             body: Container(
-                width: double.maxFinite,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
                 decoration: AppDecoration.fillBlack,
                 child: SingleChildScrollView(
                     child: Container(
@@ -38,160 +40,163 @@ class HomepageDonePage extends StatelessWidget {
                                       alignment: Alignment.topLeft,
                                       children: [
                                         CustomImageView(
-                                            imagePath: ImageConstant
-                                                .imgWavebackground812x374,
-                                            height: 812.v,
-                                            width: 374.h,
-                                            radius: BorderRadius.circular(36.h),
+                                            imagePath:
+                                                ImageConstant.imgWavebackground,
+                                            height: MediaQuery.of(context)
+                                                .size
+                                                .height,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
                                             alignment: Alignment.center),
                                         Align(
                                             alignment: Alignment.topLeft,
                                             child: Padding(
-                                                padding: EdgeInsets.only(
-                                                    left: 23.h, top: 54.v),
-                                                child: Column(
-                                                    mainAxisSize:
-                                                        MainAxisSize.min,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment.end,
-                                                    children: [
-                                                      SizedBox(
-                                                          width: 50.h,
-                                                          child: Text(
-                                                              "QUICK\nBANK",
-                                                              maxLines: 2,
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
+                                                padding:
+                                                    EdgeInsets.only(top: 50),
+                                                child: Column(children: [
+                                                  Center(
+                                                    child: SizedBox(
+                                                        width: double.infinity,
+                                                        child: Text(
+                                                            "QUICK\nBANK",
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                            style: theme
+                                                                .textTheme
+                                                                .titleSmall!
+                                                                .copyWith(
+                                                                    height:
+                                                                        1.20))),
+                                                  ),
+                                                  SizedBox(height: 20.v),
+                                                  Align(
+                                                      alignment:
+                                                          Alignment.centerLeft,
+                                                      child: Row(children: [
+                                                        Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                  .only(
+                                                                  left: 20),
+                                                          child: CustomImageView(
+                                                              imagePath:
+                                                                  ImageConstant
+                                                                      .imgLocation,
+                                                              height:
+                                                                  48.adaptSize,
+                                                              width:
+                                                                  48.adaptSize),
+                                                        ),
+                                                        Padding(
+                                                            padding:
+                                                                EdgeInsets.only(
+                                                                    left: 8.h,
+                                                                    top: 10.v,
+                                                                    bottom:
+                                                                        12.v),
+                                                            child: Text(
+                                                                "Carina Adelaine",
+                                                                style: theme
+                                                                    .textTheme
+                                                                    .titleLarge))
+                                                      ])),
+                                                  SizedBox(height: 38.v),
+                                                  Column(children: [
+                                                    Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          CustomImageView(
+                                                              svgPath: ImageConstant
+                                                                  .imgFaiconregular,
+                                                              height:
+                                                                  16.adaptSize,
+                                                              width:
+                                                                  16.adaptSize),
+                                                          Padding(
+                                                              padding: EdgeInsets
+                                                                  .only(
+                                                                      left:
+                                                                          2.h),
+                                                              child: Text("IDR",
+                                                                  style: theme
+                                                                      .textTheme
+                                                                      .labelLarge))
+                                                        ]),
+                                                    SizedBox(height: 3.v),
+                                                    SizedBox(
+                                                        width: 56.h,
+                                                        child: Divider(
+                                                            color: appTheme
+                                                                .limeA200))
+                                                  ]),
+                                                  SizedBox(height: 7.v),
+                                                  Center(
+                                                    child: RichText(
+                                                        text:
+                                                            TextSpan(children: [
+                                                          TextSpan(
+                                                              text:
+                                                                  "Rp. 4,200,000.",
                                                               style: theme
                                                                   .textTheme
-                                                                  .titleSmall!
-                                                                  .copyWith(
-                                                                      height:
-                                                                          1.20))),
-                                                      SizedBox(height: 20.v),
-                                                      Align(
-                                                          alignment: Alignment
-                                                              .centerLeft,
-                                                          child: Row(children: [
-                                                            CustomImageView(
-                                                                imagePath:
-                                                                    ImageConstant
-                                                                        .imgLocation,
-                                                                height: 48
-                                                                    .adaptSize,
-                                                                width: 48
-                                                                    .adaptSize),
-                                                            Padding(
-                                                                padding: EdgeInsets
-                                                                    .only(
-                                                                        left:
-                                                                            8.h,
-                                                                        top: 10
-                                                                            .v,
-                                                                        bottom: 12
-                                                                            .v),
-                                                                child: Text(
-                                                                    "Carina Adelaine",
-                                                                    style: theme
-                                                                        .textTheme
-                                                                        .titleLarge))
-                                                          ])),
-                                                      SizedBox(height: 38.v),
-                                                      Column(children: [
-                                                        Row(
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .center,
+                                                                  .displaySmall),
+                                                          TextSpan(
+                                                              text: "00",
+                                                              style: CustomTextStyles
+                                                                  .headlineMediumGray100Regular)
+                                                        ]),
+                                                        textAlign:
+                                                            TextAlign.left),
+                                                  ),
+                                                  SizedBox(height: 16.v),
+                                                  Padding(
+                                                    padding: EdgeInsets.only(
+                                                        top: 15),
+                                                    child: SizedBox(
+                                                        height: 45.adaptSize,
+                                                        width: 45.adaptSize,
+                                                        child: Stack(
+                                                            alignment: Alignment
+                                                                .center,
                                                             children: [
-                                                              CustomImageView(
-                                                                  svgPath:
-                                                                      ImageConstant
-                                                                          .imgFaiconregular,
-                                                                  height: 16
-                                                                      .adaptSize,
-                                                                  width: 16
-                                                                      .adaptSize),
-                                                              Padding(
-                                                                  padding: EdgeInsets
-                                                                      .only(
-                                                                          left: 2
+                                                              Align(
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .centerLeft,
+                                                                  child: Padding(
+                                                                      padding: EdgeInsets.only(
+                                                                          left: 1
                                                                               .h),
-                                                                  child: Text(
-                                                                      "IDR",
-                                                                      style: theme
-                                                                          .textTheme
-                                                                          .labelLarge))
-                                                            ]),
-                                                        SizedBox(height: 3.v),
-                                                        SizedBox(
-                                                            width: 56.h,
-                                                            child: Divider(
-                                                                color: appTheme
-                                                                    .limeA200))
-                                                      ]),
-                                                      SizedBox(height: 7.v),
-                                                      RichText(
-                                                          text: TextSpan(
-                                                              children: [
-                                                                TextSpan(
-                                                                    text:
-                                                                        "Rp. 4,200,000.",
-                                                                    style: theme
-                                                                        .textTheme
-                                                                        .displaySmall),
-                                                                TextSpan(
-                                                                    text: "00",
-                                                                    style: CustomTextStyles
-                                                                        .headlineMediumGray100Regular)
-                                                              ]),
-                                                          textAlign:
-                                                              TextAlign.left),
-                                                      SizedBox(height: 16.v),
-                                                      SizedBox(
-                                                          height: 45.adaptSize,
-                                                          width: 45.adaptSize,
-                                                          child: Stack(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              children: [
-                                                                Align(
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .centerLeft,
-                                                                    child: Padding(
-                                                                        padding: EdgeInsets.only(
-                                                                            left: 1
-                                                                                .h),
-                                                                        child: Text(
-                                                                            "QR Scan",
-                                                                            style:
-                                                                                CustomTextStyles.labelMediumGray100))),
-                                                                CustomImageView(
-                                                                    imagePath:
-                                                                        ImageConstant
-                                                                            .imgQr,
-                                                                    height: 45
-                                                                        .adaptSize,
-                                                                    width: 45
-                                                                        .adaptSize,
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .center,
-                                                                    onTap: () {
-                                                                      onTapImgQrone(
-                                                                          context);
-                                                                    })
-                                                              ]))
-                                                    ])))
+                                                                      child: Text(
+                                                                          "QR Scan",
+                                                                          style:
+                                                                              CustomTextStyles.labelMediumGray100))),
+                                                              CustomImageView(
+                                                                  imagePath:
+                                                                      ImageConstant
+                                                                          .imgQr,
+                                                                  height: 45
+                                                                      .adaptSize,
+                                                                  width: 45
+                                                                      .adaptSize,
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .center,
+                                                                  onTap: () {
+                                                                    onTapImgQrone(
+                                                                        context);
+                                                                  })
+                                                            ])),
+                                                  )
+                                                ])))
                                       ]))),
                           Align(
                               alignment: Alignment.bottomCenter,
                               child: Container(
+                                  height: 1200.v,
                                   padding: EdgeInsets.symmetric(
                                       horizontal: 9.h, vertical: 25.v),
                                   decoration: AppDecoration.outlineBlack900
@@ -326,7 +331,7 @@ class HomepageDonePage extends StatelessWidget {
                                               .outlinePrimaryContainerTL14,
                                           buttonTextStyle:
                                               theme.textTheme.labelLarge!,
-                                          borderColor: Colors.white,
+                                          borderColor: const Color(0xFF262626),
                                         ),
                                         SizedBox(height: 69.v),
                                         SizedBox(
@@ -434,8 +439,8 @@ class HomepageDonePage extends StatelessWidget {
                                                                   theme
                                                                       .textTheme
                                                                       .labelLarge!,
-                                                              borderColor:
-                                                                  Colors.white,
+                                                              borderColor: Color(
+                                                                  0xFF262626),
                                                             )
                                                           ]))
                                                 ])),
@@ -470,7 +475,7 @@ class HomepageDonePage extends StatelessWidget {
                                                 .outlinePrimaryContainerTL14,
                                             buttonTextStyle:
                                                 theme.textTheme.labelLarge!,
-                                            borderColor: Colors.white,
+                                            borderColor: Color(0xFF262626),
                                             onTap: () {
                                               onTapLihathistori(context);
                                             })
@@ -484,33 +489,42 @@ class HomepageDonePage extends StatelessWidget {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text("E-Wallets",
-                                            style: CustomTextStyles
-                                                .titleLargeOnPrimaryContainer),
+                                        Center(
+                                          child: Text("E-Wallets",
+                                              style: CustomTextStyles
+                                                  .titleLargeOnPrimaryContainer),
+                                        ),
                                         SizedBox(height: 23.v),
-                                        SizedBox(
-                                            height: 103.v,
-                                            child: ListView.separated(
-                                                scrollDirection:
-                                                    Axis.horizontal,
-                                                separatorBuilder:
-                                                    (context, index) {
-                                                  return SizedBox(width: 12.h);
-                                                },
-                                                itemCount: 3,
-                                                itemBuilder: (context, index) {
-                                                  return UsergopayItemWidget();
-                                                })),
-                                        CustomOutlinedButton(
-                                            height: 28.v,
-                                            text: "Tambah E-Wallet",
-                                            margin: EdgeInsets.only(
-                                                top: 20.v, right: 33.h),
-                                            buttonStyle: CustomButtonStyles
-                                                .outlinePrimaryContainerTL14,
-                                            borderColor: Colors.white,
-                                            buttonTextStyle:
-                                                theme.textTheme.labelLarge!)
+                                        Padding(
+                                            padding: EdgeInsets.only(left: 7),
+                                            child: SizedBox(
+                                                height: 103.v,
+                                                child: ListView.separated(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    separatorBuilder:
+                                                        (context, index) {
+                                                      return SizedBox(
+                                                          width: 12.h);
+                                                    },
+                                                    itemCount: 3,
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      return UsergopayItemWidget();
+                                                    }))),
+                                        Center(
+                                          child: CustomOutlinedButton(
+                                              height: 28.v,
+                                              text: "Tambah E-Wallet",
+                                              margin: EdgeInsets.symmetric(
+                                                  horizontal: 22.h,
+                                                  vertical: 16.v),
+                                              buttonStyle: CustomButtonStyles
+                                                  .outlinePrimaryContainerTL14,
+                                              borderColor: Color(0xFF262626),
+                                              buttonTextStyle:
+                                                  theme.textTheme.labelLarge!),
+                                        )
                                       ])))
                         ]))))));
   }

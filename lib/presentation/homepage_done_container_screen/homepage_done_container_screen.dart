@@ -32,9 +32,9 @@ class HomepageDoneContainerScreen extends StatelessWidget {
   String getCurrentRoute(BottomBarEnum type) {
     switch (type) {
       case BottomBarEnum.Cardless:
-        return AppRoutes.homepageDonePage;
-      case BottomBarEnum.Home:
         return "/";
+      case BottomBarEnum.Home:
+        return AppRoutes.homepageDonePage;
       case BottomBarEnum.Transfer:
         return "/";
       default:

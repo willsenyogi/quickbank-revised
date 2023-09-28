@@ -83,7 +83,8 @@ class KonfirmasiVaScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 16.v),
                                 CustomTextFormField(
-                                  hintText: nominalFormatter(int.parse(nominalValue)),
+                                  hintText:
+                                      nominalFormatter(int.parse(nominalValue)),
                                   textInputAction: TextInputAction.none,
                                   textInputType: TextInputType.none,
                                 ),
@@ -142,7 +143,7 @@ class KonfirmasiVaScreen extends StatelessWidget {
     );
   }
 
-  static String nominalFormatter(int val){
+  static String nominalFormatter(int val) {
     NumberFormat formatToIdr = NumberFormat.currency(
       locale: 'id',
       symbol: 'Rp ',
