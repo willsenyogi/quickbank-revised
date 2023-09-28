@@ -62,14 +62,18 @@ class PilihanTransferScreen extends StatelessWidget {
                                         horizontal: 29.h,
                                         vertical: 12.v,
                                       ),
-                                      decoration: AppDecoration.gradientBlackToBlack900.copyWith(
-                                        borderRadius: BorderRadiusStyle.roundedBorder8,
+                                      decoration: AppDecoration
+                                          .gradientBlackToBlack900
+                                          .copyWith(
+                                        borderRadius:
+                                            BorderRadiusStyle.roundedBorder8,
                                       ),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           CustomImageView(
-                                            imagePath: ImageConstant.imgUsdcircle2,
+                                            imagePath:
+                                                ImageConstant.imgUsdcircle2,
                                             height: 32.adaptSize,
                                             width: 32.adaptSize,
                                           ),
@@ -94,14 +98,18 @@ class PilihanTransferScreen extends StatelessWidget {
                                           horizontal: 37.h,
                                           vertical: 12.v,
                                         ),
-                                        decoration: AppDecoration.gradientBlackToBlack900.copyWith(
-                                          borderRadius: BorderRadiusStyle.roundedBorder8,
+                                        decoration: AppDecoration
+                                            .gradientBlackToBlack900
+                                            .copyWith(
+                                          borderRadius:
+                                              BorderRadiusStyle.roundedBorder8,
                                         ),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             CustomImageView(
-                                              imagePath: ImageConstant.imgLogo40x40,
+                                              imagePath:
+                                                  ImageConstant.imgLogo40x40,
                                               height: 32.adaptSize,
                                               width: 32.adaptSize,
                                             ),
@@ -127,19 +135,24 @@ class PilihanTransferScreen extends StatelessWidget {
                                         onTapVirtualAccount(context);
                                       },
                                       child: Container(
-                                        margin: EdgeInsets.only(left: 22.h, right: 22.v, top: 22.v),
+                                        margin: EdgeInsets.only(
+                                            left: 22.h, right: 22.v, top: 22.v),
                                         padding: EdgeInsets.symmetric(
                                           horizontal: 29.h,
                                           vertical: 12.v,
                                         ),
-                                        decoration: AppDecoration.gradientBlackToBlack900.copyWith(
-                                          borderRadius: BorderRadiusStyle.roundedBorder8,
+                                        decoration: AppDecoration
+                                            .gradientBlackToBlack900
+                                            .copyWith(
+                                          borderRadius:
+                                              BorderRadiusStyle.roundedBorder8,
                                         ),
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             CustomImageView(
-                                              imagePath: ImageConstant.imgUsdcircle2,
+                                              imagePath:
+                                                  ImageConstant.imgUsdcircle2,
                                               height: 32.adaptSize,
                                               width: 32.adaptSize,
                                             ),
@@ -156,7 +169,6 @@ class PilihanTransferScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-
                             ],
                           ),
                         ),
@@ -166,6 +178,7 @@ class PilihanTransferScreen extends StatelessWidget {
                       text: "Kembali",
                       margin: EdgeInsets.only(left: 24.h, right: 24.h),
                       buttonTextStyle: TextStyle(color: Colors.white),
+                      borderColor: Colors.white,
                     ),
                   ],
                 ),

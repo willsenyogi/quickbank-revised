@@ -108,6 +108,7 @@ class KonfirmasiBankLainScreen extends StatelessWidget {
                                     text: "Transfer",
                                     buttonStyle: CustomButtonStyles
                                         .outlineOnPrimaryTL241,
+                                    borderColor: Colors.white,
                                   ),
                                 ],
                               ),

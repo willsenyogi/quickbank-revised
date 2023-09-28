@@ -16,6 +16,8 @@ class SignInDoneScreen extends StatelessWidget {
 
   TextEditingController passwordController = TextEditingController();
 
+  TextEditingController kodeloginController = TextEditingController();
+
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -75,7 +77,7 @@ class SignInDoneScreen extends StatelessWidget {
                     controller: phonenumberoneController,
                     hintText: "Nomor Telepon",
                     prefix: Container(
-                      margin: EdgeInsets.fromLTRB(12.h, 25.v, -1.h, 11.v),
+                      margin: EdgeInsets.fromLTRB(12.h, 25.v, 1.h, 11.v),
                       child: CustomImageView(
                         svgPath: ImageConstant.imgCaret,
                       ),
@@ -88,6 +90,7 @@ class SignInDoneScreen extends StatelessWidget {
                       right: 12.h,
                       bottom: 22.v,
                     ),
+                    style: TextStyle(fontSize: 60.0),
                   ),
                   SizedBox(height: 30.v),
                   CustomTextFormField(
@@ -96,7 +99,7 @@ class SignInDoneScreen extends StatelessWidget {
                     textInputAction: TextInputAction.done,
                     textInputType: TextInputType.visiblePassword,
                     prefix: Container(
-                      margin: EdgeInsets.fromLTRB(12.h, 25.v, -1.h, 11.v),
+                      margin: EdgeInsets.fromLTRB(12.h, 25.v, 1.h, 11.v),
                       child: CustomImageView(
                         svgPath: ImageConstant.imgCaret,
                       ),
@@ -110,32 +113,27 @@ class SignInDoneScreen extends StatelessWidget {
                       right: 12.h,
                       bottom: 22.v,
                     ),
+                    style: TextStyle(fontSize: 18.0),
                   ),
                   SizedBox(height: 30.v),
-                  Container(
-                    width: 327.h,
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 12.h,
-                      vertical: 11.v,
+                  CustomTextFormField(
+                    controller: kodeloginController,
+                    hintText: "Kode Log-in",
+                    prefix: Container(
+                      margin: EdgeInsets.fromLTRB(12.h, 25.v, 1.h, 11.v),
+                      child: CustomImageView(
+                        svgPath: ImageConstant.imgCaret,
+                      ),
                     ),
-                    decoration: AppDecoration.outlineErrorContainer.copyWith(
-                      borderRadius: BorderRadiusStyle.roundedBorder8,
+                    prefixConstraints: BoxConstraints(
+                      maxHeight: 60.v,
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Kode Log-In",
-                          style: theme.textTheme.bodySmall,
-                        ),
-                        CustomImageView(
-                          svgPath: ImageConstant.imgCaret,
-                          height: 23.v,
-                          width: 1.h,
-                        ),
-                      ],
+                    contentPadding: EdgeInsets.only(
+                      top: 22.v,
+                      right: 12.h,
+                      bottom: 22.v,
                     ),
+                    style: TextStyle(fontSize: 30.0),
                   ),
                   SizedBox(height: 5.v),
                 ],
@@ -144,12 +142,14 @@ class SignInDoneScreen extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: CustomOutlinedButton(
-          text: "Daftar",
+          text: "Login",
           margin: EdgeInsets.only(
             left: 24.h,
             right: 24.h,
             bottom: 44.v,
           ),
+          buttonTextStyle: TextStyle(color: Colors.white),
+          borderColor: Colors.white,
         ),
       ),
     );

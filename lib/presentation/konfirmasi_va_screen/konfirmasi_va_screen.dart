@@ -70,32 +70,28 @@ class KonfirmasiVaScreen extends StatelessWidget {
                                   "Detail Transfer",
                                   style: theme.textTheme.titleLarge,
                                 ),
-
                                 SizedBox(height: 16.v),
-                                Text("Virtual account : $vaValue",
-                                style: theme.textTheme.bodyLarge,
+                                Text(
+                                  "Virtual account :",
+                                  style: theme.textTheme.bodyLarge,
                                 ),
-
                                 SizedBox(height: 16.v),
                                 CustomTextFormField(
                                   hintText: "Transaksi",
                                   textInputAction: TextInputAction.none,
                                   textInputType: TextInputType.none,
                                 ),
-
                                 SizedBox(height: 16.v),
                                 CustomTextFormField(
                                   hintText: nominalFormatter(int.parse(nominalValue)),
                                   textInputAction: TextInputAction.none,
                                   textInputType: TextInputType.none,
                                 ),
-
                                 SizedBox(height: 15.v),
                                 Text(
                                   "Catatan",
                                   style: CustomTextStyles.titleMediumGray100,
                                 ),
-
                                 SizedBox(height: 15.v),
                                 CustomTextFormField(
                                   hintText: "$notesValue",
@@ -126,7 +122,7 @@ class KonfirmasiVaScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 50.v),
-                Positioned(
+              Positioned(
                 bottom: 25.v,
                 left: 24.h,
                 right: 24.h,
@@ -136,6 +132,7 @@ class KonfirmasiVaScreen extends StatelessWidget {
                   onTap: () {
                     backHome(context);
                   },
+                  borderColor: Colors.white,
                 ),
               )
             ],
@@ -155,6 +152,6 @@ class KonfirmasiVaScreen extends StatelessWidget {
   }
 
   backHome(BuildContext context) {
-  Navigator.pushNamed(context, AppRoutes.homepageDonePage);
+    Navigator.pushNamed(context, AppRoutes.homepageDonePage);
   }
 }

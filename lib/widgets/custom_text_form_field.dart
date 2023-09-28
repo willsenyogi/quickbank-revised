@@ -26,11 +26,14 @@ class CustomTextFormField extends StatelessWidget {
     this.fillColor,
     this.filled = true,
     this.validator,
+    this.style,
   }) : super(
           key: key,
         );
 
   final Alignment? alignment;
+
+  final TextStyle? style;
 
   final double? width;
 
