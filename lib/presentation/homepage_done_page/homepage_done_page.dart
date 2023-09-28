@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
 import 'package:quickbank_revised/widgets/custom_floating_text_field.dart';
 import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
+import 'package:quickbank_revised/main.dart';
+import 'package:intl/intl.dart';
 
 // ignore_for_file: must_be_immutable
 class HomepageDonePage extends StatelessWidget {
   HomepageDonePage({Key? key}) : super(key: key);
 
-  TextEditingController qbCounterController = TextEditingController();
-
-  TextEditingController qbCounterController1 = TextEditingController();
+  FocusNode qbCounterFocusNode = FocusNode();
+  FocusNode qbCounter1FocusNode = FocusNode();
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +27,8 @@ class HomepageDonePage extends StatelessWidget {
                 decoration: AppDecoration.fillBlack,
                 child: SingleChildScrollView(
                     child: Container(
-                        height: 1569.v,
+                        height: 1500.v,
                         width: double.maxFinite,
-                        margin: EdgeInsets.only(bottom: 5.v),
                         child:
                             Stack(alignment: Alignment.bottomCenter, children: [
                           Align(
@@ -135,21 +135,19 @@ class HomepageDonePage extends StatelessWidget {
                                                   SizedBox(height: 7.v),
                                                   Center(
                                                     child: RichText(
-                                                        text:
-                                                            TextSpan(children: [
+                                                      text: TextSpan(
+                                                        children: [
                                                           TextSpan(
-                                                              text:
-                                                                  "Rp. 4,200,000.",
-                                                              style: theme
-                                                                  .textTheme
-                                                                  .displaySmall),
-                                                          TextSpan(
-                                                              text: "00",
-                                                              style: CustomTextStyles
-                                                                  .headlineMediumGray100Regular)
-                                                        ]),
-                                                        textAlign:
-                                                            TextAlign.left),
+                                                            text: nominalFormatter(
+                                                                accountBalance),
+                                                            style: theme
+                                                                .textTheme
+                                                                .displaySmall,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      textAlign: TextAlign.left,
+                                                    ),
                                                   ),
                                                   SizedBox(height: 16.v),
                                                   Padding(
@@ -196,336 +194,210 @@ class HomepageDonePage extends StatelessWidget {
                           Align(
                               alignment: Alignment.bottomCenter,
                               child: Container(
-                                  height: 1200.v,
+                                  height: 1100.v,
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: 9.h, vertical: 25.v),
+                                      horizontal: 5.h, vertical: 35.v),
                                   decoration: AppDecoration.outlineBlack900
                                       .copyWith(
                                           borderRadius: BorderRadiusStyle
                                               .customBorderTL24),
                                   child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        Text("Nabung",
-                                            style: CustomTextStyles
-                                                .titleLargeOnPrimaryContainer),
-                                        Padding(
-                                            padding: EdgeInsets.only(
-                                                left: 14.h,
-                                                top: 17.v,
-                                                right: 14.h),
-                                            child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Expanded(
-                                                      child: Container(
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  right: 8.h),
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  12.h),
-                                                          decoration: AppDecoration
-                                                              .gradientBlackToBlack
-                                                              .copyWith(
-                                                                  borderRadius:
-                                                                      BorderRadiusStyle
-                                                                          .roundedBorder8),
-                                                          child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                CustomImageView(
-                                                                    imagePath:
-                                                                        ImageConstant
-                                                                            .imgCoininhand1,
-                                                                    height: 40
-                                                                        .adaptSize,
-                                                                    width: 40
-                                                                        .adaptSize),
-                                                                SizedBox(
-                                                                    height:
-                                                                        3.v),
-                                                                Text(
-                                                                    "Ke Bandung",
-                                                                    style: theme
-                                                                        .textTheme
-                                                                        .labelLarge),
-                                                                SizedBox(
-                                                                    height:
-                                                                        5.v),
-                                                                Text(
-                                                                    "Rp. 1.000.000",
-                                                                    style: CustomTextStyles
-                                                                        .bodyLargeGray400),
-                                                                SizedBox(
-                                                                    height:
-                                                                        27.v)
-                                                              ]))),
-                                                  Expanded(
-                                                      child: Container(
-                                                          margin:
-                                                              EdgeInsets.only(
-                                                                  left: 8.h,
-                                                                  bottom: 14.v),
-                                                          padding:
-                                                              EdgeInsets.all(
-                                                                  12.h),
-                                                          decoration: AppDecoration
-                                                              .gradientBlackToBlack
-                                                              .copyWith(
-                                                                  borderRadius:
-                                                                      BorderRadiusStyle
-                                                                          .roundedBorder8),
-                                                          child: Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .min,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .start,
-                                                              children: [
-                                                                CustomImageView(
-                                                                    imagePath:
-                                                                        ImageConstant
-                                                                            .imgSaly5,
-                                                                    height: 40
-                                                                        .adaptSize,
-                                                                    width: 40
-                                                                        .adaptSize),
-                                                                SizedBox(
-                                                                    height:
-                                                                        2.v),
-                                                                Text(
-                                                                    "Beli Skincare",
-                                                                    style: theme
-                                                                        .textTheme
-                                                                        .labelLarge),
-                                                                SizedBox(
-                                                                    height:
-                                                                        5.v),
-                                                                Text(
-                                                                    "Rp. 300.000",
-                                                                    style: CustomTextStyles
-                                                                        .bodyLargeGray400),
-                                                                SizedBox(
-                                                                    height:
-                                                                        14.v)
-                                                              ])))
-                                                ])),
-                                        CustomOutlinedButton(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      SizedBox(
+                                          height: 316.v,
+                                          width: 341.h,
+                                          child: Stack(
+                                              alignment: Alignment.centerLeft,
+                                              children: [
+                                                Align(
+                                                    alignment:
+                                                        Alignment.centerRight,
+                                                    child: SizedBox(
+                                                        height: 238.v,
+                                                        width: 189.h,
+                                                        child: Stack(
+                                                            alignment: Alignment
+                                                                .bottomLeft,
+                                                            children: [
+                                                              CustomImageView(
+                                                                  imagePath:
+                                                                      ImageConstant
+                                                                          .img12,
+                                                                  height: 220.v,
+                                                                  width: 173.h,
+                                                                  radius: BorderRadius
+                                                                      .circular(
+                                                                          15.h),
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .topRight),
+                                                              CustomImageView(
+                                                                  imagePath:
+                                                                      ImageConstant
+                                                                          .img21,
+                                                                  height: 220.v,
+                                                                  width: 173.h,
+                                                                  radius: BorderRadius
+                                                                      .circular(
+                                                                          15.h),
+                                                                  alignment:
+                                                                      Alignment
+                                                                          .bottomLeft)
+                                                            ]))),
+                                                Align(
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    child: Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.min,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .start,
+                                                        children: [
+                                                          Align(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .center,
+                                                              child: Text(
+                                                                  "Informasi Kartu",
+                                                                  style: CustomTextStyles
+                                                                      .titleLargeOnPrimaryContainer)),
+                                                          SizedBox(
+                                                              height: 53.v),
+                                                          CustomFloatingTextField(
+                                                            width: 140.h,
+                                                            labelText: "QB 1",
+                                                            labelStyle: theme
+                                                                .textTheme
+                                                                .labelLarge!,
+                                                            hintText: "QB 1",
+                                                            textInputAction:
+                                                                TextInputAction
+                                                                    .done,
+                                                            focusNode:
+                                                                qbCounterFocusNode,
+                                                          ),
+                                                          SizedBox(
+                                                              height: 45.v),
+                                                          CustomFloatingTextField(
+                                                            width: 140.h,
+                                                            labelText: "QB 2",
+                                                            labelStyle: theme
+                                                                .textTheme
+                                                                .labelLarge!,
+                                                            hintText: "QB 2",
+                                                            textInputAction:
+                                                                TextInputAction
+                                                                    .done,
+                                                            focusNode:
+                                                                qbCounter1FocusNode,
+                                                          ),
+                                                          SizedBox(
+                                                              height: 45.v),
+                                                          CustomOutlinedButton(
+                                                            height: 28.v,
+                                                            text:
+                                                                "Tambah Kartu",
+                                                            buttonStyle:
+                                                                CustomButtonStyles
+                                                                    .outlinePrimaryContainerTL14,
+                                                            buttonTextStyle:
+                                                                theme.textTheme
+                                                                    .labelLarge!,
+                                                            borderColor: Color(
+                                                                0xFF262626),
+                                                          )
+                                                        ]))
+                                              ])),
+                                      SizedBox(height: 100.v),
+                                      Text("Histori Transaksi",
+                                          style: CustomTextStyles
+                                              .titleLargeOnPrimaryContainer),
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                              left: 14.h,
+                                              top: 24.v,
+                                              right: 14.h),
+                                          child: ListView.separated(
+                                              physics:
+                                                  NeverScrollableScrollPhysics(),
+                                              shrinkWrap: true,
+                                              separatorBuilder:
+                                                  (context, index) {
+                                                return SizedBox(height: 16.v);
+                                              },
+                                              itemCount: 2,
+                                              itemBuilder: (context, index) {
+                                                return FavouritecardItemWidget();
+                                              })),
+                                      CustomOutlinedButton(
                                           height: 28.v,
-                                          text: "Tambah Target",
-                                          margin: EdgeInsets.only(
-                                              left: 22.h,
-                                              top: 12.v,
-                                              right: 22.h),
+                                          text: "Lihat Histori",
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 22.h, vertical: 16.v),
                                           buttonStyle: CustomButtonStyles
                                               .outlinePrimaryContainerTL14,
                                           buttonTextStyle:
                                               theme.textTheme.labelLarge!,
-                                          borderColor: const Color(0xFF262626),
-                                        ),
-                                        SizedBox(height: 69.v),
-                                        SizedBox(
-                                            height: 316.v,
-                                            width: 341.h,
-                                            child: Stack(
-                                                alignment: Alignment.centerLeft,
-                                                children: [
-                                                  Align(
-                                                      alignment:
-                                                          Alignment.centerRight,
-                                                      child: SizedBox(
-                                                          height: 238.v,
-                                                          width: 189.h,
-                                                          child: Stack(
-                                                              alignment: Alignment
-                                                                  .bottomLeft,
-                                                              children: [
-                                                                CustomImageView(
-                                                                    imagePath:
-                                                                        ImageConstant
-                                                                            .img12,
-                                                                    height:
-                                                                        220.v,
-                                                                    width:
-                                                                        173.h,
-                                                                    radius: BorderRadius
-                                                                        .circular(15
-                                                                            .h),
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .topRight),
-                                                                CustomImageView(
-                                                                    imagePath:
-                                                                        ImageConstant
-                                                                            .img21,
-                                                                    height:
-                                                                        220.v,
-                                                                    width:
-                                                                        173.h,
-                                                                    radius: BorderRadius
-                                                                        .circular(15
-                                                                            .h),
-                                                                    alignment:
-                                                                        Alignment
-                                                                            .bottomLeft)
-                                                              ]))),
-                                                  Align(
-                                                      alignment:
-                                                          Alignment.centerLeft,
-                                                      child: Column(
-                                                          mainAxisSize:
-                                                              MainAxisSize.min,
-                                                          crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .start,
-                                                          children: [
-                                                            Align(
-                                                                alignment:
-                                                                    Alignment
-                                                                        .center,
-                                                                child: Text(
-                                                                    "Informasi Kartu",
-                                                                    style: CustomTextStyles
-                                                                        .titleLargeOnPrimaryContainer)),
-                                                            SizedBox(
-                                                                height: 53.v),
-                                                            CustomFloatingTextField(
-                                                                width: 140.h,
-                                                                controller:
-                                                                    qbCounterController,
-                                                                labelText:
-                                                                    "QB 1",
-                                                                labelStyle: theme
-                                                                    .textTheme
-                                                                    .labelLarge!,
-                                                                hintText:
-                                                                    "QB 1"),
-                                                            SizedBox(
-                                                                height: 45.v),
-                                                            CustomFloatingTextField(
-                                                                width: 140.h,
-                                                                controller:
-                                                                    qbCounterController1,
-                                                                labelText:
-                                                                    "QB 2",
-                                                                labelStyle: theme
-                                                                    .textTheme
-                                                                    .labelLarge!,
-                                                                hintText:
-                                                                    "QB 2",
-                                                                textInputAction:
-                                                                    TextInputAction
-                                                                        .done),
-                                                            SizedBox(
-                                                                height: 45.v),
-                                                            CustomOutlinedButton(
-                                                              height: 28.v,
-                                                              text:
-                                                                  "Tambah Kartu",
-                                                              buttonStyle:
-                                                                  CustomButtonStyles
-                                                                      .outlinePrimaryContainerTL14,
-                                                              buttonTextStyle:
-                                                                  theme
-                                                                      .textTheme
-                                                                      .labelLarge!,
-                                                              borderColor: Color(
-                                                                  0xFF262626),
-                                                            )
-                                                          ]))
-                                                ])),
-                                        SizedBox(height: 61.v),
-                                        Text("Histori Transaksi",
-                                            style: CustomTextStyles
-                                                .titleLargeOnPrimaryContainer),
-                                        Padding(
-                                            padding: EdgeInsets.only(
-                                                left: 14.h,
-                                                top: 24.v,
-                                                right: 14.h),
-                                            child: ListView.separated(
-                                                physics:
-                                                    NeverScrollableScrollPhysics(),
-                                                shrinkWrap: true,
-                                                separatorBuilder:
-                                                    (context, index) {
-                                                  return SizedBox(height: 16.v);
-                                                },
-                                                itemCount: 2,
-                                                itemBuilder: (context, index) {
-                                                  return FavouritecardItemWidget();
-                                                })),
-                                        CustomOutlinedButton(
-                                            height: 28.v,
-                                            text: "Lihat Histori",
-                                            margin: EdgeInsets.symmetric(
-                                                horizontal: 22.h,
-                                                vertical: 16.v),
-                                            buttonStyle: CustomButtonStyles
-                                                .outlinePrimaryContainerTL14,
-                                            buttonTextStyle:
-                                                theme.textTheme.labelLarge!,
-                                            borderColor: Color(0xFF262626),
-                                            onTap: () {
-                                              onTapLihathistori(context);
-                                            })
-                                      ]))),
-                          Align(
-                              alignment: Alignment.bottomRight,
-                              child: Padding(
-                                  padding: EdgeInsets.only(bottom: 20.v),
-                                  child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Center(
-                                          child: Text("E-Wallets",
-                                              style: CustomTextStyles
-                                                  .titleLargeOnPrimaryContainer),
-                                        ),
-                                        SizedBox(height: 23.v),
-                                        Padding(
-                                            padding: EdgeInsets.only(left: 7),
-                                            child: SizedBox(
+                                          borderColor: Color(0xFF262626),
+                                          onTap: () {
+                                            onTapLihathistori(context);
+                                          }),
+                                      SizedBox(height: 100.v),
+                                      Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Center(
+                                              child: Text("E-Wallets",
+                                                  style: CustomTextStyles
+                                                      .titleLargeOnPrimaryContainer),
+                                            ),
+                                            SizedBox(height: 23.v),
+                                            Padding(
+                                              padding: EdgeInsets.only(left: 2),
+                                              child: SizedBox(
                                                 height: 103.v,
                                                 child: ListView.separated(
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    separatorBuilder:
-                                                        (context, index) {
-                                                      return SizedBox(
-                                                          width: 12.h);
-                                                    },
-                                                    itemCount: 3,
-                                                    itemBuilder:
-                                                        (context, index) {
-                                                      return UsergopayItemWidget();
-                                                    }))),
-                                        Center(
-                                          child: CustomOutlinedButton(
-                                              height: 28.v,
-                                              text: "Tambah E-Wallet",
-                                              margin: EdgeInsets.symmetric(
-                                                  horizontal: 22.h,
-                                                  vertical: 16.v),
-                                              buttonStyle: CustomButtonStyles
-                                                  .outlinePrimaryContainerTL14,
-                                              borderColor: Color(0xFF262626),
-                                              buttonTextStyle:
-                                                  theme.textTheme.labelLarge!),
-                                        )
-                                      ])))
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  shrinkWrap: true,
+                                                  separatorBuilder:
+                                                      (context, index) {
+                                                    return SizedBox(
+                                                        width: 12.h);
+                                                  },
+                                                  itemCount: 3,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return UsergopayItemWidget();
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                            Center(
+                                              child: CustomOutlinedButton(
+                                                height: 28.v,
+                                                text: "Tambah E-Wallet",
+                                                margin: EdgeInsets.symmetric(
+                                                    horizontal: 22.h,
+                                                    vertical: 16.v),
+                                                buttonStyle: CustomButtonStyles
+                                                    .outlinePrimaryContainerTL14,
+                                                borderColor: Color(0xFF262626),
+                                                buttonTextStyle:
+                                                    theme.textTheme.labelLarge!,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ))),
                         ]))))));
   }
 
@@ -545,5 +417,14 @@ class HomepageDonePage extends StatelessWidget {
   /// to push the named route for the historyOnProgressScreen.
   onTapLihathistori(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.historyOnProgressScreen);
+  }
+
+  static String nominalFormatter(int accountBalance) {
+    NumberFormat formatToIdr = NumberFormat.currency(
+      locale: 'id',
+      symbol: 'Rp ',
+      decimalDigits: 2,
+    );
+    return formatToIdr.format(accountBalance);
   }
 }
