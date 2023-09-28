@@ -94,7 +94,7 @@ class CustomTextFormField extends StatelessWidget {
           controller: controller,
           focusNode: focusNode ?? FocusNode(),
           autofocus: autofocus!,
-          style: textStyle ?? theme.textTheme.bodySmall,
+          style: TextStyle(fontSize: 18.0, color: Colors.white),
           obscureText: obscureText!,
           textInputAction: textInputAction,
           keyboardType: textInputType,

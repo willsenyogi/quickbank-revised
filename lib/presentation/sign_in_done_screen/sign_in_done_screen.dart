@@ -90,7 +90,6 @@ class SignInDoneScreen extends StatelessWidget {
                       right: 12.h,
                       bottom: 22.v,
                     ),
-                    style: TextStyle(fontSize: 60.0),
                   ),
                   SizedBox(height: 30.v),
                   CustomTextFormField(
@@ -113,7 +112,6 @@ class SignInDoneScreen extends StatelessWidget {
                       right: 12.h,
                       bottom: 22.v,
                     ),
-                    style: TextStyle(fontSize: 18.0),
                   ),
                   SizedBox(height: 30.v),
                   CustomTextFormField(
@@ -133,7 +131,6 @@ class SignInDoneScreen extends StatelessWidget {
                       right: 12.h,
                       bottom: 22.v,
                     ),
-                    style: TextStyle(fontSize: 30.0),
                   ),
                   SizedBox(height: 5.v),
                 ],
