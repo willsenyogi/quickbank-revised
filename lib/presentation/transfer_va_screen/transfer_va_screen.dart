@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
+import 'package:quickbank_revised/main.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
@@ -18,7 +19,6 @@ class TransferVaScreen extends StatelessWidget {
   final FocusNode vaFocusNode = FocusNode();
   final FocusNode nominalFocusNode = FocusNode();
   final FocusNode notesFocusNode = FocusNode();
-
 
   @override
   Widget build(BuildContext context) {
@@ -138,10 +138,15 @@ class TransferVaScreen extends StatelessWidget {
                   onTap: () {
                     confirmVa(context);
                     debugPrint("Transfer!");
+                    vaValue = vaController.text;
+                    nominalValue = nominalController.text;
+                    notesValue = notesController.text;
+
+                    accountBalance = accountBalance - int.parse(nominalValue);
+                    debugPrint("$accountBalance");
                     
                   },
                 ),
-              
              ),
             ],
           ),
