@@ -316,16 +316,18 @@ class HomepageDonePage extends StatelessWidget {
                                                               ])))
                                                 ])),
                                         CustomOutlinedButton(
-                                            height: 28.v,
-                                            text: "Tambah Target",
-                                            margin: EdgeInsets.only(
-                                                left: 22.h,
-                                                top: 12.v,
-                                                right: 22.h),
-                                            buttonStyle: CustomButtonStyles
-                                                .outlinePrimaryContainerTL14,
-                                            buttonTextStyle:
-                                                theme.textTheme.labelLarge!),
+                                          height: 28.v,
+                                          text: "Tambah Target",
+                                          margin: EdgeInsets.only(
+                                              left: 22.h,
+                                              top: 12.v,
+                                              right: 22.h),
+                                          buttonStyle: CustomButtonStyles
+                                              .outlinePrimaryContainerTL14,
+                                          buttonTextStyle:
+                                              theme.textTheme.labelLarge!,
+                                          borderColor: Colors.white,
+                                        ),
                                         SizedBox(height: 69.v),
                                         SizedBox(
                                             height: 316.v,
@@ -422,15 +424,19 @@ class HomepageDonePage extends StatelessWidget {
                                                             SizedBox(
                                                                 height: 45.v),
                                                             CustomOutlinedButton(
-                                                                height: 28.v,
-                                                                text:
-                                                                    "Tambah Kartu",
-                                                                buttonStyle:
-                                                                    CustomButtonStyles
-                                                                        .outlinePrimaryContainerTL14,
-                                                                buttonTextStyle: theme
-                                                                    .textTheme
-                                                                    .labelLarge!)
+                                                              height: 28.v,
+                                                              text:
+                                                                  "Tambah Kartu",
+                                                              buttonStyle:
+                                                                  CustomButtonStyles
+                                                                      .outlinePrimaryContainerTL14,
+                                                              buttonTextStyle:
+                                                                  theme
+                                                                      .textTheme
+                                                                      .labelLarge!,
+                                                              borderColor:
+                                                                  Colors.white,
+                                                            )
                                                           ]))
                                                 ])),
                                         SizedBox(height: 61.v),
@@ -464,6 +470,7 @@ class HomepageDonePage extends StatelessWidget {
                                                 .outlinePrimaryContainerTL14,
                                             buttonTextStyle:
                                                 theme.textTheme.labelLarge!,
+                                            borderColor: Colors.white,
                                             onTap: () {
                                               onTapLihathistori(context);
                                             })
@@ -501,6 +508,7 @@ class HomepageDonePage extends StatelessWidget {
                                                 top: 20.v, right: 33.h),
                                             buttonStyle: CustomButtonStyles
                                                 .outlinePrimaryContainerTL14,
+                                            borderColor: Colors.white,
                                             buttonTextStyle:
                                                 theme.textTheme.labelLarge!)
                                       ])))

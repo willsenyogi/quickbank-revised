@@ -163,6 +163,7 @@ class PageKetigaScreen extends StatelessWidget {
                         CustomOutlinedButton(
                           text: "Daftar Sekarang",
                           buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
+                          borderColor: Colors.white,
                         ),
                         SizedBox(height: 9.v),
                         CustomOutlinedButton(
@@ -171,6 +172,7 @@ class PageKetigaScreen extends StatelessWidget {
                               CustomButtonStyles.outlinePrimaryContainer,
                           buttonTextStyle:
                               CustomTextStyles.titleMediumOnPrimaryContainer,
+                          borderColor: Colors.white,
                         ),
                       ],
                     ),

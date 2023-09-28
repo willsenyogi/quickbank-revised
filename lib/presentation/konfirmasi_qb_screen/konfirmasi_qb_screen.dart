@@ -108,6 +108,7 @@ class KonfirmasiQbScreen extends StatelessWidget {
                                     text: "Transfer",
                                     buttonStyle: CustomButtonStyles
                                         .outlineOnPrimaryTL241,
+                                    borderColor: Colors.white,
                                   ),
                                 ],
                               ),

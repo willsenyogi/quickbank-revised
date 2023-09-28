@@ -178,6 +178,7 @@ class QbTransferScreen extends StatelessWidget {
             right: 24.h,
             bottom: 25.v,
           ),
+          borderColor: Colors.white,
         ),
       ),
     );

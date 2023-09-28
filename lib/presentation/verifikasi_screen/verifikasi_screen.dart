@@ -188,6 +188,7 @@ class VerifikasiScreen extends StatelessWidget {
             right: 24.h,
             bottom: 44.v,
           ),
+          borderColor: Colors.white,
         ),
       ),
     );

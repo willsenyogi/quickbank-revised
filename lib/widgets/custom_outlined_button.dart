@@ -17,6 +17,7 @@ class CustomOutlinedButton extends BaseButton {
     double? height,
     double? width,
     EdgeInsets? margin,
+    required this.borderColor,
     required String text,
   }) : super(
           text: text,
@@ -31,6 +32,8 @@ class CustomOutlinedButton extends BaseButton {
         );
 
   final BoxDecoration? decoration;
+
+  final Color borderColor;
 
   final Widget? leftIcon;
 
@@ -52,7 +55,12 @@ class CustomOutlinedButton extends BaseButton {
         height: this.height ?? 48.v,
         width: this.width ?? double.maxFinite,
         margin: margin,
-        decoration: decoration,
+        decoration: BoxDecoration(
+          border: Border.all(
+            color:
+                borderColor, // Menggunakan nilai borderColor untuk warna border
+          ),
+        ),
         child: OutlinedButton(
           style: buttonStyle,
           onPressed: isDisabled ?? false ? null : onTap ?? () {},

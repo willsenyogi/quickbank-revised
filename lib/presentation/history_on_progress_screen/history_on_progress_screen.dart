@@ -103,6 +103,7 @@ class HistoryOnProgressScreen extends StatelessWidget {
             right: 24.h,
             bottom: 46.v,
           ),
+          borderColor: Colors.white,
         ),
       ),
     );
