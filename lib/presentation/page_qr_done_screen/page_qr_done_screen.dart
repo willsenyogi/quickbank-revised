@@ -18,7 +18,7 @@ class PageQrDoneScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-          height: 50.v,
+          height: 90.v,
           leadingWidth: 52.h,
           leading: AppbarIconbutton(
             svgPath: ImageConstant.imgFaiconsolidarrowleft,

@@ -15,6 +15,7 @@ class VerifikasiScreen extends StatelessWidget {
   TextEditingController verifNotelpController = TextEditingController();
   TextEditingController verifEmailController = TextEditingController();
   TextEditingController kodeLoginController = TextEditingController();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class VerifikasiScreen extends StatelessWidget {
         extendBodyBehindAppBar: true,
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(
-          height: 56.v,
+          height: 90.v,
           leadingWidth: 52.h,
           leading: AppbarIconbutton(
             svgPath: ImageConstant.imgFaiconsolidarrowleft,
@@ -35,6 +36,9 @@ class VerifikasiScreen extends StatelessWidget {
               top: 10.v,
               bottom: 17.v,
             ),
+            onTap: () {
+              onTapBack(context);
+            },
           ),
           centerTitle: true,
           title: AppbarTitle(
@@ -53,136 +57,108 @@ class VerifikasiScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: Container(
-            width: double.maxFinite,
-            padding: EdgeInsets.symmetric(
-              horizontal: 24.h,
-              vertical: 35.v,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 50.v),
-                Text(
-                  "Verifikasi Nomor Telepon",
-                  style: theme.textTheme.titleLarge,
-                ),
-                Container(
-                  width: 315.h,
-                  margin: EdgeInsets.only(
-                    top: 10.v,
-                    right: 11.h,
+          child: Form(
+            key: _formKey,
+            child: Container(
+              width: double.maxFinite,
+              padding: EdgeInsets.symmetric(
+                horizontal: 24.h,
+                vertical: 50.v,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 50.v),
+                  Text(
+                    "Verifikasi Nomor Telepon",
+                    style: theme.textTheme.titleLarge,
                   ),
-                  child: Text(
-                    "Masukan Kode 6 Digit yang sudah di kirim ke nomor telepon anda",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.bodyLarge!.copyWith(
-                      height: 1.50,
+                  Container(
+                    width: 315.h,
+                    margin: EdgeInsets.only(
+                      top: 10.v,
+                      right: 11.h,
+                    ),
+                    child: Text(
+                      "Masukan Kode 6 Digit yang sudah di kirim ke nomor telepon anda",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodyLarge!.copyWith(
+                        height: 1.50,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(height: 8.v),
-                CustomTextFormField(
-                  controller: verifNotelpController,
-                  hintText: "Ex : QBX-150",
-                  textInputAction: TextInputAction.done,
-                  prefix: Container(
-                    margin: EdgeInsets.fromLTRB(12.h, 25.v, 1.h, 11.v),
-                    child: CustomImageView(
-                      svgPath: ImageConstant.imgCaret,
+                  SizedBox(height: 8.v),
+                  CustomTextFormField(
+                    controller: verifNotelpController,
+                    hintText: "Ex : QBX-150",
+                    textInputAction: TextInputAction.done,
+                  ),
+                  SizedBox(height: 15.v),
+                  Text(
+                    "Verifikasi Email",
+                    style: theme.textTheme.titleLarge,
+                  ),
+                  Container(
+                    width: 313.h,
+                    margin: EdgeInsets.only(
+                      top: 12.v,
+                      right: 13.h,
+                    ),
+                    child: Text(
+                      "Masukan kode 6 Digit yang sudah di kirim ke Email anda",
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                      style: theme.textTheme.bodyLarge!.copyWith(
+                        height: 1.50,
+                      ),
                     ),
                   ),
-                  prefixConstraints: BoxConstraints(
-                    maxHeight: 60.v,
+                  SizedBox(height: 11.v),
+                  CustomTextFormField(
+                    controller: verifEmailController,
+                    hintText: "Ex : QBX-150",
+                    textInputAction: TextInputAction.done,
                   ),
-                  contentPadding: EdgeInsets.only(
-                    top: 22.v,
-                    right: 12.h,
-                    bottom: 22.v,
+                  SizedBox(height: 15.v),
+                  Text(
+                    "Kode Log-In",
+                    style: theme.textTheme.titleLarge,
                   ),
-                ),
-                SizedBox(height: 15.v),
-                Text(
-                  "Verifikasi Email",
-                  style: theme.textTheme.titleLarge,
-                ),
-                Container(
-                  width: 313.h,
-                  margin: EdgeInsets.only(
-                    top: 12.v,
-                    right: 13.h,
+                  SizedBox(height: 7.v),
+                  CustomTextFormField(
+                    controller: kodeLoginController,
+                    hintText: "6 Karakter",
+                    textInputAction: TextInputAction.done,
                   ),
-                  child: Text(
-                    "Masukan kode 6 Digit yang sudah di kirim ke Email anda",
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: theme.textTheme.bodyLarge!.copyWith(
-                      height: 1.50,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 11.v),
-                CustomTextFormField(
-                  controller: verifEmailController,
-                  hintText: "Ex : QBX-150",
-                  textInputAction: TextInputAction.done,
-                  prefix: Container(
-                    margin: EdgeInsets.fromLTRB(12.h, 25.v, 1.h, 11.v),
-                    child: CustomImageView(
-                      svgPath: ImageConstant.imgCaret,
-                    ),
-                  ),
-                  prefixConstraints: BoxConstraints(
-                    maxHeight: 60.v,
-                  ),
-                  contentPadding: EdgeInsets.only(
-                    top: 22.v,
-                    right: 12.h,
-                    bottom: 22.v,
-                  ),
-                ),
-                SizedBox(height: 15.v),
-                Text(
-                  "Kode Log-In",
-                  style: theme.textTheme.titleLarge,
-                ),
-                SizedBox(height: 7.v),
-                CustomTextFormField(
-                  controller: kodeLoginController,
-                  hintText: "6 Karakter",
-                  textInputAction: TextInputAction.done,
-                  prefix: Container(
-                    margin: EdgeInsets.fromLTRB(12.h, 25.v, 1.h, 11.v),
-                    child: CustomImageView(
-                      svgPath: ImageConstant.imgCaret,
-                    ),
-                  ),
-                  prefixConstraints: BoxConstraints(
-                    maxHeight: 60.v,
-                  ),
-                  contentPadding: EdgeInsets.only(
-                    top: 22.v,
-                    right: 12.h,
-                    bottom: 22.v,
-                  ),
-                ),
-                SizedBox(height: 5.v),
-              ],
+                  SizedBox(height: 5.v),
+                ],
+              ),
             ),
           ),
         ),
         bottomNavigationBar: CustomOutlinedButton(
-          text: "Daftar",
+          text: "Masuk",
           margin: EdgeInsets.only(
             left: 24.h,
             right: 24.h,
             bottom: 44.v,
           ),
-          borderColor: Colors.white,
-          buttonTextStyle: TextStyle(color: Colors.white),
+          buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
+          borderColor: Colors.transparent,
+          onTap: () {
+            onTapMasuk(context);
+          },
         ),
       ),
     );
+  }
+
+  onTapMasuk(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
+  }
+
+  onTapBack(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.biodataScreen);
   }
 }

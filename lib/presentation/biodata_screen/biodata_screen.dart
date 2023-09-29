@@ -37,12 +37,15 @@ class BiodataScreen extends StatelessWidget {
             extendBodyBehindAppBar: true,
             resizeToAvoidBottomInset: false,
             appBar: CustomAppBar(
-                height: 60.v,
+                height: 90.v,
                 leadingWidth: 52.h,
                 leading: AppbarIconbutton(
-                    svgPath: ImageConstant.imgFaiconsolidarrowleft,
-                    margin:
-                        EdgeInsets.only(left: 24.h, top: 10.v, bottom: 17.v)),
+                  svgPath: ImageConstant.imgFaiconsolidarrowleft,
+                  margin: EdgeInsets.only(left: 24.h, top: 10.v, bottom: 17.v),
+                  onTap: () {
+                    onTapBack(context);
+                  },
+                ),
                 centerTitle: true,
                 title: AppbarTitle(text: "QUICK\nBANK")),
             body: Container(
@@ -58,11 +61,11 @@ class BiodataScreen extends StatelessWidget {
                     child: Container(
                         width: double.maxFinite,
                         padding: EdgeInsets.symmetric(
-                            horizontal: 24.h, vertical: 8.v),
+                            horizontal: 24.h, vertical: 40.v),
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 50.v),
+                              SizedBox(height: 60.v),
                               Text("Biodata",
                                   style: theme.textTheme.titleLarge),
                               SizedBox(height: 16.v),
@@ -122,9 +125,8 @@ class BiodataScreen extends StatelessWidget {
               onTap: () {
                 onTapSelanjutnya(context);
               },
-              isDisabled: true,
-              buttonTextStyle: TextStyle(color: Colors.white),
-              borderColor: Colors.white,
+              buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
+              borderColor: Colors.transparent,
             )));
   }
 
@@ -135,5 +137,9 @@ class BiodataScreen extends StatelessWidget {
   /// to push the named route for the verifikasiScreen.
   onTapSelanjutnya(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.verifikasiScreen);
+  }
+
+  void onTapBack(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.pageKetigaScreen);
   }
 }

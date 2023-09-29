@@ -30,7 +30,7 @@ class SignInDoneScreen extends StatelessWidget {
         extendBodyBehindAppBar: true,
         resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(
-          height: 56.v,
+          height: 90.v,
           leadingWidth: 52.h,
           leading: AppbarIconbutton(
             svgPath: ImageConstant.imgFaiconsolidarrowleft,
@@ -39,6 +39,9 @@ class SignInDoneScreen extends StatelessWidget {
               top: 10.v,
               bottom: 17.v,
             ),
+            onTap: () {
+              onTapBack(context);
+            },
           ),
           centerTitle: true,
           title: AppbarTitle(
@@ -61,13 +64,10 @@ class SignInDoneScreen extends StatelessWidget {
             key: _formKey,
             child: Container(
               width: double.maxFinite,
-              padding: EdgeInsets.only(
-                left: 24.h,
-                top: 122.v,
-                right: 24.h,
-              ),
+              padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 40.v),
               child: Column(
                 children: [
+                  SizedBox(height: 60.v),
                   Text(
                     "Log In",
                     style: theme.textTheme.headlineLarge,
@@ -76,20 +76,6 @@ class SignInDoneScreen extends StatelessWidget {
                   CustomTextFormField(
                     controller: phonenumberoneController,
                     hintText: "Nomor Telepon",
-                    prefix: Container(
-                      margin: EdgeInsets.fromLTRB(12.h, 25.v, 1.h, 11.v),
-                      child: CustomImageView(
-                        svgPath: ImageConstant.imgCaret,
-                      ),
-                    ),
-                    prefixConstraints: BoxConstraints(
-                      maxHeight: 60.v,
-                    ),
-                    contentPadding: EdgeInsets.only(
-                      top: 22.v,
-                      right: 12.h,
-                      bottom: 22.v,
-                    ),
                   ),
                   SizedBox(height: 30.v),
                   CustomTextFormField(
@@ -97,40 +83,12 @@ class SignInDoneScreen extends StatelessWidget {
                     hintText: "Password",
                     textInputAction: TextInputAction.done,
                     textInputType: TextInputType.visiblePassword,
-                    prefix: Container(
-                      margin: EdgeInsets.fromLTRB(12.h, 25.v, 1.h, 11.v),
-                      child: CustomImageView(
-                        svgPath: ImageConstant.imgCaret,
-                      ),
-                    ),
-                    prefixConstraints: BoxConstraints(
-                      maxHeight: 60.v,
-                    ),
                     obscureText: true,
-                    contentPadding: EdgeInsets.only(
-                      top: 22.v,
-                      right: 12.h,
-                      bottom: 22.v,
-                    ),
                   ),
                   SizedBox(height: 30.v),
                   CustomTextFormField(
                     controller: kodeloginController,
                     hintText: "Kode Log-in",
-                    prefix: Container(
-                      margin: EdgeInsets.fromLTRB(12.h, 25.v, 1.h, 11.v),
-                      child: CustomImageView(
-                        svgPath: ImageConstant.imgCaret,
-                      ),
-                    ),
-                    prefixConstraints: BoxConstraints(
-                      maxHeight: 60.v,
-                    ),
-                    contentPadding: EdgeInsets.only(
-                      top: 22.v,
-                      right: 12.h,
-                      bottom: 22.v,
-                    ),
                   ),
                   SizedBox(height: 5.v),
                 ],
@@ -139,16 +97,27 @@ class SignInDoneScreen extends StatelessWidget {
           ),
         ),
         bottomNavigationBar: CustomOutlinedButton(
-          text: "Login",
+          text: "Masuk",
           margin: EdgeInsets.only(
             left: 24.h,
             right: 24.h,
             bottom: 44.v,
           ),
-          buttonTextStyle: TextStyle(color: Colors.white),
-          borderColor: Colors.white,
+          onTap: () {
+            onTapSelanjutnya(context);
+          },
+          buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
+          borderColor: Colors.transparent,
         ),
       ),
     );
+  }
+
+  onTapSelanjutnya(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
+  }
+
+  onTapBack(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.pageKetigaScreen);
   }
 }

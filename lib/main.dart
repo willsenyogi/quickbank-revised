@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       title: 'quickbank_revised',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.verifikasiScreen,
+      initialRoute: AppRoutes.homepageDoneContainerScreen,
       routes: AppRoutes.routes,
     );
   }

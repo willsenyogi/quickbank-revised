@@ -409,8 +409,13 @@ class HomepageDonePage extends StatelessWidget {
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the pageQrDoneScreen.
   onTapImgQrone(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => PageQrDoneScreen() ,));
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PageQrDoneScreen(),
+        ));
   }
+
   /// Navigates to the historyOnProgressScreen when the action is triggered.
   ///
   /// The [BuildContext] parameter is used to build the navigation stack.

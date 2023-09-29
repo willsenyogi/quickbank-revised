@@ -163,7 +163,10 @@ class PageKetigaScreen extends StatelessWidget {
                         CustomOutlinedButton(
                           text: "Daftar Sekarang",
                           buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
-                          borderColor: Colors.white,
+                          borderColor: Colors.transparent,
+                          onTap: () {
+                            onTapDaftar(context);
+                          },
                         ),
                         SizedBox(height: 9.v),
                         CustomOutlinedButton(
@@ -172,7 +175,10 @@ class PageKetigaScreen extends StatelessWidget {
                               CustomButtonStyles.outlinePrimaryContainer,
                           buttonTextStyle:
                               CustomTextStyles.titleMediumOnPrimaryContainer,
-                          borderColor: Colors.white,
+                          borderColor: Colors.transparent,
+                          onTap: () {
+                            onTapSudah(context);
+                          },
                         ),
                       ],
                     ),
@@ -184,5 +190,13 @@ class PageKetigaScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  onTapSudah(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.signInDoneScreen);
+  }
+
+  onTapDaftar(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.biodataScreen);
   }
 }
