@@ -128,8 +128,10 @@ class KonfirmasiVaScreen extends StatelessWidget {
                 left: 24.h,
                 right: 24.h,
                 child: CustomOutlinedButton(
+                  buttonTextStyle: TextStyle(
+                    color: Colors.white,
+                  ),
                   text: "Transfer",
-                  buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
                   onTap: () {
                     backHome(context);
                   },

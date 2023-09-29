@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
+import 'package:quickbank_revised/main.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
 import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
 import 'package:quickbank_revised/widgets/custom_text_form_field.dart';
+import 'package:intl/intl.dart';
 
 class KonfirmasiQbScreen extends StatelessWidget {
   KonfirmasiQbScreen({Key? key})
@@ -32,18 +34,15 @@ class KonfirmasiQbScreen extends StatelessWidget {
         body: Form(
           key: _formKey,
           child: SizedBox(
-            height: 768.v,
+            height: double.maxFinite,
             width: double.maxFinite,
             child: Stack(
               alignment: Alignment.center,
               children: [
                 CustomImageView(
                   imagePath: ImageConstant.imgWavebackground,
-                  height: 768.v,
-                  width: 375.h,
-                  radius: BorderRadius.circular(
-                    36.h,
-                  ),
+                  height: double.maxFinite,
+                  width: double.maxFinite,
                   alignment: Alignment.center,
                 ),
                 Align(
@@ -78,19 +77,21 @@ class KonfirmasiQbScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 16.v),
                                   CustomTextFormField(
-                                    controller: paymentmethodController,
                                     hintText: "QB",
+                                    autofocus: false,
+                                    textInputAction: TextInputAction.none,
                                   ),
                                   SizedBox(height: 16.v),
                                   CustomTextFormField(
-                                    controller: accountnumberController,
-                                    hintText: "281500990099",
-                                    textInputType: TextInputType.phone,
+                                    hintText: qbValue,
+                                    textInputAction: TextInputAction.none,
+                                    autofocus: false,
                                   ),
                                   SizedBox(height: 16.v),
                                   CustomTextFormField(
-                                    controller: rpCounterController,
-                                    hintText: "Rp. 100,000.00",
+                                    hintText: nominalFormatter(int.parse(nominalQbValue)),
+                                    textInputAction: TextInputAction.none,
+                                    autofocus: false,
                                   ),
                                   SizedBox(height: 15.v),
                                   Text(
@@ -99,19 +100,14 @@ class KonfirmasiQbScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 15.v),
                                   CustomTextFormField(
-                                    controller: contentconatineController,
-                                    hintText: "Warteg Kemaren",
-                                    textInputAction: TextInputAction.done,
+                                    hintText: "$notesQbValue",
+                                    textInputAction: TextInputAction.none,
+                                    autofocus: false,
                                   ),
                                   SizedBox(height: 28.v),
-                                  CustomOutlinedButton(
-                                    text: "Transfer",
-                                    buttonStyle: CustomButtonStyles
-                                        .outlineOnPrimaryTL241,
-                                    borderColor: Colors.white,
-                                  ),
                                 ],
                               ),
+                              
                             ),
                           ),
                           CustomAppBar(
@@ -133,11 +129,41 @@ class KonfirmasiQbScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: 50.v),
+                Positioned(
+                  bottom: 25.v,
+                  left: 24.h,
+                  right: 24.h,
+                  child: CustomOutlinedButton(
+                     buttonTextStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                    text: "Transfer",
+                    onTap: () {
+                      accountBalance = accountBalance - int.parse(nominalQbValue);
+                      backHome(context);
+                    },
+                    borderColor: Colors.white,
+                  ),
+               )
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  static String nominalFormatter(int accountBalance) {
+    NumberFormat formatToIdr = NumberFormat.currency(
+      locale: 'id',
+      symbol: 'Rp ',
+      decimalDigits: 2,
+    );
+    return formatToIdr.format(accountBalance);
+  }
+  
+  backHome(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
   }
 }
