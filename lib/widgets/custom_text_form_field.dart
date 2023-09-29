@@ -142,5 +142,6 @@ class CustomTextFormField extends StatelessWidget {
                 width: 1,
               ),
             ),
+        errorStyle: TextStyle(color: Color.fromARGB(255, 255, 17, 0)),
       );
 }
