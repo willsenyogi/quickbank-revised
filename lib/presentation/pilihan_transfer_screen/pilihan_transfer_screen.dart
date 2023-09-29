@@ -53,9 +53,13 @@ class PilihanTransferScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Expanded(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      onTapQb(context); // Call the onTap function with 'QB' as an identifier
+                                    },
                                     child: Container(
                                       margin: EdgeInsets.only(right: 22.h),
                                       padding: EdgeInsets.symmetric(
@@ -87,6 +91,7 @@ class PilihanTransferScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
+                                ),
                                   Expanded(
                                     child: GestureDetector(
                                       onTap: () {
@@ -201,5 +206,9 @@ class PilihanTransferScreen extends StatelessWidget {
 
   onTapVirtualAccount(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.transferVaScreen);
+  }
+
+  onTapQb(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.qbTransferScreen);
   }
 }

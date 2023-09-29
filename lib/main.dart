@@ -6,13 +6,16 @@ import 'package:quickbank_revised/routes/app_routes.dart';
 
 int accountBalance = 10000000; // Initial balance
 
+//virtual account transfer value temp
 var vaValue = "";
 var nominalValue = "";
 var notesValue = "";
 
-void updateBalanceOut(int balanceOut) {
-  accountBalance = accountBalance - balanceOut;
-}
+//qb transfer value temp
+var qbValue = "";
+var nominalQbValue = "";
+var notesQbValue = "";
+
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       title: 'quickbank_revised',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.homepageDoneContainerScreen,
+      initialRoute: AppRoutes.qbTransferScreen,
       routes: AppRoutes.routes,
     );
   }
