@@ -11,145 +11,118 @@ class TransferVaScreen extends StatelessWidget {
   TransferVaScreen({Key? key}) : super(key: key);
 
   TextEditingController vaController = TextEditingController();
-
-  TextEditingController nominalController = TextEditingController();
-
-  TextEditingController notesController = TextEditingController();
+  TextEditingController nominalVaController = TextEditingController();
 
   final FocusNode vaFocusNode = FocusNode();
   final FocusNode nominalFocusNode = FocusNode();
   final FocusNode notesFocusNode = FocusNode();
 
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-
     return SafeArea(
       child: Scaffold(
+        extendBody: true,
+        extendBodyBehindAppBar: true,
         resizeToAvoidBottomInset: false,
-        body: SizedBox(
-          height: double.maxFinite,
-          width: double.maxFinite,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              CustomImageView(
-                imagePath: ImageConstant.imgWavebackground,
-                height: double.maxFinite,
-                width: double.maxFinite,
-                alignment: Alignment.center,
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: SingleChildScrollView(
-                  child: Container(
-                    height: 620.v,
-                    width: double.maxFinite,
-                    margin: EdgeInsets.only(bottom: 141.v),
-                    child: Stack(
-                      alignment: Alignment.topCenter,
-                      children: [
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Container(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 24.h,
-                              vertical: 120.v,
-                            ),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                SizedBox(height: 70.v),
-                                Text(
-                                  "Virtual Account",
-                                  style: theme.textTheme.titleLarge,
-                                ),
-                                SizedBox(height: 16.v),
-                                CustomTextFormField(
-                                  autofocus: true,
-                                  focusNode: vaFocusNode,
-                                  controller: vaController,
-                                  hintText: "Virtual Account Number",
-                                  textInputAction: TextInputAction.next,
-                                  textInputType: TextInputType.number,
-                                ),
-                                SizedBox(height: 16.v),
-                                CustomTextFormField(
-                                  focusNode: nominalFocusNode,
-                                  controller: nominalController,
-                                  hintText: "Nominal Transfer",
-                                  textInputAction: TextInputAction.next,
-                                  textInputType: TextInputType.number,
-                                ),
-                                SizedBox(height: 15.v),
-                                Text(
-                                  "Catatan",
-                                  style: CustomTextStyles.titleMediumGray100,
-                                ),
-                                SizedBox(height: 15.v),
-                                CustomTextFormField(
-                                  focusNode: notesFocusNode,
-                                  controller: notesController,
-                                  hintText: "Catatan",
-                                  textInputAction: TextInputAction.done,
-                                  textInputType: TextInputType.text,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        CustomAppBar(
-                          leadingWidth: 47.h,
-                          leading: AppbarIconbutton(
-                            svgPath: ImageConstant.imgFaiconsolidarrowleft,
-                            margin: EdgeInsets.only(
-                              left: 19.h,
-                              bottom: 7.v,
-                            ),
-                          ),
-                          centerTitle: true,
-                          title: AppbarTitle(
-                            text: "QUICK\nBANK",
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 50.v),
-              Positioned(
-                bottom: 25.v,
-                left: 24.h,
-                right: 24.h,
-                child: CustomOutlinedButton(
-                  text: "Transfer",
-                  buttonTextStyle: TextStyle(
-                    color: Colors.white,
-                  ),
-                  onTap: () {
-                    confirmVa(context);
-                    debugPrint("Transfer!");
-                    vaValue = vaController.text;
-                    nominalValue = nominalController.text;
-                    notesValue = notesController.text;
-
-                    accountBalance = accountBalance - int.parse(nominalValue);
-                    debugPrint("$accountBalance");
-                  },
-                  borderColor: Colors.white,
-                ),
-              ),
-            ],
+        appBar: CustomAppBar(
+          height: 90.v,
+          leadingWidth: 52.h,
+          leading: AppbarIconbutton(
+            svgPath: ImageConstant.imgFaiconsolidarrowleft,
+            margin: EdgeInsets.only(
+              left: 24.h,
+              top: 10.v,
+              bottom: 17.v,
+            ),
+            onTap: () {
+              onTapBack(context);
+            },
           ),
+          centerTitle: true,
+          title: AppbarTitle(
+            text: "QUICK\nBANK",
+          ),
+        ),
+        body: Container(
+          width: mediaQueryData.size.width,
+          height: mediaQueryData.size.height,
+          decoration: BoxDecoration(
+            color: appTheme.black900,
+            image: DecorationImage(
+              image: AssetImage(
+                ImageConstant.imgWavebackground,
+              ),
+              fit: BoxFit.cover,
+            ),
+          ),
+          child: Form(
+            key: _formKey,
+            child: Container(
+              width: double.maxFinite,
+              padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 40.v),
+              child: Column(
+                children: [
+                  SizedBox(height: 140.v),
+                  Text(
+                    "QB Transfer",
+                    style: theme.textTheme.headlineLarge,
+                  ),
+                  SizedBox(height: 25.v),
+                  CustomTextFormField(
+                    controller: vaController,
+                    hintText: "Nomor Virtual Account",
+                    textInputType: TextInputType.number,
+                    validator: (vaController) {
+                      if (vaController == null || vaController.isEmpty) {
+                        return 'Nomor Virtual Account Salah';
+                      }
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 30.v),
+                  CustomTextFormField(
+                    controller: nominalVaController,
+                    hintText: "Jumlah Transfer",
+                    textInputAction: TextInputAction.done,
+                    textInputType: TextInputType.number,
+                    validator: (nominalVaController) {
+                    if (nominalVaController == null || nominalVaController.isEmpty || int.parse(nominalVaController) > accountBalance || int.parse(nominalVaController) < 10000) {
+                        return 'Jumlah minimal transfer adalah Rp 10.000,00';
+                      }
+                      return null;
+                    },
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+        bottomNavigationBar: CustomOutlinedButton(
+          text: "Transfer",
+          buttonTextStyle: TextStyle(
+            color: Colors.white,
+            ),
+            onTap: () {
+             if (_formKey.currentState?.validate() == true) {
+              onTapConfirmVa(context);
+              vaValue = vaController.text;
+              nominalVaValue = nominalVaController.text;
+              }
+            },
+          borderColor: Colors.white,
         ),
       ),
     );
   }
 
-  confirmVa(BuildContext context) {
+  onTapBack(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.pilihanTransferScreen);
+  }
+
+  onTapConfirmVa(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.konfirmasiVaScreen);
   }
 }

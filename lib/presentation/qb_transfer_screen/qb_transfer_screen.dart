@@ -89,7 +89,7 @@ class QbTransferScreen extends StatelessWidget {
                     textInputAction: TextInputAction.done,
                     textInputType: TextInputType.number,
                     validator: (nominalQbController) {
-                    if (nominalQbController == null || nominalQbController.isEmpty) {
+                    if (nominalQbController == null || nominalQbController.isEmpty || int.parse(nominalQbController) > accountBalance || int.parse(nominalQbController) < 10000) {
                         return 'Jumlah minimal transfer adalah Rp 10.000,00';
                       }
                       return null;
@@ -129,6 +129,6 @@ class QbTransferScreen extends StatelessWidget {
   }
 
   onTapBack(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
+    Navigator.pushNamed(context, AppRoutes.pilihanTransferScreen);
   }
 }

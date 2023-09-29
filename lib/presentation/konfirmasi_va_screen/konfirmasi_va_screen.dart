@@ -14,13 +14,7 @@ class KonfirmasiVaScreen extends StatelessWidget {
           key: key,
         );
 
-  TextEditingController transactionidController = TextEditingController();
-
-  TextEditingController transactiontypeController = TextEditingController();
-
-  TextEditingController rpCounterController = TextEditingController();
-
-  TextEditingController contentconatineController = TextEditingController();
+  TextEditingController pinController = TextEditingController();
 
   final formatNominal = NumberFormat('#,##0.00', 'ID');
 
@@ -72,33 +66,24 @@ class KonfirmasiVaScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 16.v),
                                 Text(
-                                  "Virtual account :",
+                                  "Virtual account : $vaValue",
                                   style: theme.textTheme.bodyLarge,
                                 ),
                                 SizedBox(height: 16.v),
                                 CustomTextFormField(
-                                  hintText: "Transaksi",
+                                  hintText: "Biaya admin : Rp 0",
                                   textInputAction: TextInputAction.none,
                                   textInputType: TextInputType.none,
+                                  autofocus: false,
                                 ),
                                 SizedBox(height: 16.v),
                                 CustomTextFormField(
                                   hintText:
-                                      nominalFormatter(int.parse(nominalValue)),
+                                      nominalFormatter(int.parse(nominalVaValue)),
                                   textInputAction: TextInputAction.none,
                                   textInputType: TextInputType.none,
-                                ),
-                                SizedBox(height: 15.v),
-                                Text(
-                                  "Catatan",
-                                  style: CustomTextStyles.titleMediumGray100,
-                                ),
-                                SizedBox(height: 15.v),
-                                CustomTextFormField(
-                                  hintText: "$notesValue",
-                                  textInputAction: TextInputAction.none,
-                                  textInputType: TextInputType.none,
-                                ),
+                                  autofocus: false,
+                                ),     
                               ],
                             ),
                           ),
@@ -133,6 +118,7 @@ class KonfirmasiVaScreen extends StatelessWidget {
                   ),
                   text: "Transfer",
                   onTap: () {
+                    accountBalance = accountBalance - int.parse(nominalVaValue);
                     backHome(context);
                   },
                   borderColor: Colors.white,
@@ -155,6 +141,6 @@ class KonfirmasiVaScreen extends StatelessWidget {
   }
 
   backHome(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homepageDonePage);
+    Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
   }
 }

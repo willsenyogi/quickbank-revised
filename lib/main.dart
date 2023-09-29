@@ -6,10 +6,12 @@ import 'package:quickbank_revised/routes/app_routes.dart';
 
 int accountBalance = 10000000; // Initial balance
 
+//PIN value
+var pinCode = "123456";
+
 //virtual account transfer value temp
 var vaValue = "";
-var nominalValue = "";
-var notesValue = "";
+var nominalVaValue = "";
 
 //qb transfer value temp
 var qbValue = "";
@@ -35,7 +37,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       title: 'quickbank_revised',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.qbTransferScreen,
+      initialRoute: AppRoutes.pilihanTransferScreen,
       routes: AppRoutes.routes,
     );
   }

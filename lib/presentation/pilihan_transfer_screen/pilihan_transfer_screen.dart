@@ -184,6 +184,9 @@ class PilihanTransferScreen extends StatelessWidget {
                       margin: EdgeInsets.only(left: 24.h, right: 24.h),
                       buttonTextStyle: TextStyle(color: Colors.white),
                       borderColor: Colors.white,
+                      onTap: () {
+                        onTapBack(context);
+                      },
                     ),
                   ],
                 ),
@@ -210,5 +213,9 @@ class PilihanTransferScreen extends StatelessWidget {
 
   onTapQb(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.qbTransferScreen);
+  }
+
+  onTapBack(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
   }
 }
