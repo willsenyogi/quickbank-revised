@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
+import 'package:quickbank_revised/presentation/homepage_done_page/homepage_done_page.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
 import 'package:quickbank_revised/widgets/custom_icon_button.dart';
 
 class PageQrDoneScreen extends StatelessWidget {
-  const PageQrDoneScreen({Key? key})
-      : super(
-          key: key,
-        );
+  const PageQrDoneScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    mediaQueryData = MediaQuery.of(context);
-
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
@@ -27,6 +23,13 @@ class PageQrDoneScreen extends StatelessWidget {
               top: 11.v,
               bottom: 11.v,
             ),
+            onTap: () {
+              // Navigate to HomepageDonePage when the button is pressed
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomepageDonePage()),
+              );
+            },
           ),
           centerTitle: true,
           title: AppbarTitle(
