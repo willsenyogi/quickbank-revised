@@ -12,7 +12,9 @@ class VerifikasiScreen extends StatelessWidget {
           key: key,
         );
 
-  TextEditingController contentconatineController = TextEditingController();
+  TextEditingController verifNotelpController = TextEditingController();
+  TextEditingController verifEmailController = TextEditingController();
+  TextEditingController kodeLoginController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -81,11 +83,11 @@ class VerifikasiScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 8.v),
                 CustomTextFormField(
-                  controller: contentconatineController,
+                  controller: verifNotelpController,
                   hintText: "Ex : QBX-150",
                   textInputAction: TextInputAction.done,
                   prefix: Container(
-                    margin: EdgeInsets.fromLTRB(12.h, 25.v, -1.h, 11.v),
+                    margin: EdgeInsets.fromLTRB(12.h, 25.v, 1.h, 11.v),
                     child: CustomImageView(
                       svgPath: ImageConstant.imgCaret,
                     ),
@@ -120,29 +122,23 @@ class VerifikasiScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 11.v),
-                Container(
-                  width: 327.h,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 12.h,
-                    vertical: 10.v,
+                CustomTextFormField(
+                  controller: verifEmailController,
+                  hintText: "Ex : QBX-150",
+                  textInputAction: TextInputAction.done,
+                  prefix: Container(
+                    margin: EdgeInsets.fromLTRB(12.h, 25.v, 1.h, 11.v),
+                    child: CustomImageView(
+                      svgPath: ImageConstant.imgCaret,
+                    ),
                   ),
-                  decoration: AppDecoration.outlineErrorContainer.copyWith(
-                    borderRadius: BorderRadiusStyle.roundedBorder8,
+                  prefixConstraints: BoxConstraints(
+                    maxHeight: 60.v,
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Ex : QBX-150",
-                        style: theme.textTheme.bodySmall,
-                      ),
-                      CustomImageView(
-                        svgPath: ImageConstant.imgCaret,
-                        height: 23.v,
-                        width: 1.h,
-                      ),
-                    ],
+                  contentPadding: EdgeInsets.only(
+                    top: 22.v,
+                    right: 12.h,
+                    bottom: 22.v,
                   ),
                 ),
                 SizedBox(height: 30.v),
@@ -151,29 +147,23 @@ class VerifikasiScreen extends StatelessWidget {
                   style: theme.textTheme.titleLarge,
                 ),
                 SizedBox(height: 7.v),
-                Container(
-                  width: 327.h,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 12.h,
-                    vertical: 10.v,
+                CustomTextFormField(
+                  controller: kodeLoginController,
+                  hintText: "6 Karakter",
+                  textInputAction: TextInputAction.done,
+                  prefix: Container(
+                    margin: EdgeInsets.fromLTRB(12.h, 25.v, 1.h, 11.v),
+                    child: CustomImageView(
+                      svgPath: ImageConstant.imgCaret,
+                    ),
                   ),
-                  decoration: AppDecoration.outlineErrorContainer.copyWith(
-                    borderRadius: BorderRadiusStyle.roundedBorder8,
+                  prefixConstraints: BoxConstraints(
+                    maxHeight: 60.v,
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "6 Karakter",
-                        style: theme.textTheme.bodySmall,
-                      ),
-                      CustomImageView(
-                        svgPath: ImageConstant.imgCaret,
-                        height: 23.v,
-                        width: 1.h,
-                      ),
-                    ],
+                  contentPadding: EdgeInsets.only(
+                    top: 22.v,
+                    right: 12.h,
+                    bottom: 22.v,
                   ),
                 ),
                 SizedBox(height: 5.v),
@@ -189,6 +179,7 @@ class VerifikasiScreen extends StatelessWidget {
             bottom: 44.v,
           ),
           borderColor: Colors.white,
+          buttonTextStyle: TextStyle(color: Colors.white),
         ),
       ),
     );

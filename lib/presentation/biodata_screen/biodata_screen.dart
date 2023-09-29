@@ -115,18 +115,16 @@ class BiodataScreen extends StatelessWidget {
                                   hintText: "Tempat Lahir",
                                   textInputAction: TextInputAction.done)
                             ])))),
-            bottomNavigationBar: Opacity(
-                opacity: 0.2,
-                child: CustomOutlinedButton(
-                  text: "Selanjutnya",
-                  margin:
-                      EdgeInsets.only(left: 24.h, right: 24.h, bottom: 40.v),
-                  onTap: () {
-                    onTapSelanjutnya(context);
-                  },
-                  isDisabled: true,
-                  borderColor: Colors.white,
-                ))));
+            bottomNavigationBar: CustomOutlinedButton(
+              text: "Selanjutnya",
+              margin: EdgeInsets.only(left: 24.h, right: 24.h, bottom: 40.v),
+              onTap: () {
+                onTapSelanjutnya(context);
+              },
+              isDisabled: true,
+              buttonTextStyle: TextStyle(color: Colors.white),
+              borderColor: Colors.white,
+            )));
   }
 
   /// Navigates to the verifikasiScreen when the action is triggered.
