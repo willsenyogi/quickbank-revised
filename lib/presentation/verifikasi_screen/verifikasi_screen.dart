@@ -62,6 +62,7 @@ class VerifikasiScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                SizedBox(height: 50.v),
                 Text(
                   "Verifikasi Nomor Telepon",
                   style: theme.textTheme.titleLarge,
@@ -101,7 +102,7 @@ class VerifikasiScreen extends StatelessWidget {
                     bottom: 22.v,
                   ),
                 ),
-                SizedBox(height: 21.v),
+                SizedBox(height: 15.v),
                 Text(
                   "Verifikasi Email",
                   style: theme.textTheme.titleLarge,
@@ -141,7 +142,7 @@ class VerifikasiScreen extends StatelessWidget {
                     bottom: 22.v,
                   ),
                 ),
-                SizedBox(height: 30.v),
+                SizedBox(height: 15.v),
                 Text(
                   "Kode Log-In",
                   style: theme.textTheme.titleLarge,

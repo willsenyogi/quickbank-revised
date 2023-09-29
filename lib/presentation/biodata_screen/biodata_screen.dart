@@ -46,8 +46,8 @@ class BiodataScreen extends StatelessWidget {
                 centerTitle: true,
                 title: AppbarTitle(text: "QUICK\nBANK")),
             body: Container(
-                width: mediaQueryData.size.width,
-                height: mediaQueryData.size.height,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
                 decoration: BoxDecoration(
                     color: appTheme.black900,
                     image: DecorationImage(
@@ -62,6 +62,7 @@ class BiodataScreen extends StatelessWidget {
                         child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              SizedBox(height: 50.v),
                               Text("Biodata",
                                   style: theme.textTheme.titleLarge),
                               SizedBox(height: 16.v),
