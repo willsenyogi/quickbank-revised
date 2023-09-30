@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "602136341805",
+    "project_id": "quickbank-35e59",
+    "storage_bucket": "quickbank-35e59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602136341805:android:927925e459c4bb8b5837a4",
+        "android_client_info": {
+          "package_name": "com.quickbank.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdWHwQNpvOdgFI0kwnYh0Drt5eOhJL-nY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
