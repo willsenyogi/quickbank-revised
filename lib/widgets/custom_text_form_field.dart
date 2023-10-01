@@ -32,49 +32,27 @@ class CustomTextFormField extends StatelessWidget {
         );
 
   final Alignment? alignment;
-
   final TextStyle? style;
-
   final double? width;
-
   final EdgeInsetsGeometry? margin;
-
   final TextEditingController? controller;
-
   final FocusNode? focusNode;
-
   final bool? autofocus;
-
   final TextStyle? textStyle;
-
   final bool? obscureText;
-
   final TextInputAction? textInputAction;
-
   final TextInputType? textInputType;
-
   final int? maxLines;
-
   final String? hintText;
-
   final TextStyle? hintStyle;
-
   final Widget? prefix;
-
   final BoxConstraints? prefixConstraints;
-
   final Widget? suffix;
-
   final BoxConstraints? suffixConstraints;
-
   final EdgeInsets? contentPadding;
-
   final InputBorder? borderDecoration;
-
   final Color? fillColor;
-
   final bool? filled;
-
   final FormFieldValidator<String>? validator;
 
   @override

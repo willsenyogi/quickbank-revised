@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
@@ -12,12 +13,9 @@ class SignInDoneScreen extends StatelessWidget {
           key: key,
         );
 
-  TextEditingController phonenumberoneController = TextEditingController();
-
+  FirebaseAuth _auth = FirebaseAuth.instance;
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
-  TextEditingController kodeloginController = TextEditingController();
-
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -74,23 +72,18 @@ class SignInDoneScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 25.v),
                   CustomTextFormField(
-                    controller: phonenumberoneController,
-                    hintText: "Nomor Telepon",
+                    controller: emailController,
+                    hintText: "Email",
+                    autofocus: false,
                   ),
                   SizedBox(height: 30.v),
                   CustomTextFormField(
-                    controller: passwordController,
-                    hintText: "Password",
-                    textInputAction: TextInputAction.done,
-                    textInputType: TextInputType.visiblePassword,
-                    obscureText: true,
-                  ),
-                  SizedBox(height: 30.v),
-                  CustomTextFormField(
-                    controller: kodeloginController,
-                    hintText: "Kode Log-in",
-                  ),
-                  SizedBox(height: 5.v),
+                      controller: passwordController,
+                      hintText: "Password",
+                      textInputAction: TextInputAction.done,
+                      textInputType: TextInputType.visiblePassword,
+                      obscureText: true,
+                      autofocus: false),
                 ],
               ),
             ),
@@ -114,7 +107,14 @@ class SignInDoneScreen extends StatelessWidget {
   }
 
   onTapSelanjutnya(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text)
+        .then((value) {
+      Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
+    }).onError((error, stackTrace) {
+      print("Error ${error.toString()}");
+    });
   }
 
   onTapBack(BuildContext context) {

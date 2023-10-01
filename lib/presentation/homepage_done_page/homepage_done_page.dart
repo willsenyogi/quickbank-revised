@@ -279,6 +279,7 @@ class HomepageDonePage extends StatelessWidget {
                                                                     .done,
                                                             focusNode:
                                                                 qbCounterFocusNode,
+                                                            autofocus: false,
                                                           ),
                                                           SizedBox(
                                                               height: 45.v),
@@ -294,6 +295,7 @@ class HomepageDonePage extends StatelessWidget {
                                                                     .done,
                                                             focusNode:
                                                                 qbCounter1FocusNode,
+                                                            autofocus: false,
                                                           ),
                                                           SizedBox(
                                                               height: 45.v),
