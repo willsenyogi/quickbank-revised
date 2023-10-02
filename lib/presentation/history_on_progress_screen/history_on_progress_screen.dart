@@ -15,6 +15,7 @@ class HistoryOnProgressScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Color(0XFF262626),
         body: Container(
           width: double.maxFinite,
           padding: EdgeInsets.symmetric(vertical: 1.v),
@@ -32,36 +33,36 @@ class HistoryOnProgressScreen extends StatelessWidget {
                       width: 375.h,
                       alignment: Alignment.center,
                     ),
-                    Align(
-                      alignment: Alignment.bottomCenter,
-                      child: Padding(
-                        padding: EdgeInsets.only(
-                          left: 106.h,
-                          right: 106.h,
-                          bottom: 12.v,
-                        ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(
-                              width: 50.h,
-                              child: Text(
-                                "QUICK\nBANK",
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                textAlign: TextAlign.center,
-                                style: theme.textTheme.titleSmall!.copyWith(
-                                  height: 1.20,
+                    Center(
+                      child: Align(
+                        alignment: Alignment.bottomCenter,
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            bottom: 12.v,
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              SizedBox(
+                                width: 50.h,
+                                child: Text(
+                                  "QUICK\nBANK",
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  textAlign: TextAlign.center,
+                                  style: theme.textTheme.titleSmall!.copyWith(
+                                    height: 1.20,
+                                  ),
                                 ),
                               ),
-                            ),
-                            SizedBox(height: 17.v),
-                            Text(
-                              "Histori Transaksi",
-                              style:
-                                  CustomTextStyles.titleLargeOnPrimaryContainer,
-                            ),
-                          ],
+                              SizedBox(height: 35.v),
+                              Text(
+                                "Histori Transaksi",
+                                style: CustomTextStyles
+                                    .titleLargeOnPrimaryContainer,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -103,7 +104,8 @@ class HistoryOnProgressScreen extends StatelessWidget {
             right: 24.h,
             bottom: 46.v,
           ),
-          borderColor: Colors.white,
+          buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
+          borderColor: Colors.transparent,
         ),
       ),
     );
