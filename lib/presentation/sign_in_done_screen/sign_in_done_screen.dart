@@ -7,15 +7,20 @@ import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
 import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
 import 'package:quickbank_revised/widgets/custom_text_form_field.dart';
 
-class SignInDoneScreen extends StatelessWidget {
+class SignInDoneScreen extends StatefulWidget {
   SignInDoneScreen({Key? key})
       : super(
           key: key,
         );
 
+  @override
+  State<SignInDoneScreen> createState() => _SignInDoneScreenState();
+}
+
+class _SignInDoneScreenState extends State<SignInDoneScreen> {
   FirebaseAuth _auth = FirebaseAuth.instance;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -72,13 +77,26 @@ class SignInDoneScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 25.v),
                   CustomTextFormField(
-                    controller: emailController,
+                    controller: _email,
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'Email is empty';
+                      }
+                      return null;
+                    },
                     hintText: "Email",
+                    textInputType: TextInputType.emailAddress,
                     autofocus: false,
                   ),
                   SizedBox(height: 30.v),
                   CustomTextFormField(
-                      controller: passwordController,
+                      controller: _password,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Password is empty';
+                        }
+                        return null;
+                      },
                       hintText: "Password",
                       textInputAction: TextInputAction.done,
                       textInputType: TextInputType.visiblePassword,
@@ -106,15 +124,36 @@ class SignInDoneScreen extends StatelessWidget {
     );
   }
 
-  onTapSelanjutnya(BuildContext context) {
-    FirebaseAuth.instance
-        .signInWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text)
-        .then((value) {
+  onTapSelanjutnya(BuildContext context) async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: _email.text,
+          password: _password.text,
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'user-not-found') {
+          return ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("No user found for that email."),
+              duration: Duration(seconds: 3),
+              backgroundColor: Colors.red,
+            ),
+          );
+        } else if (e.code == 'wrong-password') {
+          return ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Wrong password provided for that user."),
+              duration: Duration(seconds: 3),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      } catch (e) {
+        print(e);
+      }
       Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
-    }).onError((error, stackTrace) {
-      print("Error ${error.toString()}");
-    });
+    }
   }
 
   onTapBack(BuildContext context) {

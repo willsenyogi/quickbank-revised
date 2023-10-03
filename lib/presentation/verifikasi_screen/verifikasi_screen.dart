@@ -12,9 +12,9 @@ class VerifikasiScreen extends StatelessWidget {
           key: key,
         );
 
-  TextEditingController verifNotelpController = TextEditingController();
-  TextEditingController verifEmailController = TextEditingController();
-  TextEditingController kodeLoginController = TextEditingController();
+  final TextEditingController verifNotelpController = TextEditingController();
+  final TextEditingController verifEmailController = TextEditingController();
+  final TextEditingController kodeLoginController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -91,6 +91,12 @@ class VerifikasiScreen extends StatelessWidget {
                   SizedBox(height: 8.v),
                   CustomTextFormField(
                     controller: verifNotelpController,
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'Mohon masukkan kode verifikasi';
+                      }
+                      return null;
+                    },
                     hintText: "Ex : QBX-150",
                     textInputAction: TextInputAction.done,
                   ),
@@ -117,6 +123,12 @@ class VerifikasiScreen extends StatelessWidget {
                   SizedBox(height: 11.v),
                   CustomTextFormField(
                     controller: verifEmailController,
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'Mohon masukkan kode verifikasi';
+                      }
+                      return null;
+                    },
                     hintText: "Ex : QBX-150",
                     textInputAction: TextInputAction.done,
                   ),
@@ -128,6 +140,12 @@ class VerifikasiScreen extends StatelessWidget {
                   SizedBox(height: 7.v),
                   CustomTextFormField(
                     controller: kodeLoginController,
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'Mohon masukkan kode login';
+                      }
+                      return null;
+                    },
                     hintText: "6 Karakter",
                     textInputAction: TextInputAction.done,
                   ),
@@ -155,7 +173,9 @@ class VerifikasiScreen extends StatelessWidget {
   }
 
   onTapMasuk(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
+    if (_formKey.currentState!.validate()) {
+      Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
+    }
   }
 
   onTapBack(BuildContext context) {

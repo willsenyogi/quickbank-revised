@@ -7,15 +7,22 @@ import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
 import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
 import 'package:quickbank_revised/widgets/custom_text_form_field.dart';
 
-// ignore_for_file: must_be_immutable
-class BiodataScreen extends StatelessWidget {
-  BiodataScreen({Key? key}) : super(key: key);
+class BiodataScreen extends StatefulWidget {
+  BiodataScreen({Key? key})
+      : super(
+          key: key,
+        );
 
+  @override
+  State<BiodataScreen> createState() => _BiodataScreenState();
+}
+
+class _BiodataScreenState extends State<BiodataScreen> {
   FirebaseAuth _auth = FirebaseAuth.instance;
-  TextEditingController fullnameoneController = TextEditingController();
-  TextEditingController emailController = TextEditingController();
-  TextEditingController phonenumberoneController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+  final TextEditingController _fullname = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _phonenumber = TextEditingController();
+  final TextEditingController _password = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -61,7 +68,13 @@ class BiodataScreen extends StatelessWidget {
                   Text("Biodata", style: theme.textTheme.titleLarge),
                   SizedBox(height: 16.v),
                   CustomTextFormField(
-                    controller: fullnameoneController,
+                    controller: _fullname,
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'Nama Lengkap is empty';
+                      }
+                      return null;
+                    },
                     hintText: "Nama Lengkap",
                   ),
                   SizedBox(height: 16.v),
@@ -69,20 +82,38 @@ class BiodataScreen extends StatelessWidget {
                       style: CustomTextStyles.titleMediumGray100),
                   SizedBox(height: 14.v),
                   CustomTextFormField(
-                    controller: emailController,
+                    controller: _email,
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'Email is empty';
+                      }
+                      return null;
+                    },
                     hintText: "Email",
                     textInputType: TextInputType.emailAddress,
                   ),
                   SizedBox(height: 16.v),
                   CustomTextFormField(
-                    controller: phonenumberoneController,
+                    controller: _phonenumber,
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'Nomor Telepon is empty';
+                      }
+                      return null;
+                    },
                     hintText: "Nomor Telepon",
                   ),
                   SizedBox(height: 16.v),
                   Text("Password", style: CustomTextStyles.titleMediumGray100),
                   SizedBox(height: 14.v),
                   CustomTextFormField(
-                    controller: passwordController,
+                    controller: _password,
+                    validator: (text) {
+                      if (text == null || text.isEmpty) {
+                        return 'Password is empty';
+                      }
+                      return null;
+                    },
                     hintText: "Password",
                     obscureText: true,
                   ),
@@ -105,14 +136,35 @@ class BiodataScreen extends StatelessWidget {
   }
 
   onTapSelanjutnya(BuildContext context) async {
-    FirebaseAuth.instance
-        .createUserWithEmailAndPassword(
-            email: emailController.text, password: passwordController.text)
-        .then((value) {
+    if (_formKey.currentState!.validate()) {
+      try {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _email.text,
+          password: _password.text,
+        );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          return ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("The password provided is too weak."),
+              duration: Duration(seconds: 3),
+              backgroundColor: Colors.red,
+            ),
+          );
+        } else if (e.code == 'email-already-in-use') {
+          return ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("The account already exists for that email."),
+              duration: Duration(seconds: 3),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      } catch (e) {
+        print(e);
+      }
       Navigator.pushNamed(context, AppRoutes.verifikasiScreen);
-    }).onError((error, stackTrace) {
-      print("Error ${error.toString()}");
-    });
+    }
   }
 
   onTapBack(BuildContext context) {
