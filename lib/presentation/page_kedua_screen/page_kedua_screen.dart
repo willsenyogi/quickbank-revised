@@ -102,7 +102,7 @@ class PageKeduaScreen extends StatelessWidget {
                                                   padding: EdgeInsets.all(11.h),
                                                   decoration:
                                                       IconButtonStyleHelper
-                                                          .gradientBlackToPrimary,
+                                                          .outlineOnPrimary,
                                                   onTap: () {
                                                     onTapBtnFaiconsolidl(
                                                         context);
@@ -129,20 +129,10 @@ class PageKeduaScreen extends StatelessWidget {
                     ])))));
   }
 
-  /// Navigates to the pagePertamaScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the pagePertamaScreen.
   onTapBtnFaiconsolidl(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.pagePertamaScreen);
   }
 
-  /// Navigates to the pageKetigaScreen when the action is triggered.
-  ///
-  /// The [BuildContext] parameter is used to build the navigation stack.
-  /// When the action is triggered, this function uses the [Navigator] widget
-  /// to push the named route for the pageKetigaScreen.
   onTapBtnFaiconsolidl1(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.pageKetigaScreen);
   }

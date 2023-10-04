@@ -52,8 +52,8 @@ class _SignInDoneScreenState extends State<SignInDoneScreen> {
           ),
         ),
         body: Container(
-          width: mediaQueryData.size.width,
-          height: mediaQueryData.size.height,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
             color: appTheme.black900,
             image: DecorationImage(

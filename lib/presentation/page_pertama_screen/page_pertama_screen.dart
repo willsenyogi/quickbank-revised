@@ -62,16 +62,22 @@ class PagePertamaScreen extends StatelessWidget {
           ),
         ),
         floatingActionButton: CustomFloatingButton(
-          height: 48,
-          width: 47,
-          backgroundColor: theme.colorScheme.primary,
-          child: CustomImageView(
-            svgPath: ImageConstant.imgFaiconsolidl,
-            height: 24.0.v,
-            width: 23.5.h,
-          ),
-        ),
+            height: 48,
+            width: 47,
+            backgroundColor: theme.colorScheme.primary,
+            child: CustomImageView(
+              svgPath: ImageConstant.imgFaiconsolidl,
+              height: 24.0.v,
+              width: 23.5.h,
+            ),
+            onTap: () {
+              onTapNext(context);
+            }),
       ),
     );
+  }
+
+  onTapNext(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.pageKeduaScreen);
   }
 }
