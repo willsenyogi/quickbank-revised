@@ -69,7 +69,7 @@ class PageQrDoneScreen extends StatelessWidget {
                     padding: EdgeInsets.all(14.h),
                     decoration: IconButtonStyleHelper.outlineOnPrimaryContainer,
                     child: CustomImageView(
-                      svgPath: ImageConstant.imgLabelcontainer,
+                      imagePath: ImageConstant.imgGaleri,
                     ),
                   ),
                 ],

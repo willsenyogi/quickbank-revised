@@ -31,6 +31,8 @@ class ImageConstant {
 
   static String imgLabelcontainer = '$imagePath/img_labelcontainer.svg';
 
+  static String imgGaleri = '$imagePath/img_galeri.png';
+
   // Pilihan Transfer images
   static String imgUsdcircle2 = '$imagePath/img_usdcircle2.png';
 
