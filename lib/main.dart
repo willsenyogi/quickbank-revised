@@ -21,7 +21,6 @@ var notesQbValue = "";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       title: 'quickbank_revised',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.kartuBiruScreen,
+      initialRoute: AppRoutes.homepageDoneScreen,
       routes: AppRoutes.routes,
     );
   }

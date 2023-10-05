@@ -27,7 +27,7 @@ class PageQrDoneScreen extends StatelessWidget {
               // Navigate to HomepageDonePage when the button is pressed
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => HomepageDonePage()),
+                MaterialPageRoute(builder: (context) => HomepageDoneScreen()),
               );
             },
           ),

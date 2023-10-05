@@ -53,45 +53,46 @@ class PilihanTransferScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      onTapQb(context); // Call the onTap function with 'QB' as an identifier
-                                    },
-                                    child: Container(
-                                      margin: EdgeInsets.only(right: 22.h),
-                                      padding: EdgeInsets.symmetric(
-                                        horizontal: 29.h,
-                                        vertical: 12.v,
-                                      ),
-                                      decoration: AppDecoration
-                                          .gradientBlackToBlack900
-                                          .copyWith(
-                                        borderRadius:
-                                            BorderRadiusStyle.roundedBorder8,
-                                      ),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          CustomImageView(
-                                            imagePath:
-                                                ImageConstant.imgUsdcircle2,
-                                            height: 32.adaptSize,
-                                            width: 32.adaptSize,
-                                          ),
-                                          SizedBox(height: 17.v),
-                                          Text(
-                                            "QB Transfer",
-                                            style: theme.textTheme.labelLarge,
-                                          ),
-                                          SizedBox(height: 13.v),
-                                        ],
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Expanded(
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        onTapQb(
+                                            context); // Call the onTap function with 'QB' as an identifier
+                                      },
+                                      child: Container(
+                                        margin: EdgeInsets.only(right: 22.h),
+                                        padding: EdgeInsets.symmetric(
+                                          horizontal: 29.h,
+                                          vertical: 12.v,
+                                        ),
+                                        decoration: AppDecoration
+                                            .gradientBlackToBlack900
+                                            .copyWith(
+                                          borderRadius:
+                                              BorderRadiusStyle.roundedBorder8,
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            CustomImageView(
+                                              imagePath:
+                                                  ImageConstant.imgUsdcircle2,
+                                              height: 32.adaptSize,
+                                              width: 32.adaptSize,
+                                            ),
+                                            SizedBox(height: 17.v),
+                                            Text(
+                                              "QB Transfer",
+                                              style: theme.textTheme.labelLarge,
+                                            ),
+                                            SizedBox(height: 13.v),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
                                   Expanded(
                                     child: GestureDetector(
                                       onTap: () {
@@ -216,6 +217,6 @@ class PilihanTransferScreen extends StatelessWidget {
   }
 
   onTapBack(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
+    Navigator.pushNamed(context, AppRoutes.homepageDoneScreen);
   }
 }

@@ -8,7 +8,7 @@ import 'package:quickbank_revised/presentation/verifikasi_screen/verifikasi_scre
 import 'package:quickbank_revised/presentation/page_kedua_screen/page_kedua_screen.dart';
 import 'package:quickbank_revised/presentation/page_ketiga_screen/page_ketiga_screen.dart';
 import 'package:quickbank_revised/presentation/sign_in_done_screen/sign_in_done_screen.dart';
-import 'package:quickbank_revised/presentation/homepage_done_container_screen/homepage_done_container_screen.dart';
+import 'package:quickbank_revised/presentation/homepage_done_page/homepage_done_page.dart';
 import 'package:quickbank_revised/presentation/history_on_progress_screen/history_on_progress_screen.dart';
 import 'package:quickbank_revised/presentation/page_qr_done_screen/page_qr_done_screen.dart';
 import 'package:quickbank_revised/presentation/qb_transfer_screen/qb_transfer_screen.dart';
@@ -33,7 +33,7 @@ class AppRoutes {
 
   static const String signInDoneScreen = '/sign_in_done_screen';
 
-  static const String homepageDonePage = '/homepage_done_page';
+  static const String homepageDoneScreen = '/homepage_done_page';
 
   static const String homepageDoneContainerScreen =
       '/homepage_done_container_screen';
@@ -71,7 +71,7 @@ class AppRoutes {
     pageKeduaScreen: (context) => PageKeduaScreen(),
     pageKetigaScreen: (context) => PageKetigaScreen(),
     signInDoneScreen: (context) => SignInDoneScreen(),
-    homepageDoneContainerScreen: (context) => HomepageDoneContainerScreen(),
+    homepageDoneScreen: (context) => HomepageDoneScreen(),
     historyOnProgressScreen: (context) => HistoryOnProgressScreen(),
     pageQrDoneScreen: (context) => PageQrDoneScreen(),
     qbTransferScreen: (context) => QbTransferScreen(),

@@ -18,7 +18,6 @@ class SignInDoneScreen extends StatefulWidget {
 }
 
 class _SignInDoneScreenState extends State<SignInDoneScreen> {
-  FirebaseAuth _auth = FirebaseAuth.instance;
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
