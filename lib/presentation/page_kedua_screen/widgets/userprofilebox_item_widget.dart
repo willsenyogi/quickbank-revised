@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
 
-// ignore: must_be_immutable
 class UserprofileboxItemWidget extends StatelessWidget {
-  const UserprofileboxItemWidget({Key? key})
-      : super(
-          key: key,
-        );
+  final String imagePath;
+  final String text;
+
+  UserprofileboxItemWidget({
+    Key? key,
+    required this.imagePath,
+    required this.text,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +23,13 @@ class UserprofileboxItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomImageView(
-            imagePath: ImageConstant.imgLogo,
+            imagePath: imagePath,
             height: 40.adaptSize,
             width: 40.adaptSize,
           ),
           SizedBox(height: 3.v),
           Text(
-            "Nabung",
+            text,
             style: theme.textTheme.labelLarge,
           ),
           SizedBox(height: 8.v),

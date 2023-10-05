@@ -2,6 +2,7 @@ import '../page_kedua_screen/widgets/userprofilebox_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
 import 'package:quickbank_revised/widgets/custom_icon_button.dart';
+import 'package:quickbank_revised/widgets/custom_floating_button.dart';
 
 class PageKeduaScreen extends StatelessWidget {
   const PageKeduaScreen({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class PageKeduaScreen extends StatelessWidget {
                               alignment: Alignment.center,
                               child: Container(
                                   padding: EdgeInsets.symmetric(
-                                      horizontal: 24.h, vertical: 49.v),
+                                      horizontal: 15.h, vertical: 15.v),
                                   child: Column(
                                       mainAxisSize: MainAxisSize.min,
                                       children: [
@@ -76,22 +77,50 @@ class PageKeduaScreen extends StatelessWidget {
                                                   child: Divider(indent: 3.h))
                                             ]),
                                         SizedBox(height: 116.v),
-                                        Expanded(
-                                            child: GridView.builder(
-                                                shrinkWrap: true,
-                                                gridDelegate:
-                                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                                        mainAxisExtent: 99.v,
-                                                        crossAxisCount: 2,
-                                                        mainAxisSpacing: 16.h,
-                                                        crossAxisSpacing: 16.h),
-                                                physics:
-                                                    BouncingScrollPhysics(),
-                                                itemCount: 6,
-                                                itemBuilder: (context, index) {
-                                                  return UserprofileboxItemWidget();
-                                                })),
-                                        SizedBox(height: 180.v),
+                                        Column(
+                                          children: [
+                                            Row(mainAxisAlignment:
+                                               MainAxisAlignment.spaceBetween,
+                                               children: [
+                                              UserprofileboxItemWidget(
+                                               imagePath: ImageConstant.imgLogo, // Ganti ini dengan path gambar yang Anda inginkan
+                                               text: "Nabung", // Ganti ini dengan teks yang Anda inginkan
+                                            ),
+                                            UserprofileboxItemWidget(
+                                               imagePath: ImageConstant.imgLogo1, // Ganti ini dengan path gambar yang Anda inginkan
+                                               text: "Transfer", // Ganti ini dengan teks yang Anda inginkan
+                                            ),
+                                        ]),
+                                            Row(mainAxisAlignment:
+                                               MainAxisAlignment.spaceBetween,
+                                               children: [
+                                              UserprofileboxItemWidget(
+                                               imagePath: ImageConstant.imgLogo2, // Ganti ini dengan path gambar yang Anda inginkan
+                                               text: "E-Wallet", // Ganti ini dengan teks yang Anda inginkan
+                                            ),
+                                            UserprofileboxItemWidget(
+                                               imagePath: ImageConstant.imgLogo3, // Ganti ini dengan path gambar yang Anda inginkan
+                                               text: "Statistik", // Ganti ini dengan teks yang Anda inginkan
+                                            ),
+                                        ]),
+                                            Row(mainAxisAlignment:
+                                               MainAxisAlignment.spaceBetween,
+                                               children: [
+                                              UserprofileboxItemWidget(
+                                               imagePath: ImageConstant.imgLogo40x40, // Ganti ini dengan path gambar yang Anda inginkan
+                                               text: "Terpercaya", // Ganti ini dengan teks yang Anda inginkan
+                                            ),
+                                            UserprofileboxItemWidget(
+                                               imagePath: ImageConstant.imgSaly5, // Ganti ini dengan path gambar yang Anda inginkan
+                                               text: "User Friendly", // Ganti ini dengan teks yang Anda inginkan
+                                            ),
+                                        ]),
+
+
+                                          ],
+
+                                        ),
+                                        SizedBox(height: 295.v),
                                         Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
@@ -123,7 +152,7 @@ class PageKeduaScreen extends StatelessWidget {
                                                   },
                                                   child: CustomImageView(
                                                       svgPath: ImageConstant
-                                                          .imgFaiconsolidl))
+                                                          .imgFaiconsolidl)),
                                             ])
                                       ]))))
                     ])))));
