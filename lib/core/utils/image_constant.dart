@@ -73,4 +73,8 @@ class ImageConstant {
   static String imgNavhome = '$imagePath/img_navhome.svg';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
+  
+  static String qb21 = 'assets/images/qb_21.png';
+
+  static String qb12 = 'assets/images/qb_12.png';
 }

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quickbank_revised/presentation/kartu_baru_screen/kartu_baru_screen.dart';
+import 'package:quickbank_revised/presentation/kartu_biru_screen/kartu_biru_screen.dart';
+import 'package:quickbank_revised/presentation/kartu_kuning_screen/kartu_kuning_screen.dart';
 import 'package:quickbank_revised/presentation/page_pertama_screen/page_pertama_screen.dart';
 import 'package:quickbank_revised/presentation/biodata_screen/biodata_screen.dart';
 import 'package:quickbank_revised/presentation/verifikasi_screen/verifikasi_screen.dart';
@@ -53,6 +56,12 @@ class AppRoutes {
 
   static const String konfirmasiVaScreen = '/konfirmasi_va_screen';
 
+  static const String kartuBaruScreen = '/kartu_baru_screen';
+
+  static const String kartuBiruScreen = '/kartu_biru_screen';
+
+  static const String kartuKuningScreen = '/kartu_kuning_screen';
+
   static const String appNavigationScreen = '/app_navigation_screen';
 
   static Map<String, WidgetBuilder> routes = {
@@ -72,6 +81,9 @@ class AppRoutes {
     konfirmasiBankLainScreen: (context) => KonfirmasiBankLainScreen(),
     transferVaScreen: (context) => TransferVaScreen(),
     konfirmasiVaScreen: (context) => KonfirmasiVaScreen(),
+    kartuBaruScreen: (context) => KartuBaruScreen(),
+    kartuBiruScreen: (context) => KartuBiruScreen(),
+    kartuKuningScreen: (context) => KartuKuningScreen(),
     appNavigationScreen: (context) => AppNavigationScreen()
   };
 }
