@@ -11,6 +11,10 @@ class ImageConstant {
 
   static String imgLogo3 = '$imagePath/img_logo_3.png';
 
+  static String imgLogo40x40 = '$imagePath/img_logo_40x40.png';
+
+  static String imgSaly5 = '$imagePath/img_saly5.png';
+
   static String imgFaiconsolidlOnprimarycontainer =
       '$imagePath/img_faiconsolidl_onprimarycontainer.svg';
 
@@ -41,10 +45,6 @@ class ImageConstant {
       '$imagePath/img_faiconsolidarrowleft.svg';
 
   static String imgCaret = '$imagePath/img_caret.svg';
-
-  static String imgLogo40x40 = '$imagePath/img_logo_40x40.png';
-
-  static String imgSaly5 = '$imagePath/img_saly5.png';
 
   static String imgWavebackground812x374 =
       '$imagePath/img_wavebackground_812x374.png';
