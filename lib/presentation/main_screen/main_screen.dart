@@ -2,6 +2,7 @@ import 'package:quickbank_revised/presentation/homepage_done_page/homepage_done_
 import 'package:quickbank_revised/presentation/page_qr_done_screen/page_qr_done_screen.dart';
 import 'package:quickbank_revised/presentation/pilihan_transfer_screen/pilihan_transfer_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:quickbank_revised/presentation/profile_done_screen/profileeditscreen.dart';
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key? key}) : super(key: key);
@@ -13,7 +14,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int currentIndex = 1;
   final screens = [
-    PageQrDoneScreen(),
+    ProfilEditScreen(),
     HomepageDoneScreen(),
     PilihanTransferScreen()
   ];
@@ -40,8 +41,8 @@ class _MainScreenState extends State<MainScreen> {
             backgroundColor: Colors.transparent,
             items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.phone_android_outlined),
-                label: 'Cardless',
+                icon: Icon(Icons.person),
+                label: 'Profile',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.home_sharp),

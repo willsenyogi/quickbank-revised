@@ -31,9 +31,9 @@ var kartuBiru = "";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-  ]);
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  // ]);
 
   ///Please update theme as per your need if required.
   ThemeHelper().changeTheme('primary');

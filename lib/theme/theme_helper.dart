@@ -95,7 +95,7 @@ class TextThemes {
         ),
         bodyMedium: TextStyle(
           color: appTheme.gray400,
-          fontSize: 13.fSize,
+          fontSize: 14.fSize,
           fontFamily: 'Inter',
           fontWeight: FontWeight.w400,
         ),
