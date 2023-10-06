@@ -67,7 +67,7 @@ class TransferVaScreen extends StatelessWidget {
                 children: [
                   SizedBox(height: 140.v),
                   Text(
-                    "QB Transfer",
+                    "Virtual Account",
                     style: theme.textTheme.headlineLarge,
                   ),
                   SizedBox(height: 25.v),

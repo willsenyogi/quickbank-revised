@@ -7,6 +7,7 @@ import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
 import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
 import 'package:quickbank_revised/widgets/custom_text_form_field.dart';
 import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class KonfirmasiQbScreen extends StatelessWidget {
   KonfirmasiQbScreen({Key? key})
@@ -22,6 +23,8 @@ class KonfirmasiQbScreen extends StatelessWidget {
 
   TextEditingController contentconatineController = TextEditingController();
 
+  TextEditingController pinController = TextEditingController();
+
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -31,9 +34,7 @@ class KonfirmasiQbScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Form(
-          key: _formKey,
-          child: SizedBox(
+        body: SizedBox(
             height: double.maxFinite,
             width: double.maxFinite,
             child: Stack(
@@ -140,9 +141,44 @@ class KonfirmasiQbScreen extends StatelessWidget {
                     ),
                     text: "Transfer",
                     onTap: () {
-                      accountBalance =
-                          accountBalance - int.parse(nominalQbValue);
-                      backHome(context);
+                      Alert(
+                      context: context,
+                      title: "Masukkan Kode Login",
+                      content: Column(
+                        children: <Widget>[
+                          Form(
+                            key: _formKey,
+                            child: CustomTextFormField(
+                              hintText: "Kode Log In",
+                              textInputType: TextInputType.number,
+                              obscureText: true,
+                              controller: pinController,
+                              validator: (pinController) {
+                                if(pinController != pinCode){
+                                  return "Kode Login Salah!";
+                                }
+                                return null;
+                                
+                              },
+                            ) 
+                          )
+                          
+                        ],
+                      ),
+                    buttons: [
+                      DialogButton(
+                        onPressed: () {
+                          if (_formKey.currentState?.validate() == true) {
+                            accountBalance = accountBalance - int.parse(nominalQbValue);
+                            backHome(context);
+                          }
+                        },
+                        child: Text(
+                          "Ok",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                      )
+                    ]).show();
                     },
                     borderColor: Colors.white,
                   ),
@@ -150,7 +186,6 @@ class KonfirmasiQbScreen extends StatelessWidget {
               ],
             ),
           ),
-        ),
       ),
     );
   }

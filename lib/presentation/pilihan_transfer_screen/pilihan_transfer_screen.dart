@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
+import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
+import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
 
 class PilihanTransferScreen extends StatelessWidget {
   const PilihanTransferScreen({Key? key}) : super(key: key);
@@ -31,10 +33,24 @@ class PilihanTransferScreen extends StatelessWidget {
                     Column(
                       children: [
                         CustomAppBar(
-                          centerTitle: true,
-                          title: AppbarTitle(text: "QUICK\nBANK"),
-                          height: 90.v,
+                        height: 90.v,
+                        leadingWidth: 52.h,
+                        leading: AppbarIconbutton(
+                          svgPath: ImageConstant.imgFaiconsolidarrowleft,
+                          margin: EdgeInsets.only(
+                            left: 24.h,
+                            top: 10.v,
+                            bottom: 17.v,
+                          ),
+                          onTap: () {
+                            onTapBack(context);
+                          },
                         ),
+                        centerTitle: true,
+                        title: AppbarTitle(
+                          text: "QUICK\nBANK",
+                        ),
+                      ),
                         SizedBox(height: 25.v),
                         Text(
                           "Transfer",
@@ -182,10 +198,15 @@ class PilihanTransferScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              
+                
             ],
+            
+
           ),
         ),
       ),
+      
     );
   }
 
@@ -204,5 +225,9 @@ class PilihanTransferScreen extends StatelessWidget {
 
   onTapQb(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.qbTransferScreen);
+  }
+
+  onTapBack(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.mainScreen);
   }
 }
