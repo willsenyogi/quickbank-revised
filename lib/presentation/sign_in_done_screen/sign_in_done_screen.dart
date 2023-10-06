@@ -151,7 +151,7 @@ class _SignInDoneScreenState extends State<SignInDoneScreen> {
       } catch (e) {
         print(e);
       }
-      Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
+      Navigator.pushNamed(context, AppRoutes.mainScreen);
     }
   }
 

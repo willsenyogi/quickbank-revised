@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
-import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
 
 class PilihanTransferScreen extends StatelessWidget {
   const PilihanTransferScreen({Key? key}) : super(key: key);
@@ -180,15 +179,6 @@ class PilihanTransferScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    CustomOutlinedButton(
-                      text: "Kembali",
-                      margin: EdgeInsets.only(left: 24.h, right: 24.h),
-                      buttonTextStyle: TextStyle(color: Colors.white),
-                      borderColor: Colors.white,
-                      onTap: () {
-                        onTapBack(context);
-                      },
-                    ),
                   ],
                 ),
               ),
@@ -214,9 +204,5 @@ class PilihanTransferScreen extends StatelessWidget {
 
   onTapQb(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.qbTransferScreen);
-  }
-
-  onTapBack(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homepageDoneScreen);
   }
 }

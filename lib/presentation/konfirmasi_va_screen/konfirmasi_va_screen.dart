@@ -78,12 +78,12 @@ class KonfirmasiVaScreen extends StatelessWidget {
                                 ),
                                 SizedBox(height: 16.v),
                                 CustomTextFormField(
-                                  hintText:
-                                      nominalFormatter(int.parse(nominalVaValue)),
+                                  hintText: nominalFormatter(
+                                      int.parse(nominalVaValue)),
                                   textInputAction: TextInputAction.none,
                                   textInputType: TextInputType.none,
                                   autofocus: false,
-                                ),     
+                                ),
                               ],
                             ),
                           ),
@@ -141,6 +141,6 @@ class KonfirmasiVaScreen extends StatelessWidget {
   }
 
   backHome(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
+    Navigator.pushNamed(context, AppRoutes.mainScreen);
   }
 }

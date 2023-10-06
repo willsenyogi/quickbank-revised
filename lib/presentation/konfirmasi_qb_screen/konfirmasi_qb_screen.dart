@@ -89,7 +89,8 @@ class KonfirmasiQbScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 16.v),
                                   CustomTextFormField(
-                                    hintText: nominalFormatter(int.parse(nominalQbValue)),
+                                    hintText: nominalFormatter(
+                                        int.parse(nominalQbValue)),
                                     textInputAction: TextInputAction.none,
                                     autofocus: false,
                                   ),
@@ -107,7 +108,6 @@ class KonfirmasiQbScreen extends StatelessWidget {
                                   SizedBox(height: 28.v),
                                 ],
                               ),
-                              
                             ),
                           ),
                           CustomAppBar(
@@ -135,17 +135,18 @@ class KonfirmasiQbScreen extends StatelessWidget {
                   left: 24.h,
                   right: 24.h,
                   child: CustomOutlinedButton(
-                     buttonTextStyle: TextStyle(
-                    color: Colors.white,
-                  ),
+                    buttonTextStyle: TextStyle(
+                      color: Colors.white,
+                    ),
                     text: "Transfer",
                     onTap: () {
-                      accountBalance = accountBalance - int.parse(nominalQbValue);
+                      accountBalance =
+                          accountBalance - int.parse(nominalQbValue);
                       backHome(context);
                     },
                     borderColor: Colors.white,
                   ),
-               )
+                )
               ],
             ),
           ),
@@ -162,8 +163,8 @@ class KonfirmasiQbScreen extends StatelessWidget {
     );
     return formatToIdr.format(accountBalance);
   }
-  
+
   backHome(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
+    Navigator.pushNamed(context, AppRoutes.mainScreen);
   }
 }

@@ -174,7 +174,7 @@ class VerifikasiScreen extends StatelessWidget {
 
   onTapMasuk(BuildContext context) {
     if (_formKey.currentState!.validate()) {
-      Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
+      Navigator.pushNamed(context, AppRoutes.mainScreen);
     }
   }
 

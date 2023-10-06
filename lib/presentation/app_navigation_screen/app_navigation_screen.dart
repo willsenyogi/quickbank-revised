@@ -601,7 +601,7 @@ class AppNavigationScreen extends StatelessWidget {
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the homepageDoneContainerScreen.
   onTapHomepagedoneContainer(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
+    Navigator.pushNamed(context, AppRoutes.mainScreen);
   }
 
   /// Navigates to the historyOnProgressScreen when the action is triggered.

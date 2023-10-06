@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quickbank_revised/presentation/kartu_baru_screen/kartu_baru_screen.dart';
 import 'package:quickbank_revised/presentation/kartu_biru_screen/kartu_biru_screen.dart';
 import 'package:quickbank_revised/presentation/kartu_kuning_screen/kartu_kuning_screen.dart';
+import 'package:quickbank_revised/presentation/main_screen/main_screen.dart';
 import 'package:quickbank_revised/presentation/page_pertama_screen/page_pertama_screen.dart';
 import 'package:quickbank_revised/presentation/biodata_screen/biodata_screen.dart';
 import 'package:quickbank_revised/presentation/verifikasi_screen/verifikasi_screen.dart';
@@ -35,8 +36,7 @@ class AppRoutes {
 
   static const String homepageDoneScreen = '/homepage_done_page';
 
-  static const String homepageDoneContainerScreen =
-      '/homepage_done_container_screen';
+  static const String mainScreen = '/main_screen';
 
   static const String historyOnProgressScreen = '/history_on_progress_screen';
 
@@ -71,6 +71,7 @@ class AppRoutes {
     pageKeduaScreen: (context) => PageKeduaScreen(),
     pageKetigaScreen: (context) => PageKetigaScreen(),
     signInDoneScreen: (context) => SignInDoneScreen(),
+    mainScreen: (context) => MainScreen(),
     homepageDoneScreen: (context) => HomepageDoneScreen(),
     historyOnProgressScreen: (context) => HistoryOnProgressScreen(),
     pageQrDoneScreen: (context) => PageQrDoneScreen(),

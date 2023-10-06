@@ -1,4 +1,5 @@
 import 'package:quickbank_revised/presentation/page_qr_done_screen/page_qr_done_screen.dart';
+import 'package:quickbank_revised/presentation/pilihan_transfer_screen/pilihan_transfer_screen.dart';
 import '../homepage_done_page/widgets/favouritecard_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
@@ -15,7 +16,6 @@ class HomepageDoneScreen extends StatefulWidget {
 }
 
 class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
-  int _selectedIndex = 1;
   FocusNode qbCounterFocusNode = FocusNode();
   FocusNode qbCounter1FocusNode = FocusNode();
 
@@ -191,14 +191,16 @@ class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
                       padding:
                           EdgeInsets.symmetric(horizontal: 5.h, vertical: 35.v),
                       decoration: AppDecoration.outlineBlack900.copyWith(
-                        borderRadius: BorderRadiusStyle.customBorderTL24,
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(24),
+                        ),
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           SizedBox(
                             height: 316.v,
-                            width: 341.h,
+                            width: MediaQuery.of(context).size.width,
                             child: Stack(
                               alignment: Alignment.centerLeft,
                               children: [
@@ -324,49 +326,8 @@ class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          showUnselectedLabels: false,
-          backgroundColor: Colors.transparent,
-          currentIndex: _selectedIndex,
-          unselectedItemColor: Colors.white,
-          selectedItemColor: Color(0xFFF2FF53),
-          type: BottomNavigationBarType.fixed,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.phone_android_outlined,
-              ),
-              label: 'cardless?',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home_sharp,
-              ),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.attach_money_rounded,
-              ),
-              label: 'Transfer',
-            ),
-          ],
-          onTap: _onTabTapped,
-        ),
       ),
     );
-  }
-
-  void _onTabTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-
-    if (index == 0) {
-      //blm ada (mungkin diganti profil)
-    } else if (index == 2) {
-      onTapTransfer(context);
-    }
   }
 
   onTapImgQrone(BuildContext context) {
