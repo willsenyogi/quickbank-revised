@@ -111,7 +111,7 @@ class PilihanTransferScreen extends StatelessWidget {
                                   Expanded(
                                     child: GestureDetector(
                                       onTap: () {
-                                        onTapTwo(context);
+                                        onTapBank(context);
                                       },
                                       child: Container(
                                         margin: EdgeInsets.only(left: 22.h),
@@ -215,7 +215,7 @@ class PilihanTransferScreen extends StatelessWidget {
   /// The [BuildContext] parameter is used to build the navigation stack.
   /// When the action is triggered, this function uses the [Navigator] widget
   /// to push the named route for the transferBankLainScreen.
-  onTapTwo(BuildContext context) {
+  onTapBank(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.transferBankLainScreen);
   }
 
