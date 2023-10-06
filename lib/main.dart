@@ -19,6 +19,10 @@ var qbValue = "";
 var nominalQbValue = "";
 var notesQbValue = "";
 
+//kartu value
+var kartuKuning = "";
+var kartuBiru = "";
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([

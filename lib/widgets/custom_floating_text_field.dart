@@ -28,6 +28,7 @@ class CustomFloatingTextField extends StatelessWidget {
     this.fillColor,
     this.filled = false,
     this.validator,
+    this.enabled,
   }) : super(
           key: key,
         );
@@ -77,6 +78,8 @@ class CustomFloatingTextField extends StatelessWidget {
   final Color? fillColor;
 
   final bool? filled;
+
+  final bool? enabled;
 
   final FormFieldValidator<String>? validator;
 

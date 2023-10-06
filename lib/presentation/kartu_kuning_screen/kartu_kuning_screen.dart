@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
+import 'package:quickbank_revised/main.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
@@ -79,7 +80,7 @@ class KartuKuningScreen extends StatelessWidget {
                     CustomTextFormField(
                       controller: _namadepan,
                       hintText: "Nama Depan",
-                      textInputType: TextInputType.text,
+                      textInputType: TextInputType.name,
                       validator: (text) {
                         if (text == null || text.isEmpty) {
                           return 'Nama Depan is Empty';
@@ -91,7 +92,7 @@ class KartuKuningScreen extends StatelessWidget {
                     CustomTextFormField(
                       controller: _namabelakang,
                       hintText: "Nama Belakang",
-                      textInputType: TextInputType.number,
+                      textInputType: TextInputType.name,
                       validator: (text) {
                         if (text == null || text.isEmpty) {
                           return 'Nama Belakang is Empty';
@@ -145,6 +146,7 @@ class KartuKuningScreen extends StatelessWidget {
   onTapTambah(BuildContext context) {
     if (_formKey.currentState!.validate()) {
       Navigator.pushNamed(context, AppRoutes.kartuBaruScreen);
+      kartuKuning = _namadepan.text + " " + _namabelakang.text;
     }
   }
 

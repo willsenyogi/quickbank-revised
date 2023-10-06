@@ -134,19 +134,6 @@ class KartuBaruScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 50.v),
-              Positioned(
-                bottom: 10.v,
-                left: 24.h,
-                right: 24.h,
-                child: CustomOutlinedButton(
-                  buttonTextStyle: TextStyle(
-                    color: Colors.white,
-                  ),
-                  text: "+ Tambah Kartu",
-                  borderColor: Colors.white,
-                ),
-              )
             ],
           ),
         ),
