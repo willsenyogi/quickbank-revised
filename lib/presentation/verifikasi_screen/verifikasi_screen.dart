@@ -5,6 +5,7 @@ import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
 import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
 import 'package:quickbank_revised/widgets/custom_text_form_field.dart';
+import 'package:quickbank_revised/main.dart';
 
 class VerifikasiScreen extends StatelessWidget {
   VerifikasiScreen({Key? key})
@@ -165,6 +166,7 @@ class VerifikasiScreen extends StatelessWidget {
           buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
           borderColor: Colors.transparent,
           onTap: () {
+            pinCode = kodeLoginController.text;
             onTapMasuk(context);
           },
         ),
