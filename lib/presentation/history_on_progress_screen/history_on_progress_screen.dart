@@ -106,8 +106,15 @@ class HistoryOnProgressScreen extends StatelessWidget {
           ),
           buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
           borderColor: Colors.transparent,
+          onTap: () {
+            onTapKembali(context);
+          },
         ),
       ),
     );
+  }
+
+  onTapKembali(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.homepageDoneScreen);
   }
 }
