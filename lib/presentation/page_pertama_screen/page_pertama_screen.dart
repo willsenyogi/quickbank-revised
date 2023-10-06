@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
 import 'package:quickbank_revised/widgets/custom_floating_button.dart';
+import 'package:quickbank_revised/widgets/custom_icon_button.dart';
 
 class PagePertamaScreen extends StatelessWidget {
   const PagePertamaScreen({Key? key})
@@ -61,18 +62,21 @@ class PagePertamaScreen extends StatelessWidget {
             ),
           ),
         ),
-        floatingActionButton: CustomFloatingButton(
-            height: 48,
-            width: 47,
-            backgroundColor: theme.colorScheme.primary,
+        floatingActionButton: CustomIconButton(
+          width: 48,
+          height: 48,
+          padding: EdgeInsets.all(11.h),
+          decoration: IconButtonStyleHelper.outlineOnPrimary,
+          child: Align(
+            alignment: Alignment.bottomRight,
             child: CustomImageView(
               svgPath: ImageConstant.imgFaiconsolidl,
-              height: 24.0.v,
-              width: 23.5.h,
+              onTap: () {
+                onTapNext(context);
+              },
             ),
-            onTap: () {
-              onTapNext(context);
-            }),
+          ),
+        ),
       ),
     );
   }

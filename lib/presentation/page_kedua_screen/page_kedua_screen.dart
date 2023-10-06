@@ -79,46 +79,55 @@ class PageKeduaScreen extends StatelessWidget {
                                         SizedBox(height: 116.v),
                                         Column(
                                           children: [
-                                            Row(mainAxisAlignment:
-                                               MainAxisAlignment.spaceBetween,
-                                               children: [
-                                              UserprofileboxItemWidget(
-                                               imagePath: ImageConstant.imgLogo, // Ganti ini dengan path gambar yang Anda inginkan
-                                               text: "Nabung", // Ganti ini dengan teks yang Anda inginkan
-                                            ),
-                                            UserprofileboxItemWidget(
-                                               imagePath: ImageConstant.imgLogo1, // Ganti ini dengan path gambar yang Anda inginkan
-                                               text: "Transfer", // Ganti ini dengan teks yang Anda inginkan
-                                            ),
-                                        ]),
-                                            Row(mainAxisAlignment:
-                                               MainAxisAlignment.spaceBetween,
-                                               children: [
-                                              UserprofileboxItemWidget(
-                                               imagePath: ImageConstant.imgLogo2, // Ganti ini dengan path gambar yang Anda inginkan
-                                               text: "E-Wallet", // Ganti ini dengan teks yang Anda inginkan
-                                            ),
-                                            UserprofileboxItemWidget(
-                                               imagePath: ImageConstant.imgLogo3, // Ganti ini dengan path gambar yang Anda inginkan
-                                               text: "Statistik", // Ganti ini dengan teks yang Anda inginkan
-                                            ),
-                                        ]),
-                                            Row(mainAxisAlignment:
-                                               MainAxisAlignment.spaceBetween,
-                                               children: [
-                                              UserprofileboxItemWidget(
-                                               imagePath: ImageConstant.imgLogo40x40, // Ganti ini dengan path gambar yang Anda inginkan
-                                               text: "Terpercaya", // Ganti ini dengan teks yang Anda inginkan
-                                            ),
-                                            UserprofileboxItemWidget(
-                                               imagePath: ImageConstant.imgSaly5, // Ganti ini dengan path gambar yang Anda inginkan
-                                               text: "User Friendly", // Ganti ini dengan teks yang Anda inginkan
-                                            ),
-                                        ]),
-
-
+                                            Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  UserprofileboxItemWidget(
+                                                    imagePath:
+                                                        ImageConstant.imgLogo,
+                                                    text: "Nabung",
+                                                  ),
+                                                  UserprofileboxItemWidget(
+                                                    imagePath:
+                                                        ImageConstant.imgLogo1,
+                                                    text: "Transfer",
+                                                  ),
+                                                ]),
+                                            Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  UserprofileboxItemWidget(
+                                                    imagePath:
+                                                        ImageConstant.imgLogo2,
+                                                    text: "E-Wallet",
+                                                  ),
+                                                  UserprofileboxItemWidget(
+                                                    imagePath:
+                                                        ImageConstant.imgLogo3,
+                                                    text: "Statistik",
+                                                  ),
+                                                ]),
+                                            Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  UserprofileboxItemWidget(
+                                                    imagePath: ImageConstant
+                                                        .imgLogo40x40,
+                                                    text: "Terpercaya",
+                                                  ),
+                                                  UserprofileboxItemWidget(
+                                                    imagePath:
+                                                        ImageConstant.imgSaly5,
+                                                    text: "User Friendly",
+                                                  ),
+                                                ]),
                                           ],
-
                                         ),
                                         SizedBox(height: 295.v),
                                         Row(
