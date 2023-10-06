@@ -7,16 +7,22 @@ import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
 import 'package:quickbank_revised/widgets/custom_text_form_field.dart';
 
 class KartuBiruScreen extends StatelessWidget {
-  const KartuBiruScreen({Key? key})
+  KartuBiruScreen({Key? key})
       : super(
           key: key,
         );
+
+  final TextEditingController _namadepan = TextEditingController();
+  final TextEditingController _namabelakang = TextEditingController();
+  final TextEditingController _nomortelp = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
 
-   return SafeArea(
+    return SafeArea(
       child: Scaffold(
         extendBody: true,
         extendBodyBehindAppBar: true,
@@ -40,7 +46,6 @@ class KartuBiruScreen extends StatelessWidget {
             text: "QUICK\nBANK",
           ),
         ),
-                            
         body: Container(
           width: mediaQueryData.size.width,
           height: mediaQueryData.size.height,
@@ -53,65 +58,97 @@ class KartuBiruScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: Form(
-            child: Container(
-              width: double.maxFinite,
-              padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 40.v),
-              child: Column(
-                children: [
-                  SizedBox(height: 50.v,),
-                  CustomImageView(
-                    imagePath: ImageConstant.qb12,
-                    height: 270.v,
-                    width: 150.h,
-                    radius: BorderRadius.circular(
-                      15.h,
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Container(
+                width: double.maxFinite,
+                padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 45.v),
+                child: Column(
+                  children: [
+                    SizedBox(height: 50.v),
+                    CustomImageView(
+                      imagePath: ImageConstant.qb12,
+                      height: 270.v,
+                      width: 150.h,
+                      radius: BorderRadius.circular(
+                        15.h,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 25.v),
-                  CustomTextFormField(
-                    controller: null,
-                    hintText: "Nama Depan",
-                    textInputType: TextInputType.text,
-                    validator: null,
-                  ),
-                  SizedBox(height: 30.v),
-                  CustomTextFormField(
-                    controller: null,
-                    hintText: "Nama Belakang",
-                    textInputType: TextInputType.number,
-                    validator: null
-                  ),
-                  SizedBox(height: 30.v),
-                  CustomTextFormField(
-                    controller: null,
-                    hintText: "Nomor Telepon",
-                    textInputType: TextInputType.number,
-                    validator: null
-                  ),
-                  SizedBox(height: 30.v),
-                  CustomTextFormField(
-                    controller: null,
-                    hintText: "Alamat Email",
-                    textInputType: TextInputType.text,
-                    validator: null
-                  ),
-                ],
+                    SizedBox(height: 20.v),
+                    CustomTextFormField(
+                      controller: _namadepan,
+                      hintText: "Nama Depan",
+                      textInputType: TextInputType.text,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Nama Depan is Empty';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 20.v),
+                    CustomTextFormField(
+                      controller: _namabelakang,
+                      hintText: "Nama Belakang",
+                      textInputType: TextInputType.number,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Nama Belakang is Empty';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 20.v),
+                    CustomTextFormField(
+                      controller: _nomortelp,
+                      hintText: "Nomor Telepon",
+                      textInputType: TextInputType.number,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Nomor Telepon is Empty';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 20.v),
+                    CustomTextFormField(
+                      controller: _email,
+                      hintText: "Alamat Email",
+                      textInputType: TextInputType.text,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Alamat Email  is Empty';
+                        }
+                        return null;
+                      },
+                    ),
+                    SizedBox(height: 30.v),
+                  ],
+                ),
               ),
             ),
           ),
         ),
         bottomNavigationBar: CustomOutlinedButton(
           text: "Tambah Kartu",
-          buttonTextStyle: TextStyle(
-            color: Colors.white,
-            ),
-          borderColor: Colors.white,
+          buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
+          borderColor: Colors.transparent,
+          onTap: () {
+            onTapTambah(context);
+          },
         ),
       ),
     );
   }
+
+  onTapTambah(BuildContext context) {
+    if (_formKey.currentState!.validate()) {
+      Navigator.pushNamed(context, AppRoutes.kartuBaruScreen);
+    }
+  }
+
   onTapBack(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homepageDoneContainerScreen);
+    Navigator.pushNamed(context, AppRoutes.kartuBaruScreen);
   }
 }

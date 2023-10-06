@@ -265,14 +265,16 @@ class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
                                       ),
                                       SizedBox(height: 45.v),
                                       CustomOutlinedButton(
-                                        height: 28.v,
-                                        text: "Tambah Kartu",
-                                        buttonStyle: CustomButtonStyles
-                                            .outlinePrimaryContainerTL14,
-                                        buttonTextStyle:
-                                            theme.textTheme.labelLarge!,
-                                        borderColor: Color(0xFF262626),
-                                      ),
+                                          height: 28.v,
+                                          text: "Tambah Kartu",
+                                          buttonStyle: CustomButtonStyles
+                                              .outlinePrimaryContainerTL14,
+                                          buttonTextStyle:
+                                              theme.textTheme.labelLarge!,
+                                          borderColor: Color(0xFF262626),
+                                          onTap: () {
+                                            onTapTambahKartu(context);
+                                          }),
                                     ],
                                   ),
                                 ),
@@ -378,6 +380,10 @@ class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
 
   onTapLihathistori(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.historyOnProgressScreen);
+  }
+
+  onTapTambahKartu(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.kartuBaruScreen);
   }
 
   static String nominalFormatter(int accountBalance) {

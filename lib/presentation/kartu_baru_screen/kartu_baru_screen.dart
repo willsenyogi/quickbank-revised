@@ -17,6 +17,28 @@ class KartuBaruScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        extendBody: true,
+        extendBodyBehindAppBar: true,
+        resizeToAvoidBottomInset: false,
+        appBar: CustomAppBar(
+          height: 90.v,
+          leadingWidth: 52.h,
+          leading: AppbarIconbutton(
+            svgPath: ImageConstant.imgFaiconsolidarrowleft,
+            margin: EdgeInsets.only(
+              left: 24.h,
+              top: 10.v,
+              bottom: 17.v,
+            ),
+            onTap: () {
+              onTapBack(context);
+            },
+          ),
+          centerTitle: true,
+          title: AppbarTitle(
+            text: "QUICK\nBANK",
+          ),
+        ),
         body: SizedBox(
           height: double.maxFinite,
           width: double.maxFinite,
@@ -39,10 +61,10 @@ class KartuBaruScreen extends StatelessWidget {
                     alignment: Alignment.topCenter,
                     children: [
                       SizedBox(height: 20.v),
-                                Text(
-                                "\n\nTambah Kartu Baru",
-                                style: theme.textTheme.titleLarge,
-                              ),
+                      Text(
+                        "\n\n\nTambah Kartu Baru",
+                        style: theme.textTheme.titleLarge,
+                      ),
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
@@ -80,75 +102,67 @@ class KartuBaruScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   CustomOutlinedButton(
-                                    height: 60.v,
-                                    width: 151.h,
-                                    text: "QB 1",
-                                    borderColor: Colors.orange.shade300,
-                                    buttonTextStyle: TextStyle(
-                                      color: Colors.white,
+                                      height: 60.v,
+                                      width: 151.h,
+                                      text: "QB 1",
+                                      borderColor: Colors.orange.shade300,
+                                      buttonTextStyle: TextStyle(
+                                        color: Colors.white,
                                       ),
-                                  ),
+                                      onTap: () {
+                                        onTapKuning(context);
+                                      }),
                                   CustomOutlinedButton(
-                                    height: 60.v,
-                                    width: 150.h,
-                                    text: "QB 2",
-                                    margin: EdgeInsets.only(left: 29.h),
-                                    borderColor: Colors.orange.shade300,
-                                    buttonTextStyle: TextStyle(
-                                      color: Colors.white,
+                                      height: 60.v,
+                                      width: 150.h,
+                                      text: "QB 2",
+                                      margin: EdgeInsets.only(left: 29.h),
+                                      borderColor: Colors.orange.shade300,
+                                      buttonTextStyle: TextStyle(
+                                        color: Colors.white,
                                       ),
-                                  ),
+                                      onTap: () {
+                                        onTapBiru(context);
+                                      }),
                                 ],
                               ),
                             ],
                           ),
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.topCenter,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            CustomAppBar(
-                              leadingWidth: 47.h,
-                              leading: AppbarIconbutton(
-                                svgPath: ImageConstant.imgFaiconsolidarrowleft,
-                                margin: EdgeInsets.only(
-                                  left: 19.h,
-                                  bottom: 7.v,
-                                ),
-                              ),
-                              centerTitle: true,
-                              title: AppbarTitle(
-                                text: "QUICK\nBANK",
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ],
                   ),
                 ),
-                
               ),
               SizedBox(height: 50.v),
-                Positioned(
-                  bottom: 10.v,
-                  left: 24.h,
-                  right: 24.h,
-                  child: CustomOutlinedButton(
-                    buttonTextStyle: TextStyle(
-                      color: Colors.white,
-                      ),
-                      text: "+ Tambah Kartu",
-                      borderColor: Colors.white,
-                    ),
-                  )
+              Positioned(
+                bottom: 10.v,
+                left: 24.h,
+                right: 24.h,
+                child: CustomOutlinedButton(
+                  buttonTextStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                  text: "+ Tambah Kartu",
+                  borderColor: Colors.white,
+                ),
+              )
             ],
           ),
         ),
       ),
     );
+  }
+
+  onTapBack(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.homepageDoneScreen);
+  }
+
+  onTapKuning(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.kartuKuningScreen);
+  }
+
+  onTapBiru(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.kartuBiruScreen);
   }
 }
