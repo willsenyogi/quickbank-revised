@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
 import 'package:quickbank_revised/presentation/homepage_done_page/homepage_done_page.dart';
@@ -6,11 +7,48 @@ import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
 import 'package:quickbank_revised/widgets/custom_icon_button.dart';
 
-class PageQrDoneScreen extends StatelessWidget {
-  const PageQrDoneScreen({Key? key}) : super(key: key);
+class PageQrDoneScreen extends StatefulWidget {
+  PageQrDoneScreen({Key? key}) : super(key: key);
+
+  @override
+  State<PageQrDoneScreen> createState() => _PageQrDoneScreenState();
+}
+
+class _PageQrDoneScreenState extends State<PageQrDoneScreen> {
+  State<PageQrDoneScreen> createState() => _PageQrDoneScreenState();
+  late List<CameraDescription> cameras;
+  late CameraController cameraController;
+
+  @override
+  void initState(){
+    startCamera();
+    super.initState();
+  }
+
+  void startCamera() async {
+    cameras = await availableCameras();
+
+    cameraController = CameraController(cameras[0], ResolutionPreset.high, enableAudio: false,);
+
+    await cameraController.initialize().then((value){
+      if(!mounted) {
+        return;
+      }
+      setState(() {});
+    }).catchError((e){
+      print(e);
+    });
+  }
+
+  @override
+  void dispose() {
+    cameraController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    try{
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
@@ -36,7 +74,11 @@ class PageQrDoneScreen extends StatelessWidget {
             text: "QUICK\nBANK",
           ),
         ),
-        body: Container(
+        body: Stack(
+          children: [
+            CameraPreview(cameraController),
+            Align(
+              child: Container(
           width: double.maxFinite,
           padding: EdgeInsets.symmetric(
             horizontal: 50.h,
@@ -77,7 +119,13 @@ class PageQrDoneScreen extends StatelessWidget {
             ],
           ),
         ),
+            )
+          ],
+        )
       ),
     );
+    } catch(e) {
+      return const SizedBox();
+    }
   }
 }
