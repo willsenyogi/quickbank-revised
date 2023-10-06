@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
+import 'package:quickbank_revised/main.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
 import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
 import 'package:quickbank_revised/widgets/custom_text_form_field.dart';
+import 'package:intl/intl.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class KonfirmasiBankLainScreen extends StatelessWidget {
   KonfirmasiBankLainScreen({Key? key})
@@ -12,13 +15,7 @@ class KonfirmasiBankLainScreen extends StatelessWidget {
           key: key,
         );
 
-  TextEditingController bankoneController = TextEditingController();
-
-  TextEditingController mobileNoController = TextEditingController();
-
-  TextEditingController rpCounterController = TextEditingController();
-
-  TextEditingController contentconatineController = TextEditingController();
+  TextEditingController pinController = TextEditingController();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -29,21 +26,16 @@ class KonfirmasiBankLainScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
-        body: Form(
-          key: _formKey,
-          child: SizedBox(
-            height: 768.v,
+        body: SizedBox(
+            height: double.maxFinite,
             width: double.maxFinite,
             child: Stack(
               alignment: Alignment.center,
               children: [
                 CustomImageView(
                   imagePath: ImageConstant.imgWavebackground,
-                  height: 768.v,
-                  width: 375.h,
-                  radius: BorderRadius.circular(
-                    36.h,
-                  ),
+                  height: double.maxFinite,
+                  width: double.maxFinite,
                   alignment: Alignment.center,
                 ),
                 Align(
@@ -78,19 +70,22 @@ class KonfirmasiBankLainScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 16.v),
                                   CustomTextFormField(
-                                    controller: bankoneController,
-                                    hintText: "BCA",
+                                    hintText: "$selectedBank",
+                                    autofocus: false,
+                                    textInputAction: TextInputAction.none,
                                   ),
                                   SizedBox(height: 16.v),
                                   CustomTextFormField(
-                                    controller: mobileNoController,
-                                    hintText: "6840406570",
-                                    textInputType: TextInputType.phone,
+                                    hintText: valueBL,
+                                    textInputAction: TextInputAction.none,
+                                    autofocus: false,
                                   ),
                                   SizedBox(height: 16.v),
                                   CustomTextFormField(
-                                    controller: rpCounterController,
-                                    hintText: "Rp. 100,000.00",
+                                    hintText: nominalFormatter(
+                                        int.parse(nominalBLValue)),
+                                    textInputAction: TextInputAction.none,
+                                    autofocus: false,
                                   ),
                                   SizedBox(height: 15.v),
                                   Text(
@@ -99,17 +94,11 @@ class KonfirmasiBankLainScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 15.v),
                                   CustomTextFormField(
-                                    controller: contentconatineController,
-                                    hintText: "Mc’Donald Cideng",
-                                    textInputAction: TextInputAction.done,
+                                    hintText: "$notesBLValue",
+                                    textInputAction: TextInputAction.none,
+                                    autofocus: false,
                                   ),
                                   SizedBox(height: 28.v),
-                                  CustomOutlinedButton(
-                                    text: "Transfer",
-                                    buttonStyle: CustomButtonStyles
-                                        .outlineOnPrimaryTL241,
-                                    borderColor: Colors.white,
-                                  ),
                                 ],
                               ),
                             ),
@@ -133,11 +122,77 @@ class KonfirmasiBankLainScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: 50.v),
+                Positioned(
+                  bottom: 25.v,
+                  left: 24.h,
+                  right: 24.h,
+                  child: CustomOutlinedButton(
+                    buttonTextStyle: TextStyle(
+                      color: Colors.white,
+                    ),
+                    text: "Transfer",
+                    onTap: () {
+                      Alert(
+                      context: context,
+                      title: "Masukkan Kode Login",
+                      content: Column(
+                        children: <Widget>[
+                          Form(
+                            key: _formKey,
+                            child: CustomTextFormField(
+                              hintText: "Kode Log In",
+                              textInputType: TextInputType.number,
+                              obscureText: true,
+                              controller: pinController,
+                              validator: (pinController) {
+                                if(pinController != pinCode){
+                                  return "Kode Login Salah!";
+                                }
+                                return null;
+                                
+                              },
+                            ) 
+                          )
+                          
+                        ],
+                      ),
+                    buttons: [
+                      DialogButton(
+                        onPressed: () {
+                          if (_formKey.currentState?.validate() == true) {
+                            accountBalance = accountBalance - int.parse(nominalBLValue);
+                            backHome(context);
+                          }
+                        },
+                        child: Text(
+                          "Ok",
+                          style: TextStyle(color: Colors.white, fontSize: 20),
+                        ),
+                      ),
+                    ]).show();
+                    },
+                    borderColor: Colors.white,
+                  ),
+                )
               ],
             ),
           ),
-        ),
       ),
     );
   }
+
+  static String nominalFormatter(int accountBalance) {
+    NumberFormat formatToIdr = NumberFormat.currency(
+      locale: 'id',
+      symbol: 'Rp ',
+      decimalDigits: 2,
+    );
+    return formatToIdr.format(accountBalance);
+  }
+
+  backHome(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.mainScreen);
+  }
 }
+
