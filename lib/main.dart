@@ -19,6 +19,12 @@ var qbValue = "";
 var nominalQbValue = "";
 var notesQbValue = "";
 
+//Transfer Bank Lain value temp
+String? selectedBank;
+var valueBL = "";
+var nominalBLValue = "";
+var notesBLValue = "";
+
 //kartu value
 var kartuKuning = "";
 var kartuBiru = "";
