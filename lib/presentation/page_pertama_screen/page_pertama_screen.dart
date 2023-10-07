@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
-import 'package:quickbank_revised/widgets/custom_floating_button.dart';
 import 'package:quickbank_revised/widgets/custom_icon_button.dart';
 
 class PagePertamaScreen extends StatelessWidget {
