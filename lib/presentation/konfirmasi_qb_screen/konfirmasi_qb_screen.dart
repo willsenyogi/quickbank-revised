@@ -119,6 +119,9 @@ class KonfirmasiQbScreen extends StatelessWidget {
                                 left: 19.h,
                                 bottom: 7.v,
                               ),
+                              onTap: () {
+                                onTapBack(context);
+                              },
                             ),
                             centerTitle: true,
                             title: AppbarTitle(
@@ -197,6 +200,10 @@ class KonfirmasiQbScreen extends StatelessWidget {
       decimalDigits: 2,
     );
     return formatToIdr.format(accountBalance);
+  }
+
+  onTapBack(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.qbTransferScreen);
   }
 
   backHome(BuildContext context) {
