@@ -132,6 +132,24 @@ class _BiodataScreenState extends State<BiodataScreen> {
                       hintText: "Password",
                       obscureText: true,
                     ),
+                    SizedBox(height: 15.v),
+                    Text(
+                      "Kode Log-In",
+                      style: CustomTextStyles.titleMediumGray100,
+                    ),
+                    SizedBox(height: 14.v),
+                    CustomTextFormField(
+                      controller: _kodelogin,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Mohon masukkan kode login';
+                        }
+                        return null;
+                      },
+                      hintText: "6 Karakter",
+                      textInputAction: TextInputAction.done,
+                    ),
+                    SizedBox(height: 40.v),
                   ],
                 ),
               ),
