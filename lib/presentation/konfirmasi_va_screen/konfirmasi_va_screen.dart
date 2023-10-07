@@ -98,6 +98,9 @@ class KonfirmasiVaScreen extends StatelessWidget {
                               left: 19.h,
                               bottom: 7.v,
                             ),
+                          onTap: () {
+                            onTapBack(context);
+                            },
                           ),
                           centerTitle: true,
                           title: AppbarTitle(
@@ -176,6 +179,10 @@ class KonfirmasiVaScreen extends StatelessWidget {
       decimalDigits: 2,
     );
     return formatToIdr.format(val);
+  }
+
+  onTapBack(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.transferVaScreen);
   }
 
   backHome(BuildContext context) {
