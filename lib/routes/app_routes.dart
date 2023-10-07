@@ -7,6 +7,7 @@ import 'package:quickbank_revised/presentation/main_screen/main_screen.dart';
 import 'package:quickbank_revised/presentation/page_pertama_screen/page_pertama_screen.dart';
 import 'package:quickbank_revised/presentation/biodata_screen/biodata_screen.dart';
 import 'package:quickbank_revised/presentation/profile_done_screen/profileeditscreen.dart';
+import 'package:quickbank_revised/presentation/sign_in_done_screen/authentication_page.dart';
 import 'package:quickbank_revised/presentation/verifikasi_screen/verifikasi_screen.dart';
 import 'package:quickbank_revised/presentation/page_kedua_screen/page_kedua_screen.dart';
 import 'package:quickbank_revised/presentation/page_ketiga_screen/page_ketiga_screen.dart';
@@ -64,6 +65,8 @@ class AppRoutes {
 
   static const String profileEditScreen = '/profile_done_screen';
 
+  static const String authPage = '/sign_in_done_screen';
+
   static Map<String, WidgetBuilder> routes = {
     pagePertamaScreen: (context) => PagePertamaScreen(),
     biodataScreen: (context) => BiodataScreen(),
@@ -86,5 +89,7 @@ class AppRoutes {
     kartuBiruScreen: (context) => KartuBiruScreen(),
     kartuKuningScreen: (context) => KartuKuningScreen(),
     profileEditScreen: (context) => ProfilEditScreen(),
+    // ignore: equal_keys_in_map
+    authPage: (context) => AuthenticationPage(),
   };
 }

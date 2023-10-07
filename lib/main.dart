@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'package:flutter/services.dart';
 import 'package:quickbank_revised/theme/theme_helper.dart';
 import 'package:quickbank_revised/routes/app_routes.dart';
@@ -30,7 +31,7 @@ var kartuBiru = "";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       title: 'quickbank_revised',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.biodataScreen,
+      initialRoute: AppRoutes.authPage,
       routes: AppRoutes.routes,
     );
   }

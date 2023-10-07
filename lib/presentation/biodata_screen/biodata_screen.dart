@@ -90,6 +90,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
                         return null;
                       },
                       hintText: "Nama Lengkap",
+                      textInputType: TextInputType.text,
                     ),
                     SizedBox(height: 16.v),
                     Text("E-Mail & Nomor Telepon",
@@ -116,6 +117,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
                         return null;
                       },
                       hintText: "Nomor Telepon",
+                      textInputType: TextInputType.phone,
                     ),
                     SizedBox(height: 16.v),
                     Text("Password",

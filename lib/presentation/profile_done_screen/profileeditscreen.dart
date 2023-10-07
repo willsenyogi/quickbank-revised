@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/utils/image_constant.dart';
 import 'package:quickbank_revised/core/utils/size_utils.dart';
+import 'package:quickbank_revised/presentation/sign_in_done_screen/sign_in_done_screen.dart';
 import 'package:quickbank_revised/theme/app_decoration.dart';
 import 'package:quickbank_revised/theme/theme_helper.dart';
 import 'package:quickbank_revised/widgets/custom_image_view.dart';
@@ -17,6 +19,14 @@ class ProfilEditScreen extends StatefulWidget {
 
 class _ProfilEditScreenState extends State<ProfilEditScreen> {
   File? _selectedImage;
+
+  void onPressedLogout() async {
+    await FirebaseAuth.instance.signOut();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(builder: (context) => SignInDoneScreen()),
+    );
+  }
+
   Future<void> editField(BuildContext context, String field) async {
     String newValue = "";
     await showDialog(
@@ -86,11 +96,27 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
                           alignment: Alignment.center,
                         ),
                         Align(
+                          alignment: Alignment.topRight,
+                          child: IconButton(
+                            icon: Icon(
+                              Icons.logout,
+                              color: Colors.white,
+                            ),
+                            padding: EdgeInsets.only(
+                              right: 5.h,
+                              top: 15.v,
+                              bottom: 15.v,
+                            ),
+                            onPressed: () {
+                              onPressedLogout();
+                            },
+                          ),
+                        ),
+                        Align(
                           child: Padding(
-                            padding: EdgeInsets.only(top: 20),
+                            padding: EdgeInsets.only(top: 50),
                             child: Column(
                               children: [
-                                SizedBox(height: 5.v),
                                 Padding(
                                   padding: EdgeInsets.only(top: 15),
                                   child: SizedBox(
@@ -121,7 +147,7 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    height: 660.v,
+                    height: 630.v,
                     width: MediaQuery.of(context).size.width,
                     padding:
                         EdgeInsets.symmetric(horizontal: 5.h, vertical: 20.v),
@@ -131,8 +157,8 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
                         Stack(
                           children: [
                             Container(
-                              width: 100,
-                              height: 100,
+                              width: 80,
+                              height: 80,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 image: _selectedImage != null
@@ -140,7 +166,7 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
                                         fit: BoxFit.cover,
                                         image: FileImage(_selectedImage!),
                                       )
-                                    : null, // Remove the placeholder image
+                                    : null,
                               ),
                             ),
                             Positioned(
@@ -220,7 +246,7 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
 
     if (returnedImage == null) return;
     setState(() {
-      _selectedImage = File(returnedImage!.path);
+      _selectedImage = File(returnedImage.path);
     });
   }
 }

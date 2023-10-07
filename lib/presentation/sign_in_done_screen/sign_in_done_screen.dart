@@ -114,7 +114,7 @@ class _SignInDoneScreenState extends State<SignInDoneScreen> {
             bottom: 44.v,
           ),
           onTap: () {
-            onTapSelanjutnya(context);
+            onTapSelanjutnya();
           },
           buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
           borderColor: Colors.transparent,
@@ -123,7 +123,7 @@ class _SignInDoneScreenState extends State<SignInDoneScreen> {
     );
   }
 
-  onTapSelanjutnya(BuildContext context) async {
+  onTapSelanjutnya() async {
     if (_formKey.currentState!.validate()) {
       try {
         await FirebaseAuth.instance.signInWithEmailAndPassword(
