@@ -1,14 +1,12 @@
-import 'package:camera/camera.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:quickbank_revised/core/app_export.dart';
-import 'package:quickbank_revised/presentation/homepage_done_page/homepage_done_page.dart';
 import 'package:quickbank_revised/presentation/main_screen/main_screen.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
 import 'package:quickbank_revised/widgets/custom_icon_button.dart';
-import 'package:quickbank_revised/presentation/main_screen/main_screen.dart';
-
 class PageQrDoneScreen extends StatefulWidget {
   PageQrDoneScreen({Key? key}) : super(key: key);
 
@@ -18,38 +16,24 @@ class PageQrDoneScreen extends StatefulWidget {
 
 class _PageQrDoneScreenState extends State<PageQrDoneScreen> {
   State<PageQrDoneScreen> createState() => _PageQrDoneScreenState();
-  late List<CameraDescription> cameras;
-  late CameraController cameraController;
-
-  @override
-  void initState() {
-    startCamera();
-    super.initState();
-  }
-
-  void startCamera() async {
-    cameras = await availableCameras();
-
-    cameraController = CameraController(
-      cameras[0],
-      ResolutionPreset.high,
-      enableAudio: false,
-    );
-
-    await cameraController.initialize().then((value) {
-      if (!mounted) {
-        return;
-      }
-      setState(() {});
-    }).catchError((e) {
-      print(e);
-    });
-  }
+  final qrKey = GlobalKey(debugLabel: 'QR');
+  QRViewController? controller;
+  Barcode? barcode;
 
   @override
   void dispose() {
-    cameraController.dispose();
+    controller?.dispose();
     super.dispose();
+  }
+
+  @override
+  void reassemble() async {
+    super.reassemble();
+
+    if(Platform.isAndroid) {
+      await controller!.pauseCamera();
+    }
+    controller!.resumeCamera();
   }
 
   @override
@@ -81,8 +65,9 @@ class _PageQrDoneScreenState extends State<PageQrDoneScreen> {
               ),
             ),
             body: Stack(
-              children: [
-                CameraPreview(cameraController),
+              alignment: Alignment.center,
+              children: <Widget>[
+                buildQrView(context),
                 Align(
                   child: Container(
                     width: double.maxFinite,
@@ -95,9 +80,10 @@ class _PageQrDoneScreenState extends State<PageQrDoneScreen> {
                       children: [
                         Spacer(),
                         Text(
-                          "QR Scan",
+                          "QR Scan\n",
                           style: CustomTextStyles.titleMediumOnPrimaryContainer,
                         ),
+                        Positioned(child: buildResult()),
                         SizedBox(height: 12.v),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -127,12 +113,38 @@ class _PageQrDoneScreenState extends State<PageQrDoneScreen> {
                       ],
                     ),
                   ),
-                )
+                ),
               ],
             )),
       );
     } catch (e) {
       return const SizedBox();
     }
+  }
+  Widget buildQrView(BuildContext context) => QRView(
+    key: qrKey,
+    onQRViewCreated: onQRViewCreated,
+    overlay: QrScannerOverlayShape(
+      cutOutSize: MediaQuery.of(context).size.width * 0.8,
+      cutOutBottomOffset: 65.h,
+      borderColor: Colors.green,
+      borderRadius: 12.h,
+      borderLength: 20.h,
+      borderWidth: 7.h,
+      ),
+    );
+  
+  Widget buildResult() => Container(
+    child: Text(
+      barcode != null ? 'Result : ${barcode!.code}' : 'Scan a code!',
+      maxLines: 3,
+      style: TextStyle(color: Colors.white),
+    ),
+  );
+
+  void onQRViewCreated(QRViewController controller){
+    setState(() => this.controller = controller);
+
+    controller.scannedDataStream.listen((barcode) => setState(() => this.barcode = barcode));
   }
 }
