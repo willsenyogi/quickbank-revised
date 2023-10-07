@@ -6,6 +6,7 @@ import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
 import 'package:quickbank_revised/widgets/custom_icon_button.dart';
+import 'package:quickbank_revised/presentation/main_screen/main_screen.dart';
 
 class PageQrDoneScreen extends StatefulWidget {
   PageQrDoneScreen({Key? key}) : super(key: key);
