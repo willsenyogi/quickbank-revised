@@ -24,14 +24,41 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
   final currentUser = FirebaseAuth.instance.currentUser!;
 
   final usersCollection = FirebaseFirestore.instance.collection("user");
-  
 
+  final TextEditingController _fullname = TextEditingController();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _phonenumber = TextEditingController();
 
   void onPressedLogout() async {
     await FirebaseAuth.instance.signOut();
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (context) => SignInDoneScreen()),
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchUserData();
+  }
+
+  Future<void> _fetchUserData() async {
+    try {
+      final currentUser = FirebaseAuth.instance.currentUser;
+      final userDocument = await FirebaseFirestore.instance
+          .collection('user')
+          .doc(currentUser!.email)
+          .get();
+
+      if (userDocument.exists) {
+        final userData = userDocument.data() as Map<String, dynamic>;
+        _fullname.text = userData['nama lengkap'] ?? '';
+        _email.text = userData['email'] ?? '';
+        _phonenumber.text = userData['nomor telepon']?.toString() ?? '';
+      }
+    } catch (e) {
+      print('Error fetching user data: $e');
+    }
   }
 
   Future<void> editField(BuildContext context, String field) async {
@@ -73,8 +100,7 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
         ],
       ),
     );
-    if(newValue.trim().length > 0){
-
+    if (newValue.trim().length > 0) {
       await usersCollection.doc(currentUser.email).update({field: newValue});
     }
   }
@@ -219,21 +245,32 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
                           ],
                         ),
                         TextBox(
-                            text: ['sepuh'],
-                            sectionName: 'Nama Depan',
-                            onPressed: () => editField(context, 'Nama Depan')),
+                          text: _fullname.text,
+                          sectionName: 'Nama Depan',
+                          onPressed: () => editField(context, 'Nama Depan'),
+                        ),
+                        TextBox(
+                          text: _fullname.text,
+                          sectionName: 'Nama Belakang',
+                          onPressed: () => editField(context, 'Nama Belakang'),
+                        ),
+                        TextBox(
+                          text: _fullname.text,
+                          sectionName: 'usia',
+                          onPressed: () => editField(context, 'Nama Belakang'),
+                        ),
                         SizedBox(height: 15.v),
                         TextBox(
-                            text: 'puh sepuh',
-                            sectionName: 'Nama Belakang',
-                            onPressed: () =>
-                                editField(context, 'Nama Belakang')),
+                          text: _email.text,
+                          sectionName: 'Email',
+                          onPressed: () => editField(context, 'Email'),
+                        ),
                         SizedBox(height: 15.v),
                         TextBox(
-                            text: '085813131822',
-                            sectionName: 'Nomor Telepon',
-                            onPressed: () =>
-                                editField(context, 'Nomor Telepon')),
+                          text: _phonenumber.text,
+                          sectionName: 'Nomor Telepon',
+                          onPressed: () => editField(context, 'Nomor Telepon'),
+                        ),
                         SizedBox(height: 15.v),
                         // TextBox(
                         //     text: 'Rumah',

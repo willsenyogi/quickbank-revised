@@ -21,17 +21,21 @@ class BiodataScreen extends StatefulWidget {
 
 class _BiodataScreenState extends State<BiodataScreen> {
   FirebaseAuth _auth = FirebaseAuth.instance;
-  final TextEditingController _fullname = TextEditingController();
+  final TextEditingController _firstname = TextEditingController();
+  final TextEditingController _lastname = TextEditingController();
+  final TextEditingController _age = TextEditingController();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _phonenumber = TextEditingController();
   final TextEditingController _password = TextEditingController();
   final TextEditingController _kodelogin = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  Future addUserDetails(
-      String namaLengkap, String email, int nomorTelepon) async {
+  Future addUserDetails(String namaDepan, String namaBelakang, int usia,
+      String email, int nomorTelepon) async {
     await FirebaseFirestore.instance.collection('user').add({
-      'nama lengkap': namaLengkap,
+      'nama depan': namaDepan,
+      'nama belakang': namaBelakang,
+      'usia': usia,
       'email': email,
       'nomor telepon': nomorTelepon,
     });
@@ -60,7 +64,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
         ),
         body: Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
+          height: 800,
           decoration: BoxDecoration(
             color: appTheme.black900,
             image: DecorationImage(
@@ -82,14 +86,40 @@ class _BiodataScreenState extends State<BiodataScreen> {
                     SizedBox(height: 16.v),
                     CustomTextFormField(
                       autofocus: false,
-                      controller: _fullname,
+                      controller: _firstname,
                       validator: (text) {
                         if (text == null || text.isEmpty) {
-                          return 'Nama Lengkap is empty';
+                          return 'Nama Depan is empty';
                         }
                         return null;
                       },
-                      hintText: "Nama Lengkap",
+                      hintText: "Nama Depan",
+                      textInputType: TextInputType.text,
+                    ),
+                    SizedBox(height: 15.v),
+                    CustomTextFormField(
+                      autofocus: false,
+                      controller: _lastname,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Nama Belakang is empty';
+                        }
+                        return null;
+                      },
+                      hintText: "Nama Belakang",
+                      textInputType: TextInputType.text,
+                    ),
+                    SizedBox(height: 15.v),
+                    CustomTextFormField(
+                      autofocus: false,
+                      controller: _age,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Usia is empty';
+                        }
+                        return null;
+                      },
+                      hintText: "Usia",
                       textInputType: TextInputType.text,
                     ),
                     SizedBox(height: 16.v),
@@ -97,6 +127,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
                         style: CustomTextStyles.titleMediumGray100),
                     SizedBox(height: 14.v),
                     CustomTextFormField(
+                      autofocus: false,
                       controller: _email,
                       validator: (text) {
                         if (text == null || text.isEmpty) {
@@ -109,6 +140,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
                     ),
                     SizedBox(height: 16.v),
                     CustomTextFormField(
+                      autofocus: false,
                       controller: _phonenumber,
                       validator: (text) {
                         if (text == null || text.isEmpty) {
@@ -124,6 +156,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
                         style: CustomTextStyles.titleMediumGray100),
                     SizedBox(height: 14.v),
                     CustomTextFormField(
+                      autofocus: false,
                       controller: _password,
                       validator: (text) {
                         if (text == null || text.isEmpty) {
@@ -141,6 +174,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
                     ),
                     SizedBox(height: 14.v),
                     CustomTextFormField(
+                      autofocus: false,
                       controller: _kodelogin,
                       validator: (text) {
                         if (text == null || text.isEmpty) {
@@ -152,21 +186,20 @@ class _BiodataScreenState extends State<BiodataScreen> {
                       textInputAction: TextInputAction.done,
                     ),
                     SizedBox(height: 40.v),
+                    CustomOutlinedButton(
+                      text: "Selanjutnya",
+                      buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
+                      borderColor: Colors.transparent,
+                      onTap: () {
+                        onTapSelanjutnya(context);
+                        pinCode = _kodelogin.text;
+                      },
+                    ),
                   ],
                 ),
               ),
             ),
           ),
-        ),
-        bottomNavigationBar: CustomOutlinedButton(
-          text: "Selanjutnya",
-          margin: EdgeInsets.only(left: 24.h, right: 24.h, bottom: 40.v),
-          buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
-          borderColor: Colors.transparent,
-          onTap: () {
-            onTapSelanjutnya(context);
-            pinCode = _kodelogin.text;
-          },
         ),
       ),
     );
@@ -181,7 +214,9 @@ class _BiodataScreenState extends State<BiodataScreen> {
         );
 
         addUserDetails(
-          _fullname.text,
+          _firstname.text,
+          _lastname.text,
+          int.parse(_age.text),
           _email.text,
           int.parse(_phonenumber.text),
         );
