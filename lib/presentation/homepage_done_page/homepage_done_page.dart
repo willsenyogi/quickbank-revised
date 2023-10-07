@@ -199,7 +199,7 @@ class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           SizedBox(
-                            height: 316.v,
+                            height: 320.v,
                             width: MediaQuery.of(context).size.width,
                             child: Stack(
                               alignment: Alignment.centerLeft,
