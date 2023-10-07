@@ -47,6 +47,8 @@ dependencies:
   dropdown_button2: ^2.3.9
   camera: ^0.10.5+5
   qr_code_scanner: ^1.0.1
+  url_launcher: ^6.1.14
+  flutter_linkify: ^6.0.0
 
 dev_dependencies: 
   flutter_test: 

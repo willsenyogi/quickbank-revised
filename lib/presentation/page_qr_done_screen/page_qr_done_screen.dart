@@ -6,7 +6,9 @@ import 'package:quickbank_revised/presentation/main_screen/main_screen.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
-import 'package:quickbank_revised/widgets/custom_icon_button.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
+
 class PageQrDoneScreen extends StatefulWidget {
   PageQrDoneScreen({Key? key}) : super(key: key);
 
@@ -84,32 +86,7 @@ class _PageQrDoneScreenState extends State<PageQrDoneScreen> {
                           style: CustomTextStyles.titleMediumOnPrimaryContainer,
                         ),
                         Positioned(child: buildResult()),
-                        SizedBox(height: 12.v),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            CustomIconButton(
-                              height: 60.adaptSize,
-                              width: 60.adaptSize,
-                              padding: EdgeInsets.all(14.h),
-                              decoration: IconButtonStyleHelper
-                                  .outlineOnPrimaryContainer,
-                              child: CustomImageView(
-                                svgPath: ImageConstant.imgFaiconsolidcamera,
-                              ),
-                            ),
-                            CustomIconButton(
-                              height: 60.adaptSize,
-                              width: 60.adaptSize,
-                              padding: EdgeInsets.all(14.h),
-                              decoration: IconButtonStyleHelper
-                                  .outlineOnPrimaryContainer,
-                              child: CustomImageView(
-                                imagePath: ImageConstant.imgGaleri,
-                              ),
-                            ),
-                          ],
-                        ),
+                        SizedBox(height: 80.v),
                       ],
                     ),
                   ),
@@ -135,8 +112,9 @@ class _PageQrDoneScreenState extends State<PageQrDoneScreen> {
     );
   
   Widget buildResult() => Container(
-    child: Text(
-      barcode != null ? 'Result : ${barcode!.code}' : 'Scan a code!',
+    child: Linkify(
+      text : barcode != null ? 'Result : ${barcode!.code}' : 'Scan a code!',
+      onOpen: _onOpen,
       maxLines: 3,
       style: TextStyle(color: Colors.white),
     ),
@@ -146,5 +124,15 @@ class _PageQrDoneScreenState extends State<PageQrDoneScreen> {
     setState(() => this.controller = controller);
 
     controller.scannedDataStream.listen((barcode) => setState(() => this.barcode = barcode));
+    barcode = barcode?.rawBytes.toString() as Barcode?;
+  }
+
+  Future<void> _onOpen(LinkableElement link) async {
+    if (await canLaunch(link.url)) {
+      await launchUrl(Uri.parse(link.url),
+        mode: LaunchMode.externalApplication);
+    } else {
+      throw 'Could not launch $link';
+    }
   }
 }
