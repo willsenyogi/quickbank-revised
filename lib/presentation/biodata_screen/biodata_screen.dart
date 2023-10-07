@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
+import 'package:quickbank_revised/main.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
@@ -23,6 +24,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _phonenumber = TextEditingController();
   final TextEditingController _password = TextEditingController();
+  final TextEditingController _kodelogin = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -32,7 +34,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
       child: Scaffold(
         extendBody: true,
         extendBodyBehindAppBar: true,
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         appBar: CustomAppBar(
           height: 90.v,
           leadingWidth: 52.h,
@@ -56,68 +58,89 @@ class _BiodataScreenState extends State<BiodataScreen> {
               fit: BoxFit.cover,
             ),
           ),
-          child: Form(
-            key: _formKey,
-            child: Container(
-              width: double.maxFinite,
-              padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 40.v),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 60.v),
-                  Text("Biodata", style: theme.textTheme.titleLarge),
-                  SizedBox(height: 16.v),
-                  CustomTextFormField(
-                    controller: _fullname,
-                    validator: (text) {
-                      if (text == null || text.isEmpty) {
-                        return 'Nama Lengkap is empty';
-                      }
-                      return null;
-                    },
-                    hintText: "Nama Lengkap",
-                  ),
-                  SizedBox(height: 16.v),
-                  Text("E-Mail & Nomor Telepon",
-                      style: CustomTextStyles.titleMediumGray100),
-                  SizedBox(height: 14.v),
-                  CustomTextFormField(
-                    controller: _email,
-                    validator: (text) {
-                      if (text == null || text.isEmpty) {
-                        return 'Email is empty';
-                      }
-                      return null;
-                    },
-                    hintText: "Email",
-                    textInputType: TextInputType.emailAddress,
-                  ),
-                  SizedBox(height: 16.v),
-                  CustomTextFormField(
-                    controller: _phonenumber,
-                    validator: (text) {
-                      if (text == null || text.isEmpty) {
-                        return 'Nomor Telepon is empty';
-                      }
-                      return null;
-                    },
-                    hintText: "Nomor Telepon",
-                  ),
-                  SizedBox(height: 16.v),
-                  Text("Password", style: CustomTextStyles.titleMediumGray100),
-                  SizedBox(height: 14.v),
-                  CustomTextFormField(
-                    controller: _password,
-                    validator: (text) {
-                      if (text == null || text.isEmpty) {
-                        return 'Password is empty';
-                      }
-                      return null;
-                    },
-                    hintText: "Password",
-                    obscureText: true,
-                  ),
-                ],
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
+              child: Container(
+                width: double.maxFinite,
+                padding: EdgeInsets.symmetric(horizontal: 24.h, vertical: 40.v),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 60.v),
+                    Text("Biodata", style: theme.textTheme.titleLarge),
+                    SizedBox(height: 16.v),
+                    CustomTextFormField(
+                      controller: _fullname,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Nama Lengkap is empty';
+                        }
+                        return null;
+                      },
+                      hintText: "Nama Lengkap",
+                    ),
+                    SizedBox(height: 16.v),
+                    Text("E-Mail & Nomor Telepon",
+                        style: CustomTextStyles.titleMediumGray100),
+                    SizedBox(height: 14.v),
+                    CustomTextFormField(
+                      controller: _email,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Email is empty';
+                        }
+                        return null;
+                      },
+                      hintText: "Email",
+                      textInputType: TextInputType.emailAddress,
+                    ),
+                    SizedBox(height: 16.v),
+                    CustomTextFormField(
+                      controller: _phonenumber,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Nomor Telepon is empty';
+                        }
+                        return null;
+                      },
+                      hintText: "Nomor Telepon",
+                    ),
+                    SizedBox(height: 16.v),
+                    Text("Password",
+                        style: CustomTextStyles.titleMediumGray100),
+                    SizedBox(height: 14.v),
+                    CustomTextFormField(
+                      controller: _password,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Password is empty';
+                        }
+                        return null;
+                      },
+                      hintText: "Password",
+                      obscureText: true,
+                    ),
+                    SizedBox(height: 15.v),
+                    Text(
+                      "Kode Log-In",
+                      style: CustomTextStyles.titleMediumGray100,
+                    ),
+                    SizedBox(height: 14.v),
+                    CustomTextFormField(
+                      controller: _kodelogin,
+                      validator: (text) {
+                        if (text == null || text.isEmpty) {
+                          return 'Mohon masukkan kode login';
+                        }
+                        return null;
+                      },
+                      hintText: "6 Karakter",
+                      textInputAction: TextInputAction.done,
+                    ),
+                    SizedBox(height: 40.v),
+                  ],
+                ),
               ),
             ),
           ),
@@ -129,6 +152,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
           borderColor: Colors.transparent,
           onTap: () {
             onTapSelanjutnya(context);
+            pinCode = _kodelogin.text;
           },
         ),
       ),

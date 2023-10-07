@@ -27,7 +27,7 @@ class KartuBiruScreen extends StatelessWidget {
       child: Scaffold(
         extendBody: true,
         extendBodyBehindAppBar: true,
-        resizeToAvoidBottomInset: false,
+        resizeToAvoidBottomInset: true,
         appBar: CustomAppBar(
           height: 90.v,
           leadingWidth: 52.h,

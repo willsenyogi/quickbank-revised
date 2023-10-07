@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       title: 'quickbank_revised',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.mainScreen,
+      initialRoute: AppRoutes.biodataScreen,
       routes: AppRoutes.routes,
     );
   }
