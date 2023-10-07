@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/utils/image_constant.dart';
@@ -19,6 +20,12 @@ class ProfilEditScreen extends StatefulWidget {
 
 class _ProfilEditScreenState extends State<ProfilEditScreen> {
   File? _selectedImage;
+
+  final currentUser = FirebaseAuth.instance.currentUser!;
+
+  final usersCollection = FirebaseFirestore.instance.collection("user");
+  
+
 
   void onPressedLogout() async {
     await FirebaseAuth.instance.signOut();
@@ -66,6 +73,10 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
         ],
       ),
     );
+    if(newValue.trim().length > 0){
+
+      await usersCollection.doc(currentUser.email).update({field: newValue});
+    }
   }
 
   @override
@@ -208,7 +219,7 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
                           ],
                         ),
                         TextBox(
-                            text: 'sepuh',
+                            text: ['sepuh'],
                             sectionName: 'Nama Depan',
                             onPressed: () => editField(context, 'Nama Depan')),
                         SizedBox(height: 15.v),
@@ -224,10 +235,10 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
                             onPressed: () =>
                                 editField(context, 'Nomor Telepon')),
                         SizedBox(height: 15.v),
-                        TextBox(
-                            text: 'Rumah',
-                            sectionName: 'Alamat',
-                            onPressed: () => editField(context, 'Alamat')),
+                        // TextBox(
+                        //     text: 'Rumah',
+                        //     sectionName: 'Alamat',
+                        //     onPressed: () => editField(context, 'Alamat')),
                       ],
                     ),
                   ),
