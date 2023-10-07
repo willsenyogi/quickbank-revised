@@ -31,9 +31,7 @@ var kartuBiru = "";
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // SystemChrome.setPreferredOrientations([
-  //   DeviceOrientation.portraitUp,
-  // ]);
+  await Firebase.initializeApp();
 
   ///Please update theme as per your need if required.
   ThemeHelper().changeTheme('primary');
@@ -47,7 +45,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       title: 'quickbank_revised',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.mainScreen,
+      initialRoute: AppRoutes.signInDoneScreen,
       routes: AppRoutes.routes,
     );
   }

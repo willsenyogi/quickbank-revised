@@ -131,18 +131,10 @@ class _SignInDoneScreenState extends State<SignInDoneScreen> {
           password: _password.text,
         );
       } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
+        if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
           return ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text("No user found for that email."),
-              duration: Duration(seconds: 3),
-              backgroundColor: Colors.red,
-            ),
-          );
-        } else if (e.code == 'wrong-password') {
-          return ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Wrong password provided for that user."),
+              content: Text("Email not found / Wrong password provided"),
               duration: Duration(seconds: 3),
               backgroundColor: Colors.red,
             ),
