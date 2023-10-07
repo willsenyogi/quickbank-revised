@@ -142,7 +142,7 @@ class KartuBaruScreen extends StatelessWidget {
   }
 
   onTapBack(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homepageDoneScreen);
+    Navigator.pushNamed(context, AppRoutes.mainScreen);
   }
 
   onTapKuning(BuildContext context) {
