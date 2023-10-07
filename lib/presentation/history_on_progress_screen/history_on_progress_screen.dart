@@ -115,6 +115,6 @@ class HistoryOnProgressScreen extends StatelessWidget {
   }
 
   onTapKembali(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.homepageDoneScreen);
+    Navigator.pushNamed(context, AppRoutes.mainScreen);
   }
 }
