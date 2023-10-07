@@ -33,24 +33,13 @@ class PilihanTransferScreen extends StatelessWidget {
                     Column(
                       children: [
                         CustomAppBar(
-                        height: 90.v,
-                        leadingWidth: 52.h,
-                        leading: AppbarIconbutton(
-                          svgPath: ImageConstant.imgFaiconsolidarrowleft,
-                          margin: EdgeInsets.only(
-                            left: 24.h,
-                            top: 10.v,
-                            bottom: 17.v,
+                          height: 90.v,
+                          leadingWidth: 52.h,
+                          centerTitle: true,
+                          title: AppbarTitle(
+                            text: "QUICK\nBANK",
                           ),
-                          onTap: () {
-                            onTapBack(context);
-                          },
                         ),
-                        centerTitle: true,
-                        title: AppbarTitle(
-                          text: "QUICK\nBANK",
-                        ),
-                      ),
                         SizedBox(height: 25.v),
                         Text(
                           "Transfer",
@@ -198,15 +187,10 @@ class PilihanTransferScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              
-                
             ],
-            
-
           ),
         ),
       ),
-      
     );
   }
 

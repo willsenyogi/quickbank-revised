@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/services.dart';
 import 'package:quickbank_revised/theme/theme_helper.dart';
 import 'package:quickbank_revised/routes/app_routes.dart';
 
@@ -30,6 +31,9 @@ var kartuBiru = "";
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]);
 
   ///Please update theme as per your need if required.
   ThemeHelper().changeTheme('primary');

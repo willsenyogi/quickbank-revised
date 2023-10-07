@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
@@ -26,6 +27,15 @@ class _BiodataScreenState extends State<BiodataScreen> {
   final TextEditingController _password = TextEditingController();
   final TextEditingController _kodelogin = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  Future addUserDetails(
+      String namaLengkap, String email, int nomorTelepon) async {
+    await FirebaseFirestore.instance.collection('user').add({
+      'nama lengkap': namaLengkap,
+      'email': email,
+      'nomor telepon': nomorTelepon,
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +81,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
                     Text("Biodata", style: theme.textTheme.titleLarge),
                     SizedBox(height: 16.v),
                     CustomTextFormField(
+                      autofocus: false,
                       controller: _fullname,
                       validator: (text) {
                         if (text == null || text.isEmpty) {
@@ -121,24 +132,6 @@ class _BiodataScreenState extends State<BiodataScreen> {
                       hintText: "Password",
                       obscureText: true,
                     ),
-                    SizedBox(height: 15.v),
-                    Text(
-                      "Kode Log-In",
-                      style: CustomTextStyles.titleMediumGray100,
-                    ),
-                    SizedBox(height: 14.v),
-                    CustomTextFormField(
-                      controller: _kodelogin,
-                      validator: (text) {
-                        if (text == null || text.isEmpty) {
-                          return 'Mohon masukkan kode login';
-                        }
-                        return null;
-                      },
-                      hintText: "6 Karakter",
-                      textInputAction: TextInputAction.done,
-                    ),
-                    SizedBox(height: 40.v),
                   ],
                 ),
               ),
@@ -165,6 +158,12 @@ class _BiodataScreenState extends State<BiodataScreen> {
         await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _email.text,
           password: _password.text,
+        );
+
+        addUserDetails(
+          _fullname.text,
+          _email.text,
+          int.parse(_phonenumber.text),
         );
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {

@@ -159,7 +159,7 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
                                   icon: Icon(
                                     Icons.edit,
                                     color: Colors.white,
-                                    size: 15,
+                                    size: 12,
                                   ),
                                   onPressed: () {
                                     _pickImageFromGallery();
