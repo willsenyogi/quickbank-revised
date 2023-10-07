@@ -10,6 +10,7 @@ import 'package:quickbank_revised/presentation/page_pertama_screen/page_pertama_
 import 'package:quickbank_revised/presentation/biodata_screen/biodata_screen.dart';
 import 'package:quickbank_revised/presentation/page_pertama_screen/splash.dart';
 import 'package:quickbank_revised/presentation/profile_done_screen/profileeditscreen.dart';
+import 'package:quickbank_revised/presentation/lupa_password_screen/lupapw_screen.dart';
 import 'package:quickbank_revised/presentation/verifikasi_screen/verifikasi_screen.dart';
 import 'package:quickbank_revised/presentation/page_kedua_screen/page_kedua_screen.dart';
 import 'package:quickbank_revised/presentation/page_ketiga_screen/page_ketiga_screen.dart';
@@ -69,6 +70,8 @@ class AppRoutes {
 
   static const String profileEditScreen = '/profile_done_screen';
 
+  static const String forgotPassScreen = '/lupa_password_screen';
+
   static Map<String, WidgetBuilder> routes = {
     pagePertamaScreen: (context) => PagePertamaScreen(),
     biodataScreen: (context) => BiodataScreen(),
@@ -76,6 +79,7 @@ class AppRoutes {
     pageKeduaScreen: (context) => PageKeduaScreen(),
     pageKetigaScreen: (context) => PageKetigaScreen(),
     signInDoneScreen: (context) => SignInDoneScreen(),
+    forgotPassScreen: (context) => ForgotPassScreen(),
     mainScreen: (context) => MainScreen(),
     homepageDoneScreen: (context) => HomepageDoneScreen(),
     historyOnProgressScreen: (context) => HistoryOnProgressScreen(),

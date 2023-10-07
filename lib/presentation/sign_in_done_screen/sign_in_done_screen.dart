@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import 'package:quickbank_revised/core/app_export.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
@@ -101,6 +102,21 @@ class _SignInDoneScreenState extends State<SignInDoneScreen> {
                       textInputType: TextInputType.visiblePassword,
                       obscureText: true,
                       autofocus: false),
+                  SizedBox(height: 10.v),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          onTapLupaPw(context);
+                        },
+                        child: Text(
+                          'Forgot Password?',
+                          style: CustomTextStyles.bodyLargeGray400,
+                        ),
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -149,5 +165,9 @@ class _SignInDoneScreenState extends State<SignInDoneScreen> {
 
   onTapBack(BuildContext context) {
     Navigator.pushNamed(context, AppRoutes.pageKetigaScreen);
+  }
+
+  onTapLupaPw(BuildContext context) {
+    Navigator.pushNamed(context, AppRoutes.forgotPassScreen);
   }
 }
