@@ -69,8 +69,7 @@ class _PageQrDoneScreenState extends State<PageQrDoneScreen> {
                   // Navigate to HomepageDonePage when the button is pressed
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => HomepageDoneScreen()),
+                    MaterialPageRoute(builder: (context) => MainScreen()),
                   );
                 },
               ),
