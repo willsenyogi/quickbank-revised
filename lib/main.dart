@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:quickbank_revised/theme/theme_helper.dart';
 import 'package:quickbank_revised/routes/app_routes.dart';
 
@@ -45,7 +43,7 @@ class MyApp extends StatelessWidget {
       theme: theme,
       title: 'quickbank_revised',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.signInDoneScreen,
+      initialRoute: AppRoutes.mainScreen,
       routes: AppRoutes.routes,
     );
   }

@@ -20,7 +20,7 @@ class _PageQrDoneScreenState extends State<PageQrDoneScreen> {
   late CameraController cameraController;
 
   @override
-  void initState(){
+  void initState() {
     startCamera();
     super.initState();
   }
@@ -28,14 +28,18 @@ class _PageQrDoneScreenState extends State<PageQrDoneScreen> {
   void startCamera() async {
     cameras = await availableCameras();
 
-    cameraController = CameraController(cameras[0], ResolutionPreset.high, enableAudio: false,);
+    cameraController = CameraController(
+      cameras[0],
+      ResolutionPreset.high,
+      enableAudio: false,
+    );
 
-    await cameraController.initialize().then((value){
-      if(!mounted) {
+    await cameraController.initialize().then((value) {
+      if (!mounted) {
         return;
       }
       setState(() {});
-    }).catchError((e){
+    }).catchError((e) {
       print(e);
     });
   }
@@ -48,83 +52,85 @@ class _PageQrDoneScreenState extends State<PageQrDoneScreen> {
 
   @override
   Widget build(BuildContext context) {
-    try{
-    return SafeArea(
-      child: Scaffold(
-        appBar: CustomAppBar(
-          height: 90.v,
-          leadingWidth: 52.h,
-          leading: AppbarIconbutton(
-            svgPath: ImageConstant.imgFaiconsolidarrowleft,
-            margin: EdgeInsets.only(
-              left: 24.h,
-              top: 11.v,
-              bottom: 11.v,
+    try {
+      return SafeArea(
+        child: Scaffold(
+            appBar: CustomAppBar(
+              height: 90.v,
+              leadingWidth: 52.h,
+              leading: AppbarIconbutton(
+                svgPath: ImageConstant.imgFaiconsolidarrowleft,
+                margin: EdgeInsets.only(
+                  left: 24.h,
+                  top: 11.v,
+                  bottom: 11.v,
+                ),
+                onTap: () {
+                  // Navigate to HomepageDonePage when the button is pressed
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => HomepageDoneScreen()),
+                  );
+                },
+              ),
+              centerTitle: true,
+              title: AppbarTitle(
+                text: "QUICK\nBANK",
+              ),
             ),
-            onTap: () {
-              // Navigate to HomepageDonePage when the button is pressed
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => HomepageDoneScreen()),
-              );
-            },
-          ),
-          centerTitle: true,
-          title: AppbarTitle(
-            text: "QUICK\nBANK",
-          ),
-        ),
-        body: Stack(
-          children: [
-            CameraPreview(cameraController),
-            Align(
-              child: Container(
-          width: double.maxFinite,
-          padding: EdgeInsets.symmetric(
-            horizontal: 50.h,
-            vertical: 60.v,
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Spacer(),
-              Text(
-                "QR Scan",
-                style: CustomTextStyles.titleMediumOnPrimaryContainer,
-              ),
-              SizedBox(height: 12.v),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CustomIconButton(
-                    height: 60.adaptSize,
-                    width: 60.adaptSize,
-                    padding: EdgeInsets.all(14.h),
-                    decoration: IconButtonStyleHelper.outlineOnPrimaryContainer,
-                    child: CustomImageView(
-                      svgPath: ImageConstant.imgFaiconsolidcamera,
+            body: Stack(
+              children: [
+                CameraPreview(cameraController),
+                Align(
+                  child: Container(
+                    width: double.maxFinite,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 50.h,
+                      vertical: 60.v,
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Spacer(),
+                        Text(
+                          "QR Scan",
+                          style: CustomTextStyles.titleMediumOnPrimaryContainer,
+                        ),
+                        SizedBox(height: 12.v),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CustomIconButton(
+                              height: 60.adaptSize,
+                              width: 60.adaptSize,
+                              padding: EdgeInsets.all(14.h),
+                              decoration: IconButtonStyleHelper
+                                  .outlineOnPrimaryContainer,
+                              child: CustomImageView(
+                                svgPath: ImageConstant.imgFaiconsolidcamera,
+                              ),
+                            ),
+                            CustomIconButton(
+                              height: 60.adaptSize,
+                              width: 60.adaptSize,
+                              padding: EdgeInsets.all(14.h),
+                              decoration: IconButtonStyleHelper
+                                  .outlineOnPrimaryContainer,
+                              child: CustomImageView(
+                                imagePath: ImageConstant.imgGaleri,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
-                  CustomIconButton(
-                    height: 60.adaptSize,
-                    width: 60.adaptSize,
-                    padding: EdgeInsets.all(14.h),
-                    decoration: IconButtonStyleHelper.outlineOnPrimaryContainer,
-                    child: CustomImageView(
-                      imagePath: ImageConstant.imgGaleri,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-            )
-          ],
-        )
-      ),
-    );
-    } catch(e) {
+                )
+              ],
+            )),
+      );
+    } catch (e) {
       return const SizedBox();
     }
   }

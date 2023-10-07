@@ -45,13 +45,13 @@ class PageKetigaScreen extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Container(
                     padding: EdgeInsets.symmetric(
-                      horizontal: 24.h,
-                      vertical: 40.v,
+                      horizontal: 15.h,
+                      vertical: 15.v,
                     ),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        SizedBox(height: 13.v),
+                        SizedBox(height: 5.v),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
