@@ -108,9 +108,13 @@ class QbTransferScreen extends StatelessWidget {
         ),
         bottomNavigationBar: CustomOutlinedButton(
           text: "Transfer",
-          buttonTextStyle: TextStyle(
-            color: Colors.white,
+          margin: EdgeInsets.only(
+            left: 24.h,
+            right: 24.h,
+            bottom: 46.v,
             ),
+            buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
+            borderColor: Colors.transparent,
             onTap: () {
              if (_formKey.currentState?.validate() == true) {
               onTapConfirmQb(context);
@@ -119,7 +123,7 @@ class QbTransferScreen extends StatelessWidget {
               notesQbValue = notesQbController.text;
               }
             },
-          borderColor: Colors.white,
+          
         ),
       ),
     );

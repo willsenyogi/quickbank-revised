@@ -197,9 +197,13 @@ class _TransferBankLainScreenState extends State<TransferBankLainScreen> {
         ),
         bottomNavigationBar: CustomOutlinedButton(
           text: "Transfer",
-          buttonTextStyle: TextStyle(
-            color: Colors.white,
+          margin: EdgeInsets.only(
+            left: 24.h,
+            right: 24.h,
+            bottom: 46.v,
             ),
+            buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
+            borderColor: Colors.transparent,
             onTap: () {
              if (_formKey.currentState?.validate() == true) {
               valueBL = rekeningController.text;
@@ -209,7 +213,7 @@ class _TransferBankLainScreenState extends State<TransferBankLainScreen> {
               
               }
             },
-          borderColor: Colors.white,
+          
         ),
       ),
     );

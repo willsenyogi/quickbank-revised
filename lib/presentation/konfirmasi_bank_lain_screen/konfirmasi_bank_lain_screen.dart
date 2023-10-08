@@ -132,9 +132,16 @@ class KonfirmasiBankLainScreen extends StatelessWidget {
                   right: 24.h,
                   child: CustomOutlinedButton(
                     buttonTextStyle: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                     ),
                     text: "Transfer",
+                    margin: EdgeInsets.only(
+                      left: 24.h,
+                      right: 24.h,
+                      bottom: 46.v,
+                    ),
+                    buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
+                    borderColor: Colors.transparent,
                     onTap: () {
                       Alert(
                       context: context,
@@ -175,7 +182,7 @@ class KonfirmasiBankLainScreen extends StatelessWidget {
                       ),
                     ]).show();
                     },
-                    borderColor: Colors.white,
+                    
                   ),
                 )
               ],
