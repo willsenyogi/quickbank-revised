@@ -1,5 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quickbank_revised/presentation/page_qr_done_screen/page_qr_done_screen.dart';
-import 'package:quickbank_revised/presentation/pilihan_transfer_screen/pilihan_transfer_screen.dart';
 import '../homepage_done_page/widgets/favouritecard_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
@@ -15,9 +16,45 @@ class HomepageDoneScreen extends StatefulWidget {
   _HomepageDoneScreenState createState() => _HomepageDoneScreenState();
 }
 
+class UserProfile {
+  final String fullName;
+  final String profilePictureURL;
+
+  UserProfile({required this.fullName, required this.profilePictureURL});
+}
+
 class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
   FocusNode qbCounterFocusNode = FocusNode();
   FocusNode qbCounter1FocusNode = FocusNode();
+
+  final currentUser = FirebaseAuth.instance.currentUser!;
+  final usersCollection = FirebaseFirestore.instance.collection("user");
+
+  Future<UserProfile> getUserProfile() async {
+    try {
+      final currentUser = FirebaseAuth.instance.currentUser;
+
+      if (currentUser != null) {
+        DocumentSnapshot userData = await FirebaseFirestore.instance
+            .collection('user')
+            .doc(currentUser.email)
+            .get();
+
+        String firstName = userData['nama depan'] ?? '';
+        String lastName = userData['nama belakang'] ?? '';
+        String fullName = '$firstName $lastName';
+        String profilePictureURL = userData['profile_picture'] ?? '';
+
+        return UserProfile(
+            fullName: fullName, profilePictureURL: profilePictureURL);
+      } else {
+        return UserProfile(fullName: '', profilePictureURL: '');
+      }
+    } catch (e) {
+      print('Error fetching user profile: $e');
+      return UserProfile(fullName: '', profilePictureURL: '');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,29 +108,55 @@ class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
                                   SizedBox(height: 20.v),
                                   Align(
                                     alignment: Alignment.centerLeft,
-                                    child: Row(
-                                      children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsets.only(left: 20),
-                                          child: CustomImageView(
-                                            imagePath:
-                                                ImageConstant.imgLocation,
-                                            height: 48.adaptSize,
-                                            width: 48.adaptSize,
-                                          ),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              left: 8.h,
-                                              top: 10.v,
-                                              bottom: 12.v),
-                                          child: Text(
-                                            "Carina Adelaine",
-                                            style: theme.textTheme.titleLarge,
-                                          ),
-                                        )
-                                      ],
+                                    child: FutureBuilder<UserProfile>(
+                                      future:
+                                          getUserProfile(), // Menggunakan getUserProfile() yang mengembalikan Future<UserProfile>
+                                      builder: (context, snapshot) {
+                                        if (snapshot.connectionState ==
+                                            ConnectionState.waiting) {
+                                          return CircularProgressIndicator();
+                                        } else if (snapshot.hasError) {
+                                          return Text(
+                                              'Error: ${snapshot.error}');
+                                        } else {
+                                          if (snapshot.data != null) {
+                                            UserProfile userData =
+                                                snapshot.data!;
+                                            String imageURL =
+                                                userData.profilePictureURL;
+                                            String displayName =
+                                                userData.fullName;
+
+                                            return Row(
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 20),
+                                                  child: CircleAvatar(
+                                                    radius: 24.0,
+                                                    backgroundImage:
+                                                        NetworkImage(imageURL),
+                                                  ),
+                                                ),
+                                                Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: 8.h,
+                                                      top: 10.v,
+                                                      bottom: 12.v),
+                                                  child: Text(
+                                                    displayName,
+                                                    style: theme
+                                                        .textTheme.titleLarge,
+                                                  ),
+                                                )
+                                              ],
+                                            );
+                                          } else {
+                                            return Text('Data tidak ditemukan');
+                                          }
+                                        }
+                                      },
                                     ),
                                   ),
                                   SizedBox(height: 70.v),
