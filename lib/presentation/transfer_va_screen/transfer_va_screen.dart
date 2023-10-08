@@ -74,6 +74,7 @@ class TransferVaScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 25.v),
                   CustomTextFormField(
+                    autofocus: false,
                     controller: vaController,
                     hintText: "Nomor Virtual Account",
                     textInputType: TextInputType.number,
@@ -86,6 +87,7 @@ class TransferVaScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 30.v),
                   CustomTextFormField(
+                    autofocus: false,
                     controller: nominalVaController,
                     hintText: "Jumlah Transfer",
                     textInputAction: TextInputAction.done,

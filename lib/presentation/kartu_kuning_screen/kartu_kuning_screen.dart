@@ -25,6 +25,21 @@ class KartuKuningScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Container(
+          width: mediaQueryData.size.width,
+          height: mediaQueryData.size.height,
+          decoration: BoxDecoration(
+            color: appTheme.black900,
+            image: DecorationImage(
+              image: AssetImage(
+                ImageConstant.imgWavebackground,
+              ),
+              fit: BoxFit.cover,
+            ),
+          ),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
         extendBody: true,
         extendBodyBehindAppBar: true,
         resizeToAvoidBottomInset: true,
@@ -50,15 +65,6 @@ class KartuKuningScreen extends StatelessWidget {
         body: Container(
           width: mediaQueryData.size.width,
           height: mediaQueryData.size.height,
-          decoration: BoxDecoration(
-            color: appTheme.black900,
-            image: DecorationImage(
-              image: AssetImage(
-                ImageConstant.imgWavebackground,
-              ),
-              fit: BoxFit.cover,
-            ),
-          ),
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,
@@ -139,7 +145,7 @@ class KartuKuningScreen extends StatelessWidget {
             onTapTambah(context);
           },
         ),
-      ),
+      ),))
     );
   }
 

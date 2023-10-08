@@ -156,6 +156,7 @@ class _TransferBankLainScreenState extends State<TransferBankLainScreen> {
                   ),
                   SizedBox(height: 30.v),
                   CustomTextFormField(
+                    autofocus: false,
                     controller: rekeningController,
                     hintText: "Nomor Rekening",
                     textInputType: TextInputType.number,
@@ -169,6 +170,7 @@ class _TransferBankLainScreenState extends State<TransferBankLainScreen> {
                   ),
                   SizedBox(height: 30.v),
                   CustomTextFormField(
+                    autofocus: false,
                     controller: nominalBLController,
                     hintText: "Jumlah Transfer",
                     textInputAction: TextInputAction.done,
@@ -185,6 +187,7 @@ class _TransferBankLainScreenState extends State<TransferBankLainScreen> {
                   ),
                   SizedBox(height: 30.v),
                   CustomTextFormField(
+                    autofocus: false,
                     controller: catatanController,
                     hintText: "Catatan",
                     textInputAction: TextInputAction.done,

@@ -11,6 +11,7 @@ class PilihanTransferScreen extends StatelessWidget {
     mediaQueryData = MediaQuery.of(context);
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: SizedBox(
           height: double.maxFinite,
           width: double.maxFinite,

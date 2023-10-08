@@ -101,6 +101,7 @@ class _QbTransferScreenState extends State<QbTransferScreen> {
                   ),
                   SizedBox(height: 25.v),
                   CustomTextFormField(
+                    autofocus: false,
                     controller: qbNumberController,
                     hintText: "Nomor Rekening",
                     textInputType: TextInputType.number,
@@ -114,6 +115,7 @@ class _QbTransferScreenState extends State<QbTransferScreen> {
                   ),
                   SizedBox(height: 30.v),
                   CustomTextFormField(
+                    autofocus: false,
                     controller: nominalQbController,
                     hintText: "Jumlah Transfer",
                     textInputAction: TextInputAction.done,
@@ -130,6 +132,7 @@ class _QbTransferScreenState extends State<QbTransferScreen> {
                   ),
                   SizedBox(height: 30.v),
                   CustomTextFormField(
+                    autofocus: false,
                     controller: notesQbController,
                     hintText: "Catatan",
                   ),
