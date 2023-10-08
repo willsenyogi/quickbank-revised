@@ -212,7 +212,7 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
                                 Padding(
                                   padding: EdgeInsets.only(top: 15),
                                   child: SizedBox(
-                                    height: 45,
+                                    height: 35,
                                     width: MediaQuery.of(context).size.width,
                                     child: Stack(
                                       alignment: Alignment.center,
@@ -239,10 +239,10 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
                 Align(
                   alignment: Alignment.bottomCenter,
                   child: Container(
-                    height: 630.v,
+                    height: 660,
                     width: MediaQuery.of(context).size.width,
                     padding:
-                        EdgeInsets.symmetric(horizontal: 5.h, vertical: 20.v),
+                        EdgeInsets.symmetric(horizontal: 5.h, vertical: 10.v),
                     decoration: AppDecoration.outlineBlack900.copyWith(),
                     child: Column(
                       children: [
