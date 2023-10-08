@@ -74,7 +74,7 @@ class _HistoryOnProgressScreenState extends State<HistoryOnProgressScreen> {
                     CustomImageView(
                       imagePath: ImageConstant.imgCutbackground1,
                       height: 140,
-                      width: double.infinity, // Lebar diubah ke "double.infinity"
+                      width: double.infinity,
                       alignment: Alignment.center,
                     ),
                     Center(
@@ -88,25 +88,25 @@ class _HistoryOnProgressScreenState extends State<HistoryOnProgressScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               SizedBox(
-                              width: 50,
-                              child: FittedBox(
-                                fit: BoxFit.fitWidth,
-                                child: Text(
-                                  "QUICK\nBANK",
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  textAlign: TextAlign.center,
-                                  style: theme.textTheme.titleSmall!.copyWith(
-                                    height: 1.20,
+                                width: 50,
+                                child: FittedBox(
+                                  fit: BoxFit.fitWidth,
+                                  child: Text(
+                                    "QUICK\nBANK",
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.center,
+                                    style: theme.textTheme.titleSmall!.copyWith(
+                                      height: 1.20,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-
                               SizedBox(height: 35),
                               Text(
                                 "Histori Transaksi",
-                                style: CustomTextStyles.titleLargeOnPrimaryContainer,
+                                style: CustomTextStyles
+                                    .titleLargeOnPrimaryContainer,
                               ),
                             ],
                           ),
@@ -132,20 +132,22 @@ class _HistoryOnProgressScreenState extends State<HistoryOnProgressScreen> {
                           ),
                         )
                       : ListView.separated(
-                        physics: BouncingScrollPhysics(),
-                        shrinkWrap: true,
-                        itemCount: transactionHistory.length,
-                        separatorBuilder: (context, index) {
-                          return SizedBox(height: 8.0);
-                        },
-                        itemBuilder: (context, index) {
-                          return TransactionCardWidget(
-                            accountNumber: transactionHistory[index].accountNumber,
-                            amount: transactionHistory[index].amount,
-                            transactionType: transactionHistory[index].transactionType,
-                          );
-                        },
-                      ),
+                          physics: BouncingScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: transactionHistory.length,
+                          separatorBuilder: (context, index) {
+                            return SizedBox(height: 8.0);
+                          },
+                          itemBuilder: (context, index) {
+                            return TransactionCardWidget(
+                              accountNumber:
+                                  transactionHistory[index].accountNumber,
+                              amount: transactionHistory[index].amount,
+                              transactionType:
+                                  transactionHistory[index].transactionType,
+                            );
+                          },
+                        ),
                 ),
               ),
             ],

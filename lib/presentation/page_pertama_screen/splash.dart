@@ -15,7 +15,7 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    // Tambahkan penanganan penundaan di sini
+
     Future.delayed(Duration(seconds: 2), () {
       if (FirebaseAuth.instance.currentUser == null) {
         Navigator.of(context).pushReplacement(

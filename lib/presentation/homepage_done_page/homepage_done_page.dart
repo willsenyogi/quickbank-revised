@@ -3,8 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:quickbank_revised/presentation/history_on_progress_screen/widgets/favouritecard1_item_widget.dart';
 import 'package:quickbank_revised/presentation/page_qr_done_screen/page_qr_done_screen.dart';
-import '../homepage_done_page/widgets/favouritecard_item_widget.dart';
-import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
 import 'package:quickbank_revised/widgets/custom_floating_text_field.dart';
 import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
@@ -410,14 +408,12 @@ class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
                               separatorBuilder: (context, index) {
                                 return SizedBox(height: 16.v);
                               },
-                              itemCount:
-                                  2, // Menampilkan hanya 2 histori terakhir
+                              itemCount: 2,
                               itemBuilder: (context, index) {
                                 if (transactionHistory.isEmpty) {
                                   return Text("Tidak ada transaksi.");
                                 }
 
-                                // Pastikan indeks dalam rentang yang valid
                                 if (index >= 0 &&
                                     index < transactionHistory.length) {
                                   // Mengambil 2 item terakhir dari daftar transaksi
@@ -427,7 +423,6 @@ class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
                                       transactionHistory[reversedIndex];
 
                                   return TransactionCardWidget(
-                                    // Gunakan data dari transaction untuk mengisi FavouritecardItemWidget
                                     accountNumber: transaction.accountNumber,
                                     amount: transaction.amount,
                                     transactionType:

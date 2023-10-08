@@ -6,7 +6,7 @@ import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
 import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
 import 'package:quickbank_revised/widgets/custom_text_form_field.dart';
-import 'package:cloud_firestore/cloud_firestore.dart'; // Import Firestore
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quickbank_revised/main.dart';
 
 class QbTransferScreen extends StatefulWidget {
@@ -25,24 +25,19 @@ class _QbTransferScreenState extends State<QbTransferScreen> {
   TextEditingController notesQbController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  // Method untuk mengirim data transaksi ke Firebase Firestore
   void performBankTransaction(
       String accountNumber, String transferAmount, String transactionType) {
-    // Mendapatkan referensi koleksi 'transactions'
     CollectionReference transactions =
         FirebaseFirestore.instance.collection('transactions');
 
-    // Menambahkan data transaksi ke koleksi 'transactions'
     transactions.add({
       'accountNumber': accountNumber,
       'amount': double.parse(transferAmount),
       'transactionType': transactionType,
-      'timestamp': FieldValue.serverTimestamp(), // Menambahkan timestamp
+      'timestamp': FieldValue.serverTimestamp(),
     }).then((value) {
-      // Transaksi berhasil ditambahkan ke Firebase Firestore
       print("Transaksi berhasil ditambahkan.");
     }).catchError((error) {
-      // Terjadi kesalahan saat menambahkan transaksi
       print("Error: $error");
     });
   }
@@ -157,11 +152,10 @@ class _QbTransferScreenState extends State<QbTransferScreen> {
               if (currentUser != null) {
                 final userEmail = currentUser.email;
                 if (userEmail != null) {
-                  // Panggil metode performBankTransaction dengan email pengguna
                   performBankTransaction(
                     qbNumberController.text,
                     nominalQbController.text,
-                    "QB", // Sesuaikan dengan jenis transaksi yang diinginkan
+                    "QB",
                   );
                 }
               }

@@ -323,7 +323,6 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
 
   @override
   void dispose() {
-    // Dispose TextEditingControllers
     _firstname.dispose();
     _lastname.dispose();
     _usia.dispose();
