@@ -139,6 +139,11 @@ class KartuBiruScreen extends StatelessWidget {
         ),
         bottomNavigationBar: CustomOutlinedButton(
           text: "Tambah Kartu",
+          margin: EdgeInsets.only(
+            left: 24.h,
+            right: 24.h,
+            bottom: 40.v,
+          ),
           buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
           borderColor: Colors.transparent,
           onTap: () {
