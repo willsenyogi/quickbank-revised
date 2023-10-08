@@ -16,7 +16,7 @@ class _SplashState extends State<Splash> {
   void initState() {
     super.initState();
 
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(Duration(seconds: 4), () {
       if (FirebaseAuth.instance.currentUser == null) {
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) => PagePertamaScreen()),
