@@ -2,7 +2,6 @@ import '../page_kedua_screen/widgets/userprofilebox_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
 import 'package:quickbank_revised/widgets/custom_icon_button.dart';
-import 'package:quickbank_revised/widgets/custom_floating_button.dart';
 
 class PageKeduaScreen extends StatelessWidget {
   const PageKeduaScreen({Key? key}) : super(key: key);

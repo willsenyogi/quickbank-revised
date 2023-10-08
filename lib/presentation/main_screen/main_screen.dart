@@ -1,5 +1,4 @@
 import 'package:quickbank_revised/presentation/homepage_done_page/homepage_done_page.dart';
-import 'package:quickbank_revised/presentation/page_qr_done_screen/page_qr_done_screen.dart';
 import 'package:quickbank_revised/presentation/pilihan_transfer_screen/pilihan_transfer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/presentation/profile_done_screen/profileeditscreen.dart';
