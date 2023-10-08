@@ -238,78 +238,82 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: Container(
-                    height: 660,
-                    width: MediaQuery.of(context).size.width,
-                    padding:
-                        EdgeInsets.symmetric(horizontal: 5.h, vertical: 10.v),
-                    decoration: AppDecoration.outlineBlack900.copyWith(),
-                    child: Column(
-                      children: [
-                        Stack(
-                          children: [
-                            GestureDetector(
-                              onTap: () {
-                                pickUpLoadImage();
-                              },
-                              child: Container(
-                                width: 80,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: imageUrl != " "
-                                      ? DecorationImage(
-                                          fit: BoxFit.cover,
-                                          image: NetworkImage(imageUrl),
-                                        )
-                                      : null,
-                                ),
-                                child: Center(
-                                  child: imageUrl == " "
-                                      ? const Icon(
-                                          Icons.person,
-                                          size: 80,
-                                          color: Colors.white,
-                                        )
-                                      : null,
+                  child: SingleChildScrollView(
+                    child: Container(
+                      height: 660.v,
+                      width: MediaQuery.of(context).size.width,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 5.h, vertical: 20.v),
+                      decoration: AppDecoration.outlineBlack900.copyWith(),
+                      child: Column(
+                        children: [
+                          Stack(
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  pickUpLoadImage();
+                                },
+                                child: Container(
+                                  width: 80,
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: imageUrl != " "
+                                        ? DecorationImage(
+                                            fit: BoxFit.cover,
+                                            image: NetworkImage(imageUrl),
+                                          )
+                                        : null,
+                                  ),
+                                  child: Center(
+                                    child: imageUrl == " "
+                                        ? const Icon(
+                                            Icons.person,
+                                            size: 80,
+                                            color: Colors.white,
+                                          )
+                                        : null,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10.v),
-                        Column(
-                          children: [
-                            Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: Text(
-                                "Info Saya",
-                                style: theme.textTheme.bodyMedium,
+                            ],
+                          ),
+                          SizedBox(height: 10.v),
+                          Column(
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Text(
+                                  "Info Saya",
+                                  style: theme.textTheme.bodyMedium,
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
-                        TextBox(
-                          text: _firstname.text,
-                          sectionName: 'Nama Depan',
-                          onPressed: () => editField(context, 'nama depan'),
-                        ),
-                        TextBox(
-                          text: _lastname.text,
-                          sectionName: 'Nama Belakang',
-                          onPressed: () => editField(context, 'nama belakang'),
-                        ),
-                        TextBox(
-                          text: _usia.text,
-                          sectionName: 'Usia',
-                          onPressed: () => editField(context, 'usia'),
-                        ),
-                        TextBox(
-                          text: _phonenumber.text,
-                          sectionName: 'Nomor Telepon',
-                          onPressed: () => editField(context, 'nomor telepon'),
-                        ),
-                      ],
+                            ],
+                          ),
+                          TextBox(
+                            text: _firstname.text,
+                            sectionName: 'Nama Depan',
+                            onPressed: () => editField(context, 'nama depan'),
+                          ),
+                          TextBox(
+                            text: _lastname.text,
+                            sectionName: 'Nama Belakang',
+                            onPressed: () =>
+                                editField(context, 'nama belakang'),
+                          ),
+                          TextBox(
+                            text: _usia.text,
+                            sectionName: 'Usia',
+                            onPressed: () => editField(context, 'usia'),
+                          ),
+                          TextBox(
+                            text: _phonenumber.text,
+                            sectionName: 'Nomor Telepon',
+                            onPressed: () =>
+                                editField(context, 'nomor telepon'),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
