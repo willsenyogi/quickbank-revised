@@ -14,6 +14,7 @@ class PageKetigaScreen extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         extendBody: true,
         extendBodyBehindAppBar: true,
         body: Container(

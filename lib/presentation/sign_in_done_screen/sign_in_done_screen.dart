@@ -31,7 +31,7 @@ class _SignInDoneScreenState extends State<SignInDoneScreen> {
       child: Scaffold(
         extendBody: true,
         extendBodyBehindAppBar: true,
-        resizeToAvoidBottomInset: true,
+        resizeToAvoidBottomInset: false,
         appBar: CustomAppBar(
           height: 90.v,
           leadingWidth: 52.h,
