@@ -164,9 +164,9 @@ class PageKetigaScreen extends StatelessWidget {
                         CustomOutlinedButton(
                           text: "Sudah Memiliki Akun",
                           buttonStyle:
-                              CustomButtonStyles.outlinePrimaryContainer,
-                          buttonTextStyle:
-                              CustomTextStyles.titleMediumOnPrimaryContainer,
+                              CustomButtonStyles.outlineOnPrimaryTL241,
+                          
+                          
                           borderColor: Colors.transparent,
                           onTap: () {
                             onTapSudah(context);
