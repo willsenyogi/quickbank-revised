@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/utils/image_constant.dart';
 import 'package:quickbank_revised/core/utils/size_utils.dart';
@@ -25,11 +26,48 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
 
   final usersCollection = FirebaseFirestore.instance.collection("user");
 
-  final TextEditingController _fullname = TextEditingController();
-  final TextEditingController _email = TextEditingController();
+  final TextEditingController _firstname = TextEditingController();
+  final TextEditingController _lastname = TextEditingController();
+  final TextEditingController _usia = TextEditingController();
   final TextEditingController _phonenumber = TextEditingController();
 
+  String imageUrl = " ";
+
+  void pickUpLoadImage() async {
+    final image = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+      maxWidth: 512,
+      maxHeight: 512,
+      imageQuality: 75,
+    );
+
+    if (image != null) {
+      final email = currentUser.email;
+      Reference ref =
+          FirebaseStorage.instance.ref().child("profilepics/$email.jpg");
+
+      await ref.putFile(File(image.path));
+      final imageUrl = await ref.getDownloadURL();
+
+      await usersCollection
+          .doc(currentUser.email)
+          .update({'profile_picture': imageUrl});
+
+      setState(() {
+        this.imageUrl = imageUrl;
+      });
+    }
+  }
+
   void onPressedLogout() async {
+    final email = currentUser.email;
+
+    if (_selectedImage != null) {
+      Reference ref =
+          FirebaseStorage.instance.ref().child("profilepics/$email.jpg");
+
+      await ref.putFile(_selectedImage!);
+    }
     await FirebaseAuth.instance.signOut();
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (context) => SignInDoneScreen()),
@@ -52,9 +90,14 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
 
       if (userDocument.exists) {
         final userData = userDocument.data() as Map<String, dynamic>;
-        _fullname.text = userData['nama lengkap'] ?? '';
-        _email.text = userData['email'] ?? '';
-        _phonenumber.text = userData['nomor telepon']?.toString() ?? '';
+        setState(() {
+          _firstname.text = userData['nama depan'] ?? '';
+          _lastname.text = userData['nama belakang'] ?? '';
+          _usia.text = userData['usia'] ?? '';
+          _phonenumber.text = userData['nomor telepon']?.toString() ?? '';
+
+          imageUrl = userData['profile_picture'] ?? " ";
+        });
       }
     } catch (e) {
       print('Error fetching user data: $e');
@@ -95,7 +138,19 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
               'Simpan',
               style: TextStyle(color: Colors.white),
             ),
-            onPressed: () => Navigator.of(context).pop(newValue),
+            onPressed: () {
+              if (field == 'nama depan') {
+                _firstname.text = newValue;
+              } else if (field == 'nama belakang') {
+                _lastname.text = newValue;
+              } else if (field == 'usia') {
+                _usia.text = newValue;
+              } else if (field == 'nomor telepon') {
+                _phonenumber.text = newValue;
+              }
+              Navigator.of(context).pop();
+              setState(() {});
+            },
           ),
         ],
       ),
@@ -193,40 +248,30 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
                       children: [
                         Stack(
                           children: [
-                            Container(
-                              width: 80,
-                              height: 80,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: _selectedImage != null
-                                    ? DecorationImage(
-                                        fit: BoxFit.cover,
-                                        image: FileImage(_selectedImage!),
-                                      )
-                                    : null,
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 0,
-                              right: 0,
+                            GestureDetector(
+                              onTap: () {
+                                pickUpLoadImage();
+                              },
                               child: Container(
-                                height: 30,
-                                width: 30,
+                                width: 80,
+                                height: 80,
                                 decoration: BoxDecoration(
-                                  border:
-                                      Border.all(width: 2, color: Colors.white),
-                                  color: Colors.green,
                                   shape: BoxShape.circle,
+                                  image: imageUrl != " "
+                                      ? DecorationImage(
+                                          fit: BoxFit.cover,
+                                          image: NetworkImage(imageUrl),
+                                        )
+                                      : null,
                                 ),
-                                child: IconButton(
-                                  icon: Icon(
-                                    Icons.edit,
-                                    color: Colors.white,
-                                    size: 12,
-                                  ),
-                                  onPressed: () {
-                                    _pickImageFromGallery();
-                                  },
+                                child: Center(
+                                  child: imageUrl == " "
+                                      ? const Icon(
+                                          Icons.person,
+                                          size: 80,
+                                          color: Colors.white,
+                                        )
+                                      : null,
                                 ),
                               ),
                             ),
@@ -245,37 +290,25 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
                           ],
                         ),
                         TextBox(
-                          text: _fullname.text,
+                          text: _firstname.text,
                           sectionName: 'Nama Depan',
-                          onPressed: () => editField(context, 'Nama Depan'),
+                          onPressed: () => editField(context, 'nama depan'),
                         ),
                         TextBox(
-                          text: _fullname.text,
+                          text: _lastname.text,
                           sectionName: 'Nama Belakang',
-                          onPressed: () => editField(context, 'Nama Belakang'),
+                          onPressed: () => editField(context, 'nama belakang'),
                         ),
                         TextBox(
-                          text: _fullname.text,
-                          sectionName: 'usia',
-                          onPressed: () => editField(context, 'Nama Belakang'),
+                          text: _usia.text,
+                          sectionName: 'Usia',
+                          onPressed: () => editField(context, 'usia'),
                         ),
-                        SizedBox(height: 15.v),
-                        TextBox(
-                          text: _email.text,
-                          sectionName: 'Email',
-                          onPressed: () => editField(context, 'Email'),
-                        ),
-                        SizedBox(height: 15.v),
                         TextBox(
                           text: _phonenumber.text,
                           sectionName: 'Nomor Telepon',
-                          onPressed: () => editField(context, 'Nomor Telepon'),
+                          onPressed: () => editField(context, 'nomor telepon'),
                         ),
-                        SizedBox(height: 15.v),
-                        // TextBox(
-                        //     text: 'Rumah',
-                        //     sectionName: 'Alamat',
-                        //     onPressed: () => editField(context, 'Alamat')),
                       ],
                     ),
                   ),
@@ -288,13 +321,13 @@ class _ProfilEditScreenState extends State<ProfilEditScreen> {
     );
   }
 
-  Future _pickImageFromGallery() async {
-    final returnedImage =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
-
-    if (returnedImage == null) return;
-    setState(() {
-      _selectedImage = File(returnedImage.path);
-    });
+  @override
+  void dispose() {
+    // Dispose TextEditingControllers
+    _firstname.dispose();
+    _lastname.dispose();
+    _usia.dispose();
+    _phonenumber.dispose();
+    super.dispose();
   }
 }

@@ -12,21 +12,10 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
-  double opacity = 0.0;
-
   @override
   void initState() {
     super.initState();
-    _startAnimation();
-  }
-
-  _startAnimation() async {
-    await Future.delayed(Duration(seconds: 1), () {
-      setState(() {
-        opacity = 1.0;
-      });
-    });
-
+    // Tambahkan penanganan penundaan di sini
     Future.delayed(Duration(seconds: 2), () {
       if (FirebaseAuth.instance.currentUser == null) {
         Navigator.of(context).pushReplacement(
@@ -44,16 +33,12 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: AnimatedOpacity(
-          opacity: opacity,
-          duration: Duration(seconds: 1),
-          child: Container(
-            child: Center(
-              child: Text(
-                'QUICK\nB A N K',
-                style: CustomTextStyles.displayLargeOnPrimaryContainer.copyWith(
-                  height: 1.30,
-                ),
+        child: Container(
+          child: Center(
+            child: Text(
+              'QUICK\nB A N K',
+              style: CustomTextStyles.displayLargeOnPrimaryContainer.copyWith(
+                height: 1.30,
               ),
             ),
           ),

@@ -30,13 +30,12 @@ class _BiodataScreenState extends State<BiodataScreen> {
   final TextEditingController _kodelogin = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  Future addUserDetails(String namaDepan, String namaBelakang, int usia,
-      String email, int nomorTelepon) async {
+  Future addUserDetails(
+      String namaDepan, String namaBelakang, int usia, int nomorTelepon) async {
     await FirebaseFirestore.instance.collection('user').add({
       'nama depan': namaDepan,
       'nama belakang': namaBelakang,
       'usia': usia,
-      'email': email,
       'nomor telepon': nomorTelepon,
     });
   }
@@ -208,16 +207,26 @@ class _BiodataScreenState extends State<BiodataScreen> {
   onTapSelanjutnya(BuildContext context) async {
     if (_formKey.currentState!.validate()) {
       try {
-        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        UserCredential userCredential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: _email.text,
           password: _password.text,
         );
+
+        FirebaseFirestore.instance
+            .collection("user")
+            .doc(userCredential.user!.email!)
+            .set({
+          'nama depan': _firstname.text,
+          'nama belakang': _lastname.text,
+          'usia': _age.text,
+          'nomor telepon': _phonenumber.text,
+        });
 
         addUserDetails(
           _firstname.text,
           _lastname.text,
           int.parse(_age.text),
-          _email.text,
           int.parse(_phonenumber.text),
         );
       } on FirebaseAuthException catch (e) {
