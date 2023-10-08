@@ -1,13 +1,61 @@
-import '../history_on_progress_screen/widgets/favouritecard1_item_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:quickbank_revised/core/app_export.dart';
+import 'package:quickbank_revised/presentation/history_on_progress_screen/widgets/favouritecard1_item_widget.dart';
 import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
 
-class HistoryOnProgressScreen extends StatelessWidget {
-  const HistoryOnProgressScreen({Key? key})
-      : super(
-          key: key,
+class HistoryOnProgressScreen extends StatefulWidget {
+  const HistoryOnProgressScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HistoryOnProgressScreen> createState() =>
+      _HistoryOnProgressScreenState();
+}
+
+class Transaction {
+  final String accountNumber;
+  final double amount;
+  final String transactionType;
+
+  Transaction({
+    required this.accountNumber,
+    required this.amount,
+    required this.transactionType,
+  });
+}
+
+class _HistoryOnProgressScreenState extends State<HistoryOnProgressScreen> {
+  List<Transaction> transactionHistory = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchTransactionHistory();
+  }
+
+  // Metode untuk mengambil data transaksi dari Firestore
+  void fetchTransactionHistory() {
+    FirebaseFirestore.instance
+        .collection('transactions')
+        .orderBy('timestamp', descending: false)
+        .get()
+        .then((querySnapshot) {
+      final transactions = querySnapshot.docs.map((doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        return Transaction(
+          accountNumber: data['accountNumber'] ?? '',
+          amount: data['amount'] ?? 0.0,
+          transactionType: data['transactionType'] ?? '',
         );
+      }).toList();
+
+      setState(() {
+        transactionHistory = transactions;
+      });
+    }).catchError((error) {
+      print("Error fetching transactions: $error");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,28 +118,43 @@ class HistoryOnProgressScreen extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: SizedBox(
-                  width: double.maxFinite,
-                  child: Container(
-                    margin: EdgeInsets.fromLTRB(23.h, 14.v, 23.h, 5.v),
-                    decoration: AppDecoration.fillOnPrimary.copyWith(),
-                    child: ListView.separated(
-                      physics: BouncingScrollPhysics(),
-                      shrinkWrap: true,
-                      separatorBuilder: (
-                        context,
-                        index,
-                      ) {
-                        return SizedBox(
-                          height: 18.v,
-                        );
-                      },
-                      itemCount: 8,
-                      itemBuilder: (context, index) {
-                        return Favouritecard1ItemWidget();
-                      },
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      width: double.maxFinite,
+                      child: Container(
+                        margin: EdgeInsets.fromLTRB(23.h, 14.v, 23.h, 5.v),
+                        decoration: AppDecoration.fillOnPrimary.copyWith(),
+                        child: transactionHistory.isEmpty
+                            ? Center(
+                                child: Text(
+                                  "Tidak ada data transaksi.",
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              )
+                            : ListView.builder(
+                                physics: BouncingScrollPhysics(),
+                                shrinkWrap: true,
+                                reverse: true,
+                                itemCount: transactionHistory.length,
+                                itemBuilder: (context, index) {
+                                  // Membuat widget TransactionCardWidget untuk setiap transaksi
+                                  return TransactionCardWidget(
+                                    accountNumber:
+                                        transactionHistory[index].accountNumber,
+                                    amount: transactionHistory[index].amount,
+                                    transactionType: transactionHistory[index]
+                                        .transactionType,
+                                  );
+                                },
+                              ),
+                      ),
                     ),
-                  ),
+                  ],
                 ),
               ),
             ],

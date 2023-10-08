@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
 import 'package:quickbank_revised/main.dart';
@@ -77,7 +79,7 @@ class TransferVaScreen extends StatelessWidget {
                     textInputType: TextInputType.number,
                     validator: (vaController) {
                       if (vaController == null || vaController.isEmpty) {
-                        return 'Nomor Virtual Account Salah';
+                        return 'Nomor Virtual Account Kosong';
                       }
                       return null;
                     },
@@ -89,7 +91,10 @@ class TransferVaScreen extends StatelessWidget {
                     textInputAction: TextInputAction.done,
                     textInputType: TextInputType.number,
                     validator: (nominalVaController) {
-                    if (nominalVaController == null || nominalVaController.isEmpty || int.parse(nominalVaController) > accountBalance || int.parse(nominalVaController) < 10000) {
+                      if (nominalVaController == null ||
+                          nominalVaController.isEmpty ||
+                          int.parse(nominalVaController) > accountBalance ||
+                          int.parse(nominalVaController) < 10000) {
                         return 'Jumlah minimal transfer adalah Rp 10.000,00';
                       }
                       return null;
@@ -106,17 +111,16 @@ class TransferVaScreen extends StatelessWidget {
             left: 24.h,
             right: 24.h,
             bottom: 46.v,
-            ),
-            buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
-            borderColor: Colors.transparent,
-            onTap: () {
-             if (_formKey.currentState?.validate() == true) {
+          ),
+          buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
+          borderColor: Colors.transparent,
+          onTap: () {
+            if (_formKey.currentState?.validate() == true) {
               onTapConfirmVa(context);
               vaValue = vaController.text;
               nominalVaValue = nominalVaController.text;
-              }
-            },
-          
+            }
+          },
         ),
       ),
     );
@@ -126,7 +130,30 @@ class TransferVaScreen extends StatelessWidget {
     Navigator.pushNamed(context, AppRoutes.pilihanTransferScreen);
   }
 
-  onTapConfirmVa(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.konfirmasiVaScreen);
+  onTapConfirmVa(BuildContext context) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    Timestamp timestamp = Timestamp.now();
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+
+    if (user != null) {
+      final String userEmail = user.email!;
+
+      Map<String, dynamic> transactionData = {
+        'email': userEmail,
+        'accountNumber': vaController.text, // Menyimpan nomor VA
+        'amount':
+            double.parse(nominalVaController.text), // Menyimpan jumlah transfer
+        'timestamp': timestamp,
+        'transactionType': 'Virtual Acc',
+      };
+
+      try {
+        await firestore.collection('transactions').add(transactionData);
+        Navigator.pushNamed(context, AppRoutes.konfirmasiVaScreen);
+      } catch (e) {
+        print('Terjadi kesalahan: $e');
+      }
+    }
   }
 }

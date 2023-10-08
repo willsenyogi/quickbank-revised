@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:quickbank_revised/presentation/history_on_progress_screen/widgets/favouritecard1_item_widget.dart';
 import 'package:quickbank_revised/presentation/page_qr_done_screen/page_qr_done_screen.dart';
 import '../homepage_done_page/widgets/favouritecard_item_widget.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +25,55 @@ class UserProfile {
   UserProfile({required this.fullName, required this.profilePictureURL});
 }
 
+class Transaction {
+  final String accountNumber;
+  final double amount;
+  final String transactionType;
+
+  Transaction({
+    required this.accountNumber,
+    required this.amount,
+    required this.transactionType,
+  });
+}
+
 class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
   FocusNode qbCounterFocusNode = FocusNode();
   FocusNode qbCounter1FocusNode = FocusNode();
 
   final currentUser = FirebaseAuth.instance.currentUser!;
   final usersCollection = FirebaseFirestore.instance.collection("user");
+  List<Transaction> transactionHistory = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchTransactionHistory();
+  }
+
+  void fetchTransactionHistory() {
+    FirebaseFirestore.instance
+        .collection('transactions')
+        .orderBy('timestamp',
+            descending: false) // Urutkan berdasarkan timestamp
+        .get()
+        .then((querySnapshot) {
+      final transactions = querySnapshot.docs.map((doc) {
+        final data = doc.data() as Map<String, dynamic>;
+        return Transaction(
+          accountNumber: data['accountNumber'] ?? '',
+          amount: data['amount'] ?? 0.0,
+          transactionType: data['transactionType'] ?? '',
+        );
+      }).toList();
+
+      setState(() {
+        transactionHistory = transactions;
+      });
+    }).catchError((error) {
+      print("Error fetching transactions: $error");
+    });
+  }
 
   Future<UserProfile> getUserProfile() async {
     try {
@@ -109,8 +154,7 @@ class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
                                   Align(
                                     alignment: Alignment.centerLeft,
                                     child: FutureBuilder<UserProfile>(
-                                      future:
-                                          getUserProfile(), // Menggunakan getUserProfile() yang mengembalikan Future<UserProfile>
+                                      future: getUserProfile(),
                                       builder: (context, snapshot) {
                                         if (snapshot.connectionState ==
                                             ConnectionState.waiting) {
@@ -261,92 +305,97 @@ class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(
-                            height: 320.v,
-                            width: MediaQuery.of(context).size.width,
-                            child: Stack(
-                              alignment: Alignment.centerLeft,
-                              children: [
-                                Align(
-                                  alignment: Alignment.centerRight,
-                                  child: SizedBox(
-                                    height: 238.v,
-                                    width: 189.h,
-                                    child: Stack(
-                                      alignment: Alignment.bottomLeft,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: SizedBox(
+                              height: 320.v,
+                              width: MediaQuery.of(context).size.width,
+                              child: Stack(
+                                alignment: Alignment.centerLeft,
+                                children: [
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: SizedBox(
+                                      height: 238.v,
+                                      width: 189.h,
+                                      child: Stack(
+                                        alignment: Alignment.bottomLeft,
+                                        children: [
+                                          CustomImageView(
+                                            imagePath: ImageConstant.img12,
+                                            height: 220.v,
+                                            width: 173.h,
+                                            radius: BorderRadius.circular(15.h),
+                                            alignment: Alignment.topRight,
+                                          ),
+                                          CustomImageView(
+                                            imagePath: ImageConstant.img21,
+                                            height: 220.v,
+                                            width: 173.h,
+                                            radius: BorderRadius.circular(15.h),
+                                            alignment: Alignment.bottomLeft,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        CustomImageView(
-                                          imagePath: ImageConstant.img12,
-                                          height: 220.v,
-                                          width: 173.h,
-                                          radius: BorderRadius.circular(15.h),
-                                          alignment: Alignment.topRight,
+                                        Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            "Informasi Kartu",
+                                            style: CustomTextStyles
+                                                .titleLargeOnPrimaryContainer,
+                                          ),
                                         ),
-                                        CustomImageView(
-                                          imagePath: ImageConstant.img21,
-                                          height: 220.v,
-                                          width: 173.h,
-                                          radius: BorderRadius.circular(15.h),
-                                          alignment: Alignment.bottomLeft,
+                                        SizedBox(height: 53.v),
+                                        CustomFloatingTextField(
+                                          width: 140.h,
+                                          labelText: "QB 1\n$kartuKuning",
+                                          labelStyle:
+                                              theme.textTheme.labelLarge!,
+                                          textInputAction: TextInputAction.done,
+                                          focusNode: qbCounterFocusNode,
+                                          autofocus: false,
+                                          enabled: false,
                                         ),
+                                        SizedBox(height: 45.v),
+                                        CustomFloatingTextField(
+                                          width: 140.h,
+                                          labelText: "QB 2\n$kartuBiru",
+                                          labelStyle:
+                                              theme.textTheme.labelLarge!,
+                                          textInputAction: TextInputAction.done,
+                                          focusNode: qbCounter1FocusNode,
+                                          autofocus: false,
+                                          enabled: false,
+                                        ),
+                                        SizedBox(height: 45.v),
+                                        CustomOutlinedButton(
+                                            height: 28.v,
+                                            text: "Tambah Kartu",
+                                            buttonStyle: CustomButtonStyles
+                                                .outlinePrimaryContainerTL14,
+                                            buttonTextStyle:
+                                                theme.textTheme.labelLarge!,
+                                            borderColor: Color(0xFF262626),
+                                            onTap: () {
+                                              onTapTambahKartu(context);
+                                            }),
                                       ],
                                     ),
                                   ),
-                                ),
-                                Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          "Informasi Kartu",
-                                          style: CustomTextStyles
-                                              .titleLargeOnPrimaryContainer,
-                                        ),
-                                      ),
-                                      SizedBox(height: 53.v),
-                                      CustomFloatingTextField(
-                                        width: 140.h,
-                                        labelText: "QB 1\n$kartuKuning",
-                                        labelStyle: theme.textTheme.labelLarge!,
-                                        textInputAction: TextInputAction.done,
-                                        focusNode: qbCounterFocusNode,
-                                        autofocus: false,
-                                        enabled: false,
-                                      ),
-                                      SizedBox(height: 45.v),
-                                      CustomFloatingTextField(
-                                        width: 140.h,
-                                        labelText: "QB 2\n$kartuBiru",
-                                        labelStyle: theme.textTheme.labelLarge!,
-                                        textInputAction: TextInputAction.done,
-                                        focusNode: qbCounter1FocusNode,
-                                        autofocus: false,
-                                        enabled: false,
-                                      ),
-                                      SizedBox(height: 45.v),
-                                      CustomOutlinedButton(
-                                          height: 28.v,
-                                          text: "Tambah Kartu",
-                                          buttonStyle: CustomButtonStyles
-                                              .outlinePrimaryContainerTL14,
-                                          buttonTextStyle:
-                                              theme.textTheme.labelLarge!,
-                                          borderColor: Color(0xFF262626),
-                                          onTap: () {
-                                            onTapTambahKartu(context);
-                                          }),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
-                          SizedBox(height: 100.v),
+                          SizedBox(height: 80.v),
                           Text(
                             "Histori Transaksi",
                             style:
@@ -354,16 +403,39 @@ class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
                           ),
                           Padding(
                             padding: EdgeInsets.only(
-                                left: 14.h, top: 24.v, right: 14.h),
+                                left: 8.h, top: 24.v, right: 8.h),
                             child: ListView.separated(
                               physics: NeverScrollableScrollPhysics(),
                               shrinkWrap: true,
                               separatorBuilder: (context, index) {
                                 return SizedBox(height: 16.v);
                               },
-                              itemCount: 2,
+                              itemCount:
+                                  2, // Menampilkan hanya 2 histori terakhir
                               itemBuilder: (context, index) {
-                                return FavouritecardItemWidget();
+                                if (transactionHistory.isEmpty) {
+                                  return Text("Tidak ada transaksi.");
+                                }
+
+                                // Pastikan indeks dalam rentang yang valid
+                                if (index >= 0 &&
+                                    index < transactionHistory.length) {
+                                  // Mengambil 2 item terakhir dari daftar transaksi
+                                  final reversedIndex =
+                                      transactionHistory.length - 1 - index;
+                                  final transaction =
+                                      transactionHistory[reversedIndex];
+
+                                  return TransactionCardWidget(
+                                    // Gunakan data dari transaction untuk mengisi FavouritecardItemWidget
+                                    accountNumber: transaction.accountNumber,
+                                    amount: transaction.amount,
+                                    transactionType:
+                                        transaction.transactionType,
+                                  );
+                                } else {
+                                  return Text("Indeks tidak valid.");
+                                }
                               },
                             ),
                           ),
@@ -371,7 +443,7 @@ class _HomepageDoneScreenState extends State<HomepageDoneScreen> {
                             height: 28.v,
                             text: "Lihat Histori",
                             margin: EdgeInsets.symmetric(
-                                horizontal: 22.h, vertical: 16.v),
+                                horizontal: 9.h, vertical: 12.v),
                             buttonStyle:
                                 CustomButtonStyles.outlinePrimaryContainerTL14,
                             buttonTextStyle: theme.textTheme.labelLarge!,

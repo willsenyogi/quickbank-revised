@@ -7,6 +7,8 @@ import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
 import 'package:quickbank_revised/widgets/custom_text_form_field.dart';
 import 'package:quickbank_revised/main.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart'; // Import Firebase Auth
 
 class TransferBankLainScreen extends StatefulWidget {
   TransferBankLainScreen({Key? key})
@@ -20,27 +22,22 @@ class TransferBankLainScreen extends StatefulWidget {
 
 class _TransferBankLainScreenState extends State<TransferBankLainScreen> {
   TextEditingController rekeningController = TextEditingController();
-
   TextEditingController nominalBLController = TextEditingController();
-
   TextEditingController catatanController = TextEditingController();
-
   TextEditingController bankController = TextEditingController();
-
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   final List<String> bankList = [
-  'Bank Central Asia (BCA)',
-  'Bank Negara Indonesia (BNI)',
-  'Bank Rakyat Indonesia (BRI)',
-  'Bank Mandiri',
-  'Bank DBS',
-  'Bank Jago',
-  'United Overseas Bank (UOB)',
-  'Bank CIMB Niaga',
-  'Bank Danamon',
-  'Bank HSBC Indonesia',
-  'Panin Bank',
+    'Bank Central Asia (BCA)',
+    'Bank Negara Indonesia (BNI)',
+    'Bank Rakyat Indonesia (BRI)',
+    'Bank Mandiri',
+    'Bank DBS',
+    'Bank Jago',
+    'United Overseas Bank (UOB)',
+    'Bank CIMB Niaga',
+    'Bank Danamon',
+    'Bank HSBC Indonesia',
+    'Panin Bank',
   ];
 
   @override
@@ -137,21 +134,20 @@ class _TransferBankLainScreenState extends State<TransferBankLainScreen> {
                           ),
                           elevation: 2,
                         ),
-
                         dropdownStyleData: DropdownStyleData(
-                        maxHeight: 200,
-                        width: 343,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.h),
-                          color: theme.colorScheme.onPrimary.withOpacity(1),
+                          maxHeight: 200,
+                          width: 343,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.h),
+                            color: theme.colorScheme.onPrimary.withOpacity(1),
+                          ),
+                          offset: const Offset(0, 0),
+                          scrollbarTheme: ScrollbarThemeData(
+                            radius: const Radius.circular(40),
+                            thickness: MaterialStateProperty.all(6),
+                            thumbVisibility: MaterialStateProperty.all(true),
+                          ),
                         ),
-                        offset: const Offset(0, 0),
-                        scrollbarTheme: ScrollbarThemeData(
-                          radius: const Radius.circular(40),
-                          thickness: MaterialStateProperty.all(6),
-                          thumbVisibility: MaterialStateProperty.all(true),
-                        ),
-                      ),
                         menuItemStyleData: const MenuItemStyleData(
                           height: 50,
                         ),
@@ -164,7 +160,8 @@ class _TransferBankLainScreenState extends State<TransferBankLainScreen> {
                     hintText: "Nomor Rekening",
                     textInputType: TextInputType.number,
                     validator: (rekeningController) {
-                      if (rekeningController == null || rekeningController.isEmpty) {
+                      if (rekeningController == null ||
+                          rekeningController.isEmpty) {
                         return 'Nomor Rekening Kosong';
                       }
                       return null;
@@ -177,7 +174,10 @@ class _TransferBankLainScreenState extends State<TransferBankLainScreen> {
                     textInputAction: TextInputAction.done,
                     textInputType: TextInputType.number,
                     validator: (nominalBLController) {
-                    if (nominalBLController == null || nominalBLController.isEmpty || int.parse(nominalBLController) > accountBalance || int.parse(nominalBLController) < 10000) {
+                      if (nominalBLController == null ||
+                          nominalBLController.isEmpty ||
+                          int.parse(nominalBLController) > accountBalance ||
+                          int.parse(nominalBLController) < 10000) {
                         return 'Jumlah minimal transfer adalah Rp 10.000,00';
                       }
                       return null;
@@ -201,19 +201,17 @@ class _TransferBankLainScreenState extends State<TransferBankLainScreen> {
             left: 24.h,
             right: 24.h,
             bottom: 46.v,
-            ),
-            buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
-            borderColor: Colors.transparent,
-            onTap: () {
-             if (_formKey.currentState?.validate() == true) {
+          ),
+          buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
+          borderColor: Colors.transparent,
+          onTap: () {
+            if (_formKey.currentState?.validate() == true) {
               valueBL = rekeningController.text;
               nominalBLValue = nominalBLController.text;
               notesBLValue = catatanController.text;
               onTapConfirmVa(context);
-              
-              }
-            },
-          
+            }
+          },
         ),
       ),
     );
@@ -223,7 +221,29 @@ class _TransferBankLainScreenState extends State<TransferBankLainScreen> {
     Navigator.pushNamed(context, AppRoutes.pilihanTransferScreen);
   }
 
-  onTapConfirmVa(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.konfirmasiBankLainScreen);
+  onTapConfirmVa(BuildContext context) async {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    Timestamp timestamp = Timestamp.now();
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    final User? user = auth.currentUser;
+
+    if (user != null) {
+      final String userEmail = user.email!;
+
+      Map<String, dynamic> transactionData = {
+        'email': userEmail,
+        'accountNumber': valueBL,
+        'amount': double.parse(nominalBLValue),
+        'transactionType': selectedBank,
+        'timestamp': timestamp,
+      };
+
+      try {
+        await firestore.collection('transactions').add(transactionData);
+        Navigator.pushNamed(context, AppRoutes.konfirmasiBankLainScreen);
+      } catch (e) {
+        print('Terjadi kesalahan: $e');
+      }
+    }
   }
 }
