@@ -59,26 +59,22 @@ class _HistoryOnProgressScreenState extends State<HistoryOnProgressScreen> {
 
   @override
   Widget build(BuildContext context) {
-    mediaQueryData = MediaQuery.of(context);
-
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0XFF262626),
-        body: Container(
-          width: double.maxFinite,
-          padding: EdgeInsets.symmetric(vertical: 1.v),
+        body: SingleChildScrollView(
           child: Column(
             children: [
               SizedBox(
-                height: 140.v,
-                width: double.maxFinite,
+                height: 140,
+                width: double.infinity,
                 child: Stack(
                   alignment: Alignment.bottomCenter,
                   children: [
                     CustomImageView(
                       imagePath: ImageConstant.imgCutbackground1,
-                      height: 140.v,
-                      width: 375.h,
+                      height: 140,
+                      width: double.infinity, // Lebar diubah ke "double.infinity"
                       alignment: Alignment.center,
                     ),
                     Center(
@@ -86,13 +82,15 @@ class _HistoryOnProgressScreenState extends State<HistoryOnProgressScreen> {
                         alignment: Alignment.bottomCenter,
                         child: Padding(
                           padding: EdgeInsets.only(
-                            bottom: 12.v,
+                            bottom: 12,
                           ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               SizedBox(
-                                width: 50.h,
+                              width: 50,
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
                                 child: Text(
                                   "QUICK\nBANK",
                                   maxLines: 2,
@@ -103,11 +101,12 @@ class _HistoryOnProgressScreenState extends State<HistoryOnProgressScreen> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 35.v),
+                            ),
+
+                              SizedBox(height: 35),
                               Text(
                                 "Histori Transaksi",
-                                style: CustomTextStyles
-                                    .titleLargeOnPrimaryContainer,
+                                style: CustomTextStyles.titleLargeOnPrimaryContainer,
                               ),
                             ],
                           ),
@@ -117,44 +116,36 @@ class _HistoryOnProgressScreenState extends State<HistoryOnProgressScreen> {
                   ],
                 ),
               ),
-              Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: double.maxFinite,
-                      child: Container(
-                        margin: EdgeInsets.fromLTRB(23.h, 14.v, 23.h, 5.v),
-                        decoration: AppDecoration.fillOnPrimary.copyWith(),
-                        child: transactionHistory.isEmpty
-                            ? Center(
-                                child: Text(
-                                  "Tidak ada data transaksi.",
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              )
-                            : ListView.builder(
-                                physics: BouncingScrollPhysics(),
-                                shrinkWrap: true,
-                                reverse: true,
-                                itemCount: transactionHistory.length,
-                                itemBuilder: (context, index) {
-                                  // Membuat widget TransactionCardWidget untuk setiap transaksi
-                                  return TransactionCardWidget(
-                                    accountNumber:
-                                        transactionHistory[index].accountNumber,
-                                    amount: transactionHistory[index].amount,
-                                    transactionType: transactionHistory[index]
-                                        .transactionType,
-                                  );
-                                },
-                              ),
+              SizedBox(
+                width: double.infinity,
+                child: Container(
+                  margin: EdgeInsets.fromLTRB(23, 14, 23, 5),
+                  decoration: AppDecoration.fillOnPrimary.copyWith(),
+                  child: transactionHistory.isEmpty
+                      ? Center(
+                          child: Text(
+                            "Tidak ada data transaksi.",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
+                            ),
+                          ),
+                        )
+                      : ListView.separated(
+                        physics: BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: transactionHistory.length,
+                        separatorBuilder: (context, index) {
+                          return SizedBox(height: 8.0);
+                        },
+                        itemBuilder: (context, index) {
+                          return TransactionCardWidget(
+                            accountNumber: transactionHistory[index].accountNumber,
+                            amount: transactionHistory[index].amount,
+                            transactionType: transactionHistory[index].transactionType,
+                          );
+                        },
                       ),
-                    ),
-                  ],
                 ),
               ),
             ],
@@ -163,9 +154,9 @@ class _HistoryOnProgressScreenState extends State<HistoryOnProgressScreen> {
         bottomNavigationBar: CustomOutlinedButton(
           text: "Kembali",
           margin: EdgeInsets.only(
-            left: 24.h,
-            right: 24.h,
-            bottom: 46.v,
+            left: 24,
+            right: 24,
+            bottom: 46,
           ),
           buttonStyle: CustomButtonStyles.outlineOnPrimaryTL241,
           borderColor: Colors.transparent,
