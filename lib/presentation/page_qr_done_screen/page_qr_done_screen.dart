@@ -54,6 +54,7 @@ class _PageQrDoneScreenState extends State<PageQrDoneScreen> {
                   bottom: 11.v,
                 ),
                 onTap: () {
+                  controller?.pauseCamera();
                   // Navigate to HomepageDonePage when the button is pressed
                   Navigator.push(
                     context,
