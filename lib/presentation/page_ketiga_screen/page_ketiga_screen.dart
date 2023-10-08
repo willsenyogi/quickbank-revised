@@ -20,16 +20,6 @@ class PageKetigaScreen extends StatelessWidget {
         body: Container(
           width: mediaQueryData.size.width,
           height: mediaQueryData.size.height,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment(0.5, 0),
-              end: Alignment(0.5, 1),
-              colors: [
-                appTheme.gray500,
-                appTheme.black900.withOpacity(0),
-              ],
-            ),
-          ),
           child: SizedBox(
             height: mediaQueryData.size.height,
             width: double.maxFinite,
@@ -38,9 +28,10 @@ class PageKetigaScreen extends StatelessWidget {
               children: [
                 CustomImageView(
                   imagePath: ImageConstant.imgWavebackground,
-                  height: 900.v,
-                  width: 375.h,
+                  width: mediaQueryData.size.width,
+                  height: mediaQueryData.size.height,
                   alignment: Alignment.center,
+                  fit: BoxFit.cover,
                 ),
                 Align(
                   alignment: Alignment.center,

@@ -47,6 +47,22 @@ class _BiodataScreenState extends State<BiodataScreen> {
       child: Scaffold(
         extendBody: true,
         extendBodyBehindAppBar: true,
+        resizeToAvoidBottomInset: false,
+        body: Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            color: appTheme.black900,
+            image: DecorationImage(
+              image: AssetImage(ImageConstant.imgWavebackground),
+              fit: BoxFit.cover,
+            ),
+          ),
+      child: Scaffold(
+        primary: true,
+        backgroundColor: Colors.transparent,
+        extendBody: true,
+        extendBodyBehindAppBar: true,
         resizeToAvoidBottomInset: true,
         appBar: CustomAppBar(
           height: 90.v,
@@ -63,14 +79,7 @@ class _BiodataScreenState extends State<BiodataScreen> {
         ),
         body: Container(
           width: MediaQuery.of(context).size.width,
-          height: 800,
-          decoration: BoxDecoration(
-            color: appTheme.black900,
-            image: DecorationImage(
-              image: AssetImage(ImageConstant.imgWavebackground),
-              fit: BoxFit.cover,
-            ),
-          ),
+          height: MediaQuery.of(context).size.height,
           child: SingleChildScrollView(
             child: Form(
               key: _formKey,
@@ -200,6 +209,8 @@ class _BiodataScreenState extends State<BiodataScreen> {
             ),
           ),
         ),
+      ),
+      ),
       ),
     );
   }
