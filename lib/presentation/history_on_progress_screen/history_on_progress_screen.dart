@@ -134,6 +134,7 @@ class _HistoryOnProgressScreenState extends State<HistoryOnProgressScreen> {
                       : ListView.separated(
                           physics: BouncingScrollPhysics(),
                           shrinkWrap: true,
+                          reverse: true,
                           itemCount: transactionHistory.length,
                           separatorBuilder: (context, index) {
                             return SizedBox(height: 8.0);
