@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:quickbank_revised/core/app_export.dart';
 import 'package:quickbank_revised/widgets/app_bar/appbar_title.dart';
 import 'package:quickbank_revised/widgets/app_bar/custom_app_bar.dart';
-import 'package:quickbank_revised/widgets/custom_outlined_button.dart';
-import 'package:quickbank_revised/widgets/app_bar/appbar_iconbutton.dart';
 
 class PilihanTransferScreen extends StatelessWidget {
   const PilihanTransferScreen({Key? key}) : super(key: key);
