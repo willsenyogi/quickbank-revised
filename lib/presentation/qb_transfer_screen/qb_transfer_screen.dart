@@ -175,6 +175,6 @@ class _QbTransferScreenState extends State<QbTransferScreen> {
   }
 
   onTapBack(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.pilihanTransferScreen);
+    Navigator.pushNamed(context, AppRoutes.mainScreen);
   }
 }

@@ -129,7 +129,7 @@ class TransferVaScreen extends StatelessWidget {
   }
 
   onTapBack(BuildContext context) {
-    Navigator.pushNamed(context, AppRoutes.pilihanTransferScreen);
+    Navigator.pushNamed(context, AppRoutes.mainScreen);
   }
 
   onTapConfirmVa(BuildContext context) async {

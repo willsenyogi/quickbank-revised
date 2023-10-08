@@ -5,13 +5,16 @@ import 'package:quickbank_revised/presentation/profile_done_screen/profileeditsc
 
 class MainScreen extends StatefulWidget {
   MainScreen({Key? key}) : super(key: key);
-
+  
   @override
-  _MainScreenState createState() => _MainScreenState();
+  _MainScreenState createState() => _MainScreenState(1);
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreenState extends State<MainScreen>{
   int currentIndex = 1;
+  _MainScreenState(int index){
+    currentIndex = index;
+  }
   final screens = [
     ProfilEditScreen(),
     HomepageDoneScreen(),
