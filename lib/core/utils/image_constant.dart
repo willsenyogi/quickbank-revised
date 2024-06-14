@@ -48,9 +48,6 @@ class ImageConstant {
 
   static String imgCaret = '$imagePath/img_caret.svg';
 
-  static String imgWavebackground812x374 =
-      '$imagePath/img_wavebackground_812x374.png';
-
   static String imgLocation = '$imagePath/img_location.png';
 
   static String imgFaiconregular = '$imagePath/img_faiconregular.svg';
